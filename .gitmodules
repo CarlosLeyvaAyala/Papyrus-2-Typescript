@@ -1,0 +1,3 @@
+[submodule "functional"]
+	path = functional
+	url = https://github.com/colinj/Functional

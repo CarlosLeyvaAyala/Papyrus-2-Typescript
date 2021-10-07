@@ -203,6 +203,7 @@ begin
     Result := ReplaceText(s, 'none', 'null');
   end;
 
+  try
   Result := TransformArgList(args,
     function(arg: string): string
     begin
@@ -214,6 +215,12 @@ begin
 
       Result := Format('%s: %s%s', [varName, varType, dv]);
     end);
+  except on E: Exception do
+    // If something fails the more likely case is a malformed comment.
+    // I'll eventually make this program to be comment aware, but here's
+    // a hack in the meantime:
+    Result := args;
+  end;
 end;
 
 // Tranforms a whole function declaration from Papyrus to Ts.

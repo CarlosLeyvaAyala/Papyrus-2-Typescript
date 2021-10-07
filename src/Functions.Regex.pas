@@ -17,9 +17,12 @@ function AddFlags(const expr: string; const aFlags: Flags): string;
 type
   TBullshitWrapper = class
     f: TFunc<string, string>;
+    g: TFunc<TMatch, string>;
     { It's bullshit only object methods are accepted as a TMatchEvaluator }
     class function LowerCase(const match: TMatch): string;
     function Something(const match: TMatch): string;
+    // Use this instead of Something()
+    function SomethingGral(const match: TMatch): string;
   end;
 
 implementation
@@ -63,6 +66,11 @@ end;
 function TBullshitWrapper.Something(const match: TMatch): string;
 begin
   Result := f(match.Value);
+end;
+
+function TBullshitWrapper.SomethingGral(const match: TMatch): string;
+begin
+  Result := g(match);
 end;
 
 end.

@@ -6,6 +6,11 @@ uses
   System.StrUtils, Functional.FuncFactory, System.SysUtils, Data.DB,
   System.Classes, Functional.Sequence, Vcl.StdCtrls, System.RegularExpressions;
 
+type
+  TConstFunc = function(const s: string): string;
+
+function ConstFuncAdapter(f: TConstFunc): TFunc<string, string>;
+
 function AskedForLowerCase(const toLowerCase: Boolean; const aText: string):
   string;
 
@@ -66,6 +71,15 @@ implementation
 
 uses
   Functions.Regex;
+
+function ConstFuncAdapter(f: TConstFunc): TFunc<string, string>;
+begin
+  Result :=
+    function(s: string): string
+    begin
+      Result := f(s);
+    end;
+end;
 
 function Prepend(willPrependThis: string): TFunc<string, string>;
 begin
@@ -270,7 +284,7 @@ begin
   Result :=
     function(const input: string; const Accumulator: string): string
     begin
-      Result := Accumulator + IfThen(Accumulator = '', '', aSeparator) + input;
+        Result := Accumulator + IfThen(Accumulator = '', '', aSeparator) + input;
     end;
 end;
 

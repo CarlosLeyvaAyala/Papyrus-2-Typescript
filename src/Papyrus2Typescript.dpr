@@ -17,7 +17,6 @@ begin
     for var i := 1 to ParamCount do begin
       Process(ParamStr(i));
     end;
-    Readln;
   except
     on E: Exception do begin
       Writeln(E.ClassName, ': ', E.Message);

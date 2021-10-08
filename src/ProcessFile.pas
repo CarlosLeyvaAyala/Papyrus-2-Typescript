@@ -180,6 +180,7 @@ begin
   Result := TSeq.From(argList)
     .Map(f)
     .Fold<string>(PrettyComma(), '');
+  argList.Free;
 end;
 
 // Renames Ts reserved words that are not a problem in Papyrus
@@ -206,23 +207,23 @@ end;
 function PapyrusArgsToTs(args: string): string;
 begin
   const PapyDefaultToTs =
-  function(s: string): string
-  begin
-    Result := ReplaceText(s, 'none', 'null');
-  end;
+    function(s: string): string
+    begin
+      Result := ReplaceText(s, 'none', 'null');
+    end;
 
   try
-  Result := TransformArgList(args,
-    function(arg: string): string
-    begin
-      const g = TRegEx.Create(argsRegex).Match(arg).Groups;
-      const varName = AvoidReserved(g.Item[4].Value);
-      const varType = PapyrusToTsType(g.Item[1].Value);
-      const defaultVal = PapyDefaultToTs(g.Item[5].Value);
-      const dv = IfThen(defaultVal <> '', ' = ' + defaultVal, '');
+    Result := TransformArgList(args,
+      function(arg: string): string
+      begin
+        const g = TRegEx.Create(argsRegex).Match(arg).Groups;
+        const varName = AvoidReserved(g.Item[4].Value);
+        const varType = PapyrusToTsType(g.Item[1].Value);
+        const defaultVal = PapyDefaultToTs(g.Item[5].Value);
+        const dv = IfThen(defaultVal <> '', ' = ' + defaultVal, '');
 
-      Result := Format('%s: %s%s', [varName, varType, dv]);
-    end);
+        Result := Format('%s: %s%s', [varName, varType, dv]);
+      end);
   except on E: Exception do
     // If something fails, the more likely case is embedded Papyrus code;
     // like the way most PapyrusUtil source files have inside them.

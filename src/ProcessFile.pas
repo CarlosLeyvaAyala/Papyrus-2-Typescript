@@ -154,18 +154,17 @@ begin
   Result := Result.Replace('int', 'number');
   Result := Result.Replace('bool', 'boolean');
 
-  // Papyrus objects - special cases
-  Result := Result.Replace('formlist', 'FormList');
-  Result := Result.Replace('form[', 'Form[');
-  Result := Result.Replace('form', 'Form | null');
+  // Papyrus objects - all
+  for var obj in GetPapyrusObjects do begin
+    const l = obj.ToLower;
 
-  // Papyrus objects: all
-  for var obj in GetPapyrusObjects do
-    Result := Result.Replace(obj.ToLower, obj);
+    // Array type. Example: Replace('form[', 'Form[')
+    Result := Result.Replace(l + '[', obj + '[');
+
+    // Nullable object type. Example: Replace('form', 'Form | null')
+    Result := Result.Replace(l, obj + ' | null | undefined');
+  end;
 end;
-
-const
-  argsRegex = '((\w+)(\[\s*\])*)\s(\w+)=?(.*)';
 
 // Transforms arguments in the form 'arg1, arg2, ... argN' to
 // 'arg1´, arg2´, ... argN´'
@@ -183,13 +182,22 @@ begin
     .Fold<string>(PrettyComma(), '');
 end;
 
+// Renames Ts reserved words that are not a problem in Papyrus
+function AvoidReserved(s: string): string;
+begin
+  Result := s.Replace('default', 'defaultVal');
+end;
+
+const
+  argsRegex = '((\w+)(\[\s*\])*)\s(\w+)=?(.*)';
+
 // Removes typing from a list of arguments. Used for translating the calling function.
 function UntypeArgs(args: string): string;
 begin
   Result := TransformArgList(args,
     function(arg: string): string
     begin
-      Result := TRegEx.Create(argsRegex).Replace(arg, '$4');
+      Result := AvoidReserved(TRegEx.Create(argsRegex).Replace(arg, '$4'));
     end);
 end;
 
@@ -208,7 +216,7 @@ begin
     function(arg: string): string
     begin
       const g = TRegEx.Create(argsRegex).Match(arg).Groups;
-      const varName = g.Item[4].Value;
+      const varName = AvoidReserved(g.Item[4].Value);
       const varType = PapyrusToTsType(g.Item[1].Value);
       const defaultVal = PapyDefaultToTs(g.Item[5].Value);
       const dv = IfThen(defaultVal <> '', ' = ' + defaultVal, '');
@@ -216,9 +224,11 @@ begin
       Result := Format('%s: %s%s', [varName, varType, dv]);
     end);
   except on E: Exception do
-    // If something fails the more likely case is a malformed comment.
-    // I'll eventually make this program to be comment aware, but here's
-    // a hack in the meantime:
+    // If something fails, the more likely case is embedded Papyrus code;
+    // like the way most PapyrusUtil source files have inside them.
+    // This program aim is not to automate whole language translation, but
+    // only function headers, so that kind of code is output verbatim for a
+    // human to fix it.
     Result := args;
   end;
 end;
@@ -227,12 +237,12 @@ end;
 function TransformFuncDecl(s: string; m: TMatch): string;
 begin
   const g = m.Groups;
-  const ty = PapyrusToTsType(g.Item[1].Value);
-  const fn = g.Item[2].Value;
-  const input = PapyrusArgsToTs(g.Item[3].Value);
-  const args = UntypeArgs(g.Item[3].Value);
+  const typ = PapyrusToTsType(g.Item[3].Value);
+  const fn = g.Item[5].Value;
+  const input = PapyrusArgsToTs(g.Item[6].Value);
+  const args = UntypeArgs(g.Item[6].Value);
   const r = 'export const %s = (%s): %s => %s.%s(%s)';
-  Result := Format(r, [fn, input, ty, scriptNameVar, fn, args]);
+  Result := Format(r, [fn, input, typ, scriptNameVar, fn, args]);
 end;
 
 // Transforms the Scriptname to a Typescript object assignment.
@@ -255,6 +265,33 @@ begin
   Result := ReplaceStr(Result, ';', '//');
 end;
 
+function TransformBlockCommentStart(s, bcL, bcS: string;
+  isBlockCommentEnd: TMatch; var bcOpen: Boolean): string;
+begin
+  if isBlockCommentEnd.Success then
+    // Block comment ends in same line
+    Result := TRegex.Create(bcL).Replace(s, '/** $2 */')
+  else begin
+    Result := TRegex.Create(bcS).Replace(s, '/** $2');
+    bcOpen := true;
+  end
+end;
+
+function TransformBlockCommentEnd(s, bcE: string;
+  isBlockCommentEnd: TMatch; var bcOpen: Boolean): string;
+begin
+  if isBlockCommentEnd.Success then begin
+    Result := TRegex.Create(bcE).Replace(s, '$1 */');
+    bcOpen := false;
+  end
+  else
+    // Comment open. Don't transform
+    Result := s
+end;
+
+var
+  blockCommentOpen: Boolean = false;
+
 // Process a single line.
 function ProcessLine(s: string): string;
 begin
@@ -264,10 +301,23 @@ begin
   const sn = AddFlags('^\s*scriptname (\w*)( hidden)?', fl);
   const isScriptName = TRegEx.Create(sn).Match(s);
 
-  const fn = AddFlags('(.* )?function (.*)\((.*)\).*', fl);
+  const fn = AddFlags('^\s*(((\w*)\s*(\[\s*\]\s*)*)\s+)?function (\w*)\s*\((.*)\).*', fl);
   const isFunc = TRegex.Create(fn).Match(s);
 
-  if isScriptName.Success then
+  const bcS = '^\s*(;\/|{)(.*)';
+  const isBlockCommentStart = TRegex.Create(bcS).Match(s);
+
+  const bcE = '(.*)(\/;)\s*$';
+  const isBlockCommentEnd = TRegex.Create(bcE).Match(s);
+
+  const bcL= '^\s*(;\/|{)(.*)(\/;|})\s*$';
+
+  // For all regex replaces, I traded performance for code clarity
+  if isBlockCommentStart.Success then
+    Result := TransformBlockCommentStart(s, bcL, bcS,isBlockCommentEnd, blockCommentOpen)
+  else if blockCommentOpen then
+    Result := TransformBlockCommentEnd(s, bcE, isBlockCommentEnd, blockCommentOpen)
+  else if isScriptName.Success then
     Result := TransformScriptName(s, isScriptName)
   else if isFunc.Success then
     Result := TransformFuncDecl(s, isFunc)
@@ -286,7 +336,7 @@ const
     'the scripts, so it''s always advisable to manually check all generated' + nl +
     'files to make sure everything is declared as it should.' + nl + nl +
 
-    'Take note that program assumes this script exists in some subfolder' + nl +
+    'Take note the program assumes this script exists in some subfolder' + nl +
     'to the folder where `skyrimPlatform.ts` is found, otherwise you''ll get' + nl +
     '"Cannot find module..." type of errors.' + nl + nl +
 
@@ -331,6 +381,7 @@ begin
   if not FileExists(fileName) then
     Exit;
 
+  blockCommentOpen := false;
   const lines = ReadFile(fileName);
   try
     const ugly = TSeq.From(lines)

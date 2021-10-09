@@ -96,7 +96,7 @@
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <Debugger_RunParams>&quot;F:\Skyrim SE\MO2\mods\JContainers SE\scripts\source\JFormMap.psc&quot; &quot;F:\Skyrim SE\MO2\mods\JContainers SE\scripts\source\JValue.psc&quot;</Debugger_RunParams>
+        <Debugger_RunParams>&quot;F:\Skyrim SE\MO2\mods\powerofthree&apos;s Papyrus Extender for SSE\source\scripts\PO3_SKSEFunctions.psc&quot;</Debugger_RunParams>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>

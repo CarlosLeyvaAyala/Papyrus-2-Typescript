@@ -118,7 +118,7 @@ begin
 end;
 
 // Trims content from multiline comments.
-function BeautifyComments(s: string): string;
+function BeautifyTrimMultilineComments(s: string): string;
 begin
   const r = AddFlags('(\/\*\*)(.*)(\*\/)', [singleLine, ungreedy]);
   const bs = TBullshitWrapper.Create;
@@ -132,6 +132,35 @@ begin
       Result := Format('%s %s %s', [init, b, ending]);
     end;
   Result := TRegEx.Create(r).Replace(s, bs.SomethingGral);
+  bs.Free;
+end;
+
+// Converts normal comments to TsDoc comments
+function BeautifyDocComments(s: string): string;
+begin
+  const c = AddFlags('^\s*\/\/(.*)(export)', [singleLine, ungreedy, multiLine]);
+  const bs = TBullshitWrapper.Create;
+  bs.g := function (m: TMatch): string
+    begin
+      // Ignore comments that are separated from the function definition
+      // by a blank line.
+      const x = m.Groups[1].Value;
+      const s = m.Groups[1].Value.Trim;
+      const l = LastDelimiter(#10, s);
+      const rest = LeftStr(s, l);
+      const r = IfThen(rest <> '', '//' + rest, '');
+      const noBlank = RightStr(s, Length(s) - l);
+//      const noBlank = TRegex.Create('(.*\n)').Replace(m.Groups[1].Value.trim, '');
+      Result := r + '/** ' + noBlank + ' */'#13#10 + m.Groups[2].Value;
+    end;
+  Result := TRegex.Create(c).Replace(s, bs.SomethingGral);
+  bs.Free;
+end;
+
+function BeautifyComments(s: string): string;
+begin
+  Result := BeautifyTrimMultilineComments(s);
+//  Result := BeautifyDocComments(Result);
 end;
 
 // Beautifies the output file.
@@ -157,12 +186,14 @@ begin
   // Papyrus objects - all
   for var obj in GetPapyrusObjects do begin
     const l = obj.ToLower;
+    if not StartsStr(l, Result) then Continue;
 
     // Array type. Example: Replace('form[', 'Form[')
     Result := Result.Replace(l + '[', obj + '[');
 
     // Nullable object type. Example: Replace('form', 'Form | null')
-    Result := Result.Replace(l, obj + ' | null | undefined');
+    if l = Result then
+      Result := Result.Replace(l, obj + ' | null | undefined');
   end;
 end;
 
@@ -183,14 +214,14 @@ begin
   argList.Free;
 end;
 
-// Renames Ts reserved words that are not a problem in Papyrus
+// Renames TS reserved words that are not a problem in Papyrus
 function AvoidReserved(s: string): string;
 begin
   Result := s.Replace('default', 'defaultVal');
 end;
 
 const
-  argsRegex = '((\w+)(\[\s*\])*)\s(\w+)=?(.*)';
+  argsRegex = '((\w+)(\[\s*\])*)\s(\w+)\s*=?(.*)';
 
 // Removes typing from a list of arguments. Used for translating the calling function.
 function UntypeArgs(args: string): string;
@@ -220,7 +251,7 @@ begin
         const varName = AvoidReserved(g.Item[4].Value);
         const varType = PapyrusToTsType(g.Item[1].Value);
         const defaultVal = PapyDefaultToTs(g.Item[5].Value);
-        const dv = IfThen(defaultVal <> '', ' = ' + defaultVal, '');
+        const dv = IfThen(defaultVal <> '', ' = ' + defaultVal.trim, '');
 
         Result := Format('%s: %s%s', [varName, varType, dv]);
       end);
@@ -305,6 +336,9 @@ begin
   const fn = AddFlags('^\s*(((\w*)\s*(\[\s*\]\s*)*)\s+)?function (\w*)\s*\((.*)\).*', fl);
   const isFunc = TRegex.Create(fn).Match(s);
 
+  const pr = AddFlags('(.*)property (\w*)\s*=\s*(.*) autoreadonly(.*)', fl);
+  const isProperty = TRegEx.Create(pr).Match(s);
+
   const bcS = '^\s*(;\/|{)(.*)';
   const isBlockCommentStart = TRegex.Create(bcS).Match(s);
 
@@ -322,6 +356,8 @@ begin
     Result := TransformScriptName(s, isScriptName)
   else if isFunc.Success then
     Result := TransformFuncDecl(s, isFunc)
+  else if isProperty.Success then
+    Result := TRegex.Create(pr).Replace(s, 'export const $2 = $3')
   else
     Result := TransformPossibleComments(s);
 end;

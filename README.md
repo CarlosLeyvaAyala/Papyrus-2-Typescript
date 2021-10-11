@@ -47,7 +47,7 @@ I've added to this project some converted files for libraries I use myself. Grab
 ## Remarks
 This program has no way to know the intention of the humans that made the scripts, so it's always advisable to manually check all generated files to make sure everything is declared as it should.
 
-Take note ⚠️the program assumes generated scripts will be put in some subfolder to the folder where `skyrimPlatform.ts` is found⚠️, otherwise you'll get `"Cannot find module..."` type of errors.
+Take note ⚠️the program assumes generated scripts will be put in some subfolder to the folder where `skyrimPlatform.ts` is found⚠️, otherwise you'll get `"Cannot find module..."` type of errors when coding your plugin.
 
 If you want to have your scripts in some other place, you can always just change the relative path of each `import` for each *.ts file, of course.
 

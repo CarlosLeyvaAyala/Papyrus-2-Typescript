@@ -7,17 +7,22 @@ This program is meant to be used to transform SKSE definition libraries to Types
 ***This program's aim is not to automate whole language features translation***, but only function headers. \
 If the *.psc file contains actual code (think [PapyrusUtil.psc][PapyrusUtil]) the function header will be converted, but the rest will be output verbatim, waiting for a human to come and fix it.
 
-## Converted files
-
-I've added to this project some converted files for libraries I use myself. Grab them at the [conversions][] folder.
-
-***BEWARE***: Not all functions have been tested.
 
 ## Usage
 Drag and drop all your *.psc files to the executable.\
 It will generate *.ts files in the same folder as its input.
 
-In code, you'll have something like this:
+## Using converted files
+
+Put all your converted files inside some folder, then add that folder inside the folder where `skyrimPlatform.ts` is located.
+
+![](location.png)
+
+Folders in this image look like shortcuts because they are actually [symlinks][] (the same technology Vortex uses to manage your mods).
+
+You don't need to use symlinks. You can just drop your folders there.
+
+Once folders are where they are supposed to be, import modules from Typescript as usual.
 
 ```typescript
 import { on } from "skyrimPlatform"
@@ -34,6 +39,10 @@ on('update', () => {
   printConsole(`Array value: ${t}`)
 })
 ```
+I've added to this project some converted files for libraries I use myself. Grab them at the [conversions][] folder.
+
+***BEWARE***: Not all functions have been tested.
+
 
 ## Remarks
 This program has no way to know the intention of the humans that made the scripts, so it's always advisable to manually check all generated files to make sure everything is declared as it should.
@@ -52,3 +61,4 @@ Just open the project and build.
 [PapyrusUtil]: https://www.nexusmods.com/skyrimspecialedition/mods/13048
 [Delphi Community Edition]: https://www.embarcadero.com/products/delphi/starter/free-download
 [conversions]: /conversions/
+[symlinks]: https://www.howtogeek.com/howto/16226/complete-guide-to-symbolic-links-symlinks-on-windows-or-linux/

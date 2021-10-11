@@ -70,3 +70,4 @@ modules/
 
 # Releases
 *.7z
+*.js

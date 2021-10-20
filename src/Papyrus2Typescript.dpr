@@ -14,8 +14,12 @@ uses
 
 begin
   try
+    Write('What library version are you converting? ');
+    var version: string;
+    ReadLn(version);
+
     for var i := 1 to ParamCount do begin
-      Process(ParamStr(i));
+      Process(ParamStr(i), version);
     end;
   except
     on E: Exception do begin

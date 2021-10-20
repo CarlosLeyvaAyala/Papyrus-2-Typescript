@@ -266,10 +266,10 @@ begin
 end;
 
 // Tranforms a whole function declaration from Papyrus to Ts.
-function TransformFuncDecl(s: string; m: TMatch): string;
+function TransformFuncDecl(_: string; m: TMatch): string;
 begin
   const g = m.Groups;
-  const typ = PapyrusToTsType(g.Item[3].Value);
+  const typ = PapyrusToTsType(g.Item[2].Value);
   const fn = g.Item[5].Value;
   const input = PapyrusArgsToTs(g.Item[6].Value);
   const args = UntypeArgs(g.Item[6].Value);

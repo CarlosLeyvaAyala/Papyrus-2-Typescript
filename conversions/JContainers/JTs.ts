@@ -13,6 +13,8 @@ This file will be included in the official conversion release
 once it has a good deal of useful functions.
 */
 import * as JMap from "./JMap"
+import * as JFormMap from "./JFormMap"
+import { Form } from "skyrimPlatform"
 
 /** JMap related functions. */
 export namespace JMapL {
@@ -38,6 +40,33 @@ export namespace JMapL {
     while (k !== "") {
       f(k, o)
       k = JMap.nextKey(o, k)
+    }
+  }
+}
+
+export namespace JFormMapL {
+  /** Iterates over all JFormMap keys and executes a function `f` for each key.
+   *
+   * @param o Object handle for the JFormMap.
+   * @param f Function to execute for each key found.
+   * It accepts the `key` found and the object `o` as arguments.
+   *
+   * @example
+   * ForAllKeys(JValue.readFromFile(path), (armor, i) => {
+   *   const data = JFormMap.getObj(i, armor)
+   *   DoSomething(data)
+   * })
+   */
+  export function ForAllKeys(
+    o: number,
+    f: (key: Form, object: number) => void
+  ) {
+    if (o === 0) return
+    let k = JFormMap.nextKey(o)
+
+    while (k) {
+      f(k, o)
+      k = JFormMap.nextKey(o, k)
     }
   }
 }

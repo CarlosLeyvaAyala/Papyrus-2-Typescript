@@ -359,7 +359,7 @@ begin
   const bcS = '^\s*(;\/|{)(.*)';
   const isBlockCommentStart = TRegex.Create(bcS).Match(s);
 
-  const bcE = '(.*)(\/;)\s*$';
+  const bcE = '(.*)((\/;)|})\s*$';
   const isBlockCommentEnd = TRegex.Create(bcE).Match(s);
 
   const bcL= '^\s*(;\/|{)(.*)(\/;|})\s*$';

@@ -1,6 +1,6 @@
 /*
 Manually converted functions. Please test:
-	-	GetScriptVersion
+	- GetScriptVersion
 	- ClearEmpty
 	- ClearNone
 	- CountFalse

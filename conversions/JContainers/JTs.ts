@@ -14,7 +14,7 @@ once it has a good deal of useful functions.
 */
 import * as JMap from "./JMap"
 import * as JFormMap from "./JFormMap"
-import { Form } from "skyrimPlatform"
+import { Form, printConsole } from "skyrimPlatform"
 
 /** JMap related functions. */
 export namespace JMapL {
@@ -41,6 +41,18 @@ export namespace JMapL {
       f(k, o)
       k = JMap.nextKey(o, k)
     }
+  }
+
+  export function FilterForms(
+    o: number,
+    Predicate: (frm: Form | null | undefined, object: number) => boolean
+  ) {
+    const r = JMap.object()
+    ForAllKeys(o, (k) => {
+      const frm = JMap.getForm(o, k)
+      if (Predicate(frm, o)) JMap.setForm(r, k, frm)
+    })
+    return r
   }
 }
 

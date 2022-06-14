@@ -17,7 +17,7 @@
 <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600' rel='stylesheet' type='text/css'/>
 
 <!-- CSS -->
-<title>ReStr</title>
+<title>Papyrus_2_Typescript</title>
 <link rel="stylesheet" type="text/css" href="nimdoc.out.css">
 
 <script type="text/javascript" src="dochack.js"></script>
@@ -69,7 +69,7 @@ window.addEventListener('DOMContentLoaded', main);
 <body>
 <div class="document" id="documentId">
   <div class="container">
-    <h1 class="title">ReStr</h1>
+    <h1 class="title">Papyrus_2_Typescript</h1>
     <div class="row">
   <div class="three columns">
   <div class="theme-switch-wrapper">
@@ -97,80 +97,14 @@ window.addEventListener('DOMContentLoaded', main);
       <option value="type">Type</option>
     </select>
   </div>
-  <ul class="simple simple-toc" id="toc-list">
-<li>
-  <a class="reference reference-toplevel" href="#10" id="60">Consts</a>
-  <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#scriptNameVar"
-    title="scriptNameVar = &quot;sn&quot;">scriptNameVar</a></li>
-  <li><a class="reference" href="#sn"
-    title="sn = r&quot;^\s*scriptname (\w*)(extends )?(.*)?( hidden)?&quot;">sn</a></li>
-  <li><a class="reference" href="#snR"
-    title="snR = &quot;const sn = (sp as any).$1&quot;">snR</a></li>
-  <li><a class="reference" href="#TransformScriptName"
-    title="TransformScriptName = :anonymous">TransformScriptName</a></li>
-
-  </ul>
-</li>
-
-</ul>
-
+  
   </div>
   
   <div class="nine columns" id="content">
   <div id="tocRoot"></div>
   
-  <p class="module-desc">Unit containing all regex constants and functions needed to translate from Papyrus to Typescript. </p>
-  <div class="section" id="10">
-<h1><a class="toc-backref" href="#10">Consts</a></h1>
-<dl class="item">
-<div id="scriptNameVar">
-<dt><pre><a href="ReStr.html#scriptNameVar"><span class="Identifier">scriptNameVar</span></a> <span class="Other">=</span> <span class="StringLit">&quot;sn&quot;</span></pre></dt>
-<dd>
-
-<p>
-This name will be output as a Typescript <tt class="docutils literal"><span class="pre"><span class="Keyword">const</span></span></tt> that will be used as a placeholder for <tt class="docutils literal"><span class="pre"><span class="Punctuation">(</span><span class="Identifier">sp</span> <span class="Keyword">as</span> <span class="Identifier">any</span><span class="Punctuation">)</span><span class="Operator">.&lt;</span><span class="Identifier">Papyrus</span> <span class="Identifier">script</span> <span class="Identifier">name</span><span class="Operator">&gt;</span></span></tt>.</p>
-<p><strong>Example</strong></p>
-<p><pre class="listing">
-// If input was nioverride.psc
-const sn = (sp as any).NiOverride
-</pre></p>
-
-
-</dd>
-</div>
-<div id="sn">
-<dt><pre><a href="ReStr.html#sn"><span class="Identifier">sn</span></a> <span class="Other">=</span> <span class="StringLit">r&quot;^\s*scriptname (\w*)(extends )?(.*)?( hidden)?&quot;</span></pre></dt>
-<dd>
-
-<p>
-<em>&quot;ScriptName&quot;</em>.</p>
-<p>Used for extracting the script name. See <a class="reference external" href="#scriptNameVar">scriptNameVar</a>.</p>
-
-
-</dd>
-</div>
-<div id="snR">
-<dt><pre><a href="ReStr.html#snR"><span class="Identifier">snR</span></a> <span class="Other">=</span> <span class="StringLit">&quot;const sn = (sp as any).$1&quot;</span></pre></dt>
-<dd>
-
-
-Typescript equivalent to <a class="reference external" href="#sn">sn</a>.
-
-</dd>
-</div>
-<div id="TransformScriptName">
-<dt><pre><a href="ReStr.html#TransformScriptName"><span class="Identifier">TransformScriptName</span></a> <span class="Other">=</span> <span class="Operator">:anonymous</span></pre></dt>
-<dd>
-
-
- Converts the ScriptName section from Papyrus to Typescript.
-
-</dd>
-</div>
-
-</dl></div>
-
+  <p class="module-desc"></p>
+  
   </div>
 </div>
 
@@ -178,7 +112,7 @@ Typescript equivalent to <a class="reference external" href="#sn">sn</a>.
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2022-05-22 07:00:12 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2022-05-22 07:59:34 UTC</small>
       </div>
     </div>
   </div>

@@ -37,18 +37,18 @@ const sn = (sp as any).MiscUtil
 // and (optionally) also has the given keyword if changed from default none. Setting radius higher than 0.0 will restrict the
 // search distance from around CenterOn, 0.0 will search entire cell the object is in.
 // NOTE: Keyword searches seem a little unpredictable so be sure to test if your usage of it works before using the results.
-export const ScanCellObjects = (formType: number, CenterOn: ObjectReference | null | undefined, radius: number = 0.0, HasKeyword: Keyword | null | undefined = null): ObjectReference[] => sn.ScanCellObjects(formType,  CenterOn,  radius,  HasKeyword)
+export const ScanCellObjects = (formType: number, CenterOn: ObjectReference | null | undefined, radius: number = 0.0, HasKeyword: Keyword | null | undefined = null): ObjectReference[] => sn.ScanCellObjects(formType, CenterOn, radius, HasKeyword)
 
 
 // Scans the current cell of the given CenterOn for an actor within the given radius and returns an array for all actors that are
 // currently alive and (optionally) has the given keyword if changed from default none. Setting radius higher than 0.0 will restrict the
 // search distance from around CenterOn, 0.0 will search entire cell the object is in.
 // NOTE: Keyword searches seem a little unpredictable so be sure to test if your usage of it works before using the results.
-export const ScanCellNPCs = (CenterOn: ObjectReference | null | undefined, radius: number = 0.0, HasKeyword: Keyword | null | undefined = null, IgnoreDead: boolean = true): Actor[] => sn.ScanCellNPCs(CenterOn,  radius,  HasKeyword,  IgnoreDead)
+export const ScanCellNPCs = (CenterOn: ObjectReference | null | undefined, radius: number = 0.0, HasKeyword: Keyword | null | undefined = null, IgnoreDead: boolean = true): Actor[] => sn.ScanCellNPCs(CenterOn, radius, HasKeyword, IgnoreDead)
 
 
 // Same as ScanCellNPCs(), however it filters the return by a given faction and (optionally) their rank in that faction.
-export const ScanCellNPCsByFaction = (FindFaction: Faction | null | undefined, CenterOn: ObjectReference | null | undefined, radius: number = 0.0, minRank: number = 0, maxRank: number = 127, IgnoreDead: boolean = true): Actor[] => sn.ScanCellNPCsByFaction(FindFaction,  CenterOn,  radius,  minRank,  maxRank,  IgnoreDead)
+export const ScanCellNPCsByFaction = (FindFaction: Faction | null | undefined, CenterOn: ObjectReference | null | undefined, radius: number = 0.0, minRank: number = 0, maxRank: number = 127, IgnoreDead: boolean = true): Actor[] => sn.ScanCellNPCsByFaction(FindFaction, CenterOn, radius, minRank, maxRank, IgnoreDead)
 
 
 /** Camera functions - NOT CURRENT WORKING IN SKYRIM SPECIAL EDITION */
@@ -59,7 +59,7 @@ export const ToggleFreeCamera = (stopTime: boolean = false): void => sn.ToggleFr
 export const SetFreeCameraSpeed = (speed: number): void => sn.SetFreeCameraSpeed(speed)
 
 // Set current freefly cam state & set the speed if enabling
-export const SetFreeCameraState = (enable: boolean, speed: number = 10.0): void => sn.SetFreeCameraState(enable,  speed)
+export const SetFreeCameraState = (enable: boolean, speed: number = 10.0): void => sn.SetFreeCameraState(enable, speed)
 
 /** File related functions */
 
@@ -69,7 +69,7 @@ export const SetFreeCameraState = (enable: boolean, speed: number = 10.0): void 
 // directory = "data/meshes" to get all files in the <root>/data/meshes folder
 // extension = ".nif" to get all .nif mesh files.
 // (default) extension="*" to get all files
-export const FilesInFolder = (directory: string, extension: string = "*"): string[] => sn.FilesInFolder(directory,  extension)
+export const FilesInFolder = (directory: string, extension: string = "*"): string[] => sn.FilesInFolder(directory, extension)
 
 // Get an array of folders in a given parent directory
 // Same rules and examples as above FilesInFolder apply to the directory rule here.
@@ -83,7 +83,7 @@ export const FileExists = (fileName: string): boolean => sn.FileExists(fileName)
 export const ReadFromFile = (fileName: string): string => sn.ReadFromFile(fileName)
 
 // Write string to file.
-export const WriteToFile = (fileName: string, text: string, append: boolean = true, timestamp: boolean = false): boolean => sn.WriteToFile(fileName,  text,  append,  timestamp)
+export const WriteToFile = (fileName: string, text: string, append: boolean = true, timestamp: boolean = false): boolean => sn.WriteToFile(fileName, text, append, timestamp)
 
 
 /** Misc */

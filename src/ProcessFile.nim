@@ -21,7 +21,7 @@ proc getLines(fn: string): seq[string] =
 
 proc ProcessLine(l: string): string =
   type Match = tuple[matched: bool, s: string] 
-  proc Replace (regx: string, f: (string, openArray[string]) -> string): Match {.discardable.} =
+  proc Replace (regx: string, f: (string, openArray[string]) -> string): Match =
     var matches: array[20, string]
     let r =re(regx, {reIgnoreCase, reStudy})
     result.matched = l.match(r, matches)
@@ -31,11 +31,11 @@ proc ProcessLine(l: string): string =
       # echo matches
       echo result.s
 
-  let snT = Replace(sn, TranslateScriptName)
-  let prT = Replace(pr, TranslateProperty)
+  let sn = Replace(isScriptName, TranslateScriptName)
+  let pr = Replace(isProperty, TranslateProperty)
 
-  if snT.matched: return snT.s
-  elif prT.matched: return prT.s
+  if sn.matched: return sn.s
+  elif pr.matched: return pr.s
   
   return l.toUpperAscii()
 

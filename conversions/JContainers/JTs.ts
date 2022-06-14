@@ -14,7 +14,8 @@ once it has a good deal of useful functions.
 */
 import * as JMap from "./JMap"
 import * as JFormMap from "./JFormMap"
-import { Form, printConsole } from "skyrimPlatform"
+import * as JArray from "./JArray"
+import { Form } from "skyrimPlatform"
 
 /** JMap related functions. */
 export namespace JMapL {
@@ -79,6 +80,21 @@ export namespace JFormMapL {
     while (k) {
       f(k, o)
       k = JFormMap.nextKey(o, k)
+    }
+  }
+}
+
+export namespace JArrayL {
+  export function ForAllItems(
+    o: number,
+    f: (index: number, object: number) => void
+  ) {
+    if (o === 0) return
+    let i = JArray.count(o)
+
+    while (i > 0) {
+      i--
+      f(i, o)
     }
   }
 }

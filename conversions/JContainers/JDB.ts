@@ -39,7 +39,7 @@ export const solveInt = (path: string, defaultVal: number = 0): number => sn.sol
 export const solveBool = (path: string, defaultVal: boolean = false): boolean => sn.solveInt(path,  defaultVal ? 1 : 0) === 1
 export const solveStr = (path: string, defaultVal: string = ""): string => sn.solveStr(path,  defaultVal)
 export const solveObj = (path: string, defaultVal: number = 0): number => sn.solveObj(path,  defaultVal)
-export const solveForm = (path: string, defaultVal: Form | null | undefined = null): Form | null | undefined => sn.solveForm(path,  defaultVal)
+export const solveForm = (path: string, defaultVal: Form | null = null): Form | null => sn.solveForm(path,  defaultVal)
 
 /** Attempts to assign the @value. Returns false if no such path.
     If 'createMissingKeys=true' it creates any missing path elements: JDB.solveIntSetter(".frostfall.keyB", 10, true) creates {frostfall: {keyB: 10}} structure */
@@ -48,7 +48,7 @@ export const solveIntSetter = (path: string, value: number, createMissingKeys: b
 export const solveBoolSetter = (path: string, value: boolean, createMissingKeys: boolean = false): boolean => sn.solveIntSetter(path,  value ? 1 : 0,  createMissingKeys)
 export const solveStrSetter = (path: string, value: string, createMissingKeys: boolean = false): boolean => sn.solveStrSetter(path,  value,  createMissingKeys)
 export const solveObjSetter = (path: string, value: number, createMissingKeys: boolean = false): boolean => sn.solveObjSetter(path,  value,  createMissingKeys)
-export const solveFormSetter = (path: string, value: Form | null | undefined, createMissingKeys: boolean = false): boolean => sn.solveFormSetter(path,  value,  createMissingKeys)
+export const solveFormSetter = (path: string, value: Form | null, createMissingKeys: boolean = false): boolean => sn.solveFormSetter(path,  value,  createMissingKeys)
 
 /** Associates(and replaces previous association) container object with a string key.
     destroys association if object is zero

@@ -27,8 +27,8 @@ export const wrap = (sourceText: string, charactersPerLine: number = 60): number
 
 /** FormId|Form <-> "__formData|<pluginName>|<lowFormId>"-string converisons */
 export const decodeFormStringToFormId = (formString: string): number => sn.decodeFormStringToFormId(formString)
-export const decodeFormStringToForm = (formString: string): Form | null | undefined => sn.decodeFormStringToForm(formString)
-export const encodeFormToString = (value: Form | null | undefined): string => sn.encodeFormToString(value)
+export const decodeFormStringToForm = (formString: string): Form | null => sn.decodeFormStringToForm(formString)
+export const encodeFormToString = (value: Form | null): string => sn.encodeFormToString(value)
 export const encodeFormIdToString = (formId: number): string => sn.encodeFormIdToString(formId)
 
 /** Generates random uuid-string like 2e80251a-ab22-4ad8-928c-2d1c9561270e */

@@ -110,7 +110,7 @@ export const solveFlt = (object: number, path: string, defaultVal: number = 0.0)
 export const solveInt = (object: number, path: string, defaultVal: number = 0): number => sn.solveInt(object,  path,  defaultVal)
 export const solveStr = (object: number, path: string, defaultVal: string = ""): string => sn.solveStr(object,  path,  defaultVal)
 export const solveObj = (object: number, path: string, defaultVal: number = 0): number => sn.solveObj(object,  path,  defaultVal)
-export const solveForm = (object: number, path: string, defaultVal: Form | null | undefined = null): Form | null | undefined => sn.solveForm(object,  path,  defaultVal)
+export const solveForm = (object: number, path: string, defaultVal: Form | null = null): Form | null => sn.solveForm(object,  path,  defaultVal)
 
 /** Attempts to assign the value. If @createMissingKeys is False it may fail to assign - if no such path exist.
     With 'createMissingKeys=true' it creates any missing path element: solveIntSetter(map, ".keyA.keyB", 10, true) on empty JMap creates {keyA: {keyB: 10}} structure */
@@ -118,11 +118,11 @@ export const solveFltSetter = (object: number, path: string, value: number, crea
 export const solveIntSetter = (object: number, path: string, value: number, createMissingKeys: boolean = false): boolean => sn.solveIntSetter(object,  path,  value,  createMissingKeys)
 export const solveStrSetter = (object: number, path: string, value: string, createMissingKeys: boolean = false): boolean => sn.solveStrSetter(object,  path,  value,  createMissingKeys)
 export const solveObjSetter = (object: number, path: string, value: number, createMissingKeys: boolean = false): boolean => sn.solveObjSetter(object,  path,  value,  createMissingKeys)
-export const solveFormSetter = (object: number, path: string, value: Form | null | undefined, createMissingKeys: boolean = false): boolean => sn.solveFormSetter(object,  path,  value,  createMissingKeys)
+export const solveFormSetter = (object: number, path: string, value: Form | null, createMissingKeys: boolean = false): boolean => sn.solveFormSetter(object,  path,  value,  createMissingKeys)
 
 /** Evaluates piece of lua code. Lua support is experimental */
 export const evalLuaFlt = (object: number, luaCode: string, defaultVal: number = 0.0): number => sn.evalLuaFlt(object,  luaCode,  defaultVal)
 export const evalLuaInt = (object: number, luaCode: string, defaultVal: number = 0): number => sn.evalLuaInt(object,  luaCode,  defaultVal)
 export const evalLuaStr = (object: number, luaCode: string, defaultVal: string = ""): string => sn.evalLuaStr(object,  luaCode,  defaultVal)
 export const evalLuaObj = (object: number, luaCode: string, defaultVal: number = 0): number => sn.evalLuaObj(object,  luaCode,  defaultVal)
-export const evalLuaForm = (object: number, luaCode: string, defaultVal: Form | null | undefined = null): Form | null | undefined => sn.evalLuaForm(object,  luaCode,  defaultVal)
+export const evalLuaForm = (object: number, luaCode: string, defaultVal: Form | null = null): Form | null => sn.evalLuaForm(object,  luaCode,  defaultVal)

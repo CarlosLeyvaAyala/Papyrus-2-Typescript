@@ -25,35 +25,35 @@ const sn = (sp as any).JFormMap
 export const object = (): number => sn.object()
 
 /** Returns the value associated with the @key. If not, returns @default value */
-export const getInt = (object: number, key: Form | null | undefined, defaultVal: number = 0): number => sn.getInt(object,  key,  defaultVal)
-export const getFlt = (object: number, key: Form | null | undefined, defaultVal: number = 0.0): number => sn.getFlt(object,  key,  defaultVal)
-export const getStr = (object: number, key: Form | null | undefined, defaultVal: string = ""): string => sn.getStr(object,  key,  defaultVal)
-export const getObj = (object: number, key: Form | null | undefined, defaultVal: number = 0): number => sn.getObj(object,  key,  defaultVal)
-export const getForm = (object: number, key: Form | null | undefined, defaultVal: Form | null | undefined = null): Form | null | undefined => sn.getForm(object,  key,  defaultVal)
+export const getInt = (object: number, key: Form | null, defaultVal: number = 0): number => sn.getInt(object,  key,  defaultVal)
+export const getFlt = (object: number, key: Form | null, defaultVal: number = 0.0): number => sn.getFlt(object,  key,  defaultVal)
+export const getStr = (object: number, key: Form | null, defaultVal: string = ""): string => sn.getStr(object,  key,  defaultVal)
+export const getObj = (object: number, key: Form | null, defaultVal: number = 0): number => sn.getObj(object,  key,  defaultVal)
+export const getForm = (object: number, key: Form | null, defaultVal: Form | null = null): Form | null => sn.getForm(object,  key,  defaultVal)
 
 /** Inserts @key: @value pair. Replaces existing pair with the same @key */
-export const setInt = (object: number, key: Form | null | undefined, value: number): void => sn.setInt(object,  key,  value)
-export const setFlt = (object: number, key: Form | null | undefined, value: number): void => sn.setFlt(object,  key,  value)
-export const setStr = (object: number, key: Form | null | undefined, value: string): void => sn.setStr(object,  key,  value)
-export const setObj = (object: number, key: Form | null | undefined, container: number): void => sn.setObj(object,  key,  container)
-export const setForm = (object: number, key: Form | null | undefined, value: Form | null | undefined): void => sn.setForm(object,  key,  value)
+export const setInt = (object: number, key: Form | null, value: number): void => sn.setInt(object,  key,  value)
+export const setFlt = (object: number, key: Form | null, value: number): void => sn.setFlt(object,  key,  value)
+export const setStr = (object: number, key: Form | null, value: string): void => sn.setStr(object,  key,  value)
+export const setObj = (object: number, key: Form | null, container: number): void => sn.setObj(object,  key,  container)
+export const setForm = (object: number, key: Form | null, value: Form | null): void => sn.setForm(object,  key,  value)
 
 /** Returns true, if the container has @key: value pair */
-export const hasKey = (object: number, key: Form | null | undefined): boolean => sn.hasKey(object,  key)
+export const hasKey = (object: number, key: Form | null): boolean => sn.hasKey(object,  key)
 
 /** Returns type of the value associated with the @key.
     0 - no value, 1 - none, 2 - int, 3 - float, 4 - form, 5 - object, 6 - string */
-export const valueType = (object: number, key: Form | null | undefined): number => sn.valueType(object,  key)
+export const valueType = (object: number, key: Form | null): number => sn.valueType(object,  key)
 
 /** Returns a new array containing all keys */
 export const allKeys = (object: number): number => sn.allKeys(object)
-export const allKeysPArray = (object: number): Form | null | undefined => sn.allKeysPArray(object)
+export const allKeysPArray = (object: number): Form | null => sn.allKeysPArray(object)
 
 /** Returns a new array containing all values */
 export const allValues = (object: number): number => sn.allValues(object)
 
 /** Removes the pair from the container where the key equals to the @key */
-export const removeKey = (object: number, key: Form | null | undefined): boolean => sn.removeKey(object,  key)
+export const removeKey = (object: number, key: Form | null): boolean => sn.removeKey(object,  key)
 
 /** Returns count of pairs in the conainer */
 export const count = (object: number): number => sn.count(object)
@@ -79,8 +79,8 @@ export const addPairs = (object: number, source: number, overrideDuplicates: boo
           <retrieve values here>
           key = JMap.nextKey(map, key, endKey="")
         endwhile */
-export const nextKey = (object: number, previousKey: Form | null | undefined = null, endKey: Form | null | undefined = null): Form | null | undefined => sn.nextKey(object,  previousKey,  endKey)
+export const nextKey = (object: number, previousKey: Form | null = null, endKey: Form | null = null): Form | null => sn.nextKey(object,  previousKey,  endKey)
 
 /** Retrieves N-th key. negative index accesses items from the end of container counting backwards.
     Worst complexity is O(n/2) */
-export const getNthKey = (object: number, keyIndex: number): Form | null | undefined => sn.getNthKey(object,  keyIndex)
+export const getNthKey = (object: number, keyIndex: number): Form | null => sn.getNthKey(object,  keyIndex)

@@ -29,14 +29,14 @@ export const getInt = (object: number, key: number, defaultVal: number = 0): num
 export const getFlt = (object: number, key: number, defaultVal: number = 0.0): number => sn.getFlt(object,  key,  defaultVal)
 export const getStr = (object: number, key: number, defaultVal: string = ""): string => sn.getStr(object,  key,  defaultVal)
 export const getObj = (object: number, key: number, defaultVal: number = 0): number => sn.getObj(object,  key,  defaultVal)
-export const getForm = (object: number, key: number, defaultVal: Form | null | undefined = null): Form | null | undefined => sn.getForm(object,  key,  defaultVal)
+export const getForm = (object: number, key: number, defaultVal: Form | null = null): Form | null => sn.getForm(object,  key,  defaultVal)
 
 /** Inserts @key: @value pair. Replaces existing pair with the same @key */
 export const setInt = (object: number, key: number, value: number): void => sn.setInt(object,  key,  value)
 export const setFlt = (object: number, key: number, value: number): void => sn.setFlt(object,  key,  value)
 export const setStr = (object: number, key: number, value: string): void => sn.setStr(object,  key,  value)
 export const setObj = (object: number, key: number, container: number): void => sn.setObj(object,  key,  container)
-export const setForm = (object: number, key: number, value: Form | null | undefined): void => sn.setForm(object,  key,  value)
+export const setForm = (object: number, key: number, value: Form | null): void => sn.setForm(object,  key,  value)
 
 /** Returns true, if the container has @key: value pair */
 export const hasKey = (object: number, key: number): boolean => sn.hasKey(object,  key)

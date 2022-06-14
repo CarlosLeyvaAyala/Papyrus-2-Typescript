@@ -42,7 +42,7 @@ export const subArray = (object: number, startIndex: number, endIndex: number): 
 /** Inserts the values from the source array into this array. If insertAtIndex is -1 (default behaviour) it appends to the end.
     negative index accesses items from the end of container counting backwards. */
 export const addFromArray = (object: number, source: number, insertAtIndex: number = -1): void => sn.addFromArray(object,  source,  insertAtIndex)
-export const addFromFormList = (object: number, source: FormList | null | undefined, insertAtIndex: number = -1): void => sn.addFromFormList(object,  source,  insertAtIndex)
+export const addFromFormList = (object: number, source: FormList | null, insertAtIndex: number = -1): void => sn.addFromFormList(object,  source,  insertAtIndex)
 
 /** Returns the item at the index of the array.
     negative index accesses items from the end of container counting backwards. */
@@ -50,7 +50,7 @@ export const getInt = (object: number, index: number, defaultVal: number = 0): n
 export const getFlt = (object: number, index: number, defaultVal: number = 0.0): number => sn.getFlt(object,  index,  defaultVal)
 export const getStr = (object: number, index: number, defaultVal: string = ""): string => sn.getStr(object,  index,  defaultVal)
 export const getObj = (object: number, index: number, defaultVal: number = 0): number => sn.getObj(object,  index,  defaultVal)
-export const getForm = (object: number, index: number, defaultVal: Form | null | undefined = null): Form | null | undefined => sn.getForm(object,  index,  defaultVal)
+export const getForm = (object: number, index: number, defaultVal: Form | null = null): Form | null => sn.getForm(object,  index,  defaultVal)
 
 /** Copy all items to new native Papyrus array of dynamic size.
     Items not matching the requested type will have default
@@ -58,7 +58,7 @@ export const getForm = (object: number, index: number, defaultVal: Form | null |
 export const asIntArray = (object: number): number => sn.asIntArray(object)
 export const asFloatArray = (object: number): number => sn.asFloatArray(object)
 export const asStringArray = (object: number): string => sn.asStringArray(object)
-export const asFormArray = (object: number): Form | null | undefined => sn.asFormArray(object)
+export const asFormArray = (object: number): Form | null => sn.asFormArray(object)
 
 /** Returns the index of the first found value/container that equals to given the value/container (default behaviour if searchStartIndex is 0).
     If nothing was found it returns -1.
@@ -68,14 +68,14 @@ export const findInt = (object: number, value: number, searchStartIndex: number 
 export const findFlt = (object: number, value: number, searchStartIndex: number = 0): number => sn.findFlt(object,  value,  searchStartIndex)
 export const findStr = (object: number, value: string, searchStartIndex: number = 0): number => sn.findStr(object,  value,  searchStartIndex)
 export const findObj = (object: number, container: number, searchStartIndex: number = 0): number => sn.findObj(object,  container,  searchStartIndex)
-export const findForm = (object: number, value: Form | null | undefined, searchStartIndex: number = 0): number => sn.findForm(object,  value,  searchStartIndex)
+export const findForm = (object: number, value: Form | null, searchStartIndex: number = 0): number => sn.findForm(object,  value,  searchStartIndex)
 
 /** Returns the number of times given value was found in a JArray. */
 export const countInteger = (object: number, value: number): number => sn.countInteger(object,  value)
 export const countFloat = (object: number, value: number): number => sn.countFloat(object,  value)
 export const countString = (object: number, value: string): number => sn.countString(object,  value)
 export const countObject = (object: number, container: number): number => sn.countObject(object,  container)
-export const countForm = (object: number, value: Form | null | undefined): number => sn.countForm(object,  value)
+export const countForm = (object: number, value: Form | null): number => sn.countForm(object,  value)
 
 /** Replaces existing value at the @index of the array with the new @value.
     negative index accesses items from the end of container counting backwards. */
@@ -83,7 +83,7 @@ export const setInt = (object: number, index: number, value: number): void => sn
 export const setFlt = (object: number, index: number, value: number): void => sn.setFlt(object,  index,  value)
 export const setStr = (object: number, index: number, value: string): void => sn.setStr(object,  index,  value)
 export const setObj = (object: number, index: number, container: number): void => sn.setObj(object,  index,  container)
-export const setForm = (object: number, index: number, value: Form | null | undefined): void => sn.setForm(object,  index,  value)
+export const setForm = (object: number, index: number, value: Form | null): void => sn.setForm(object,  index,  value)
 
 /** Appends the @value/@container to the end of the array.
     If @addToIndex >= 0 it inserts value at given index. negative index accesses items from the end of container counting backwards. */
@@ -91,7 +91,7 @@ export const addInt = (object: number, value: number, addToIndex: number = -1): 
 export const addFlt = (object: number, value: number, addToIndex: number = -1): void => sn.addFlt(object,  value,  addToIndex)
 export const addStr = (object: number, value: string, addToIndex: number = -1): void => sn.addStr(object,  value,  addToIndex)
 export const addObj = (object: number, container: number, addToIndex: number = -1): void => sn.addObj(object,  container,  addToIndex)
-export const addForm = (object: number, value: Form | null | undefined, addToIndex: number = -1): void => sn.addForm(object,  value,  addToIndex)
+export const addForm = (object: number, value: Form | null, addToIndex: number = -1): void => sn.addForm(object,  value,  addToIndex)
 
 /** Returns count of the items in the array */
 export const count = (object: number): number => sn.count(object)
@@ -111,7 +111,7 @@ export const eraseInteger = (object: number, value: number): number => sn.eraseI
 export const eraseFloat = (object: number, value: number): number => sn.eraseFloat(object,  value)
 export const eraseString = (object: number, value: string): number => sn.eraseString(object,  value)
 export const eraseObject = (object: number, container: number): number => sn.eraseObject(object,  container)
-export const eraseForm = (object: number, value: Form | null | undefined): number => sn.eraseForm(object,  value)
+export const eraseForm = (object: number, value: Form | null): number => sn.eraseForm(object,  value)
 
 /** Returns type of the value at the @index. negative index accesses items from the end of container counting backwards.
     0 - no value, 1 - none, 2 - int, 3 - float, 4 - form, 5 - object, 6 - string */
@@ -135,5 +135,5 @@ export const reverse = (object: number): number => sn.reverse(object)
        [1, 3] - writes 3 items in straight order */
 export const writeToIntegerPArray = (object: number, targetArray: number[], writeAtIdx: number = 0, stopWriteAtIdx: number = -1, readIdx: number = 0, defaultValRead: number = 0): boolean => sn.writeToIntegerPArray(object,  targetArray,  writeAtIdx,  stopWriteAtIdx,  readIdx,  defaultValRead)
 export const writeToFloatPArray = (object: number, targetArray: number[], writeAtIdx: number = 0, stopWriteAtIdx: number = -1, readIdx: number = 0, defaultValRead: number = 0.0): boolean => sn.writeToFloatPArray(object,  targetArray,  writeAtIdx,  stopWriteAtIdx,  readIdx,  defaultValRead)
-export const writeToFormPArray = (object: number, targetArray: Form[], writeAtIdx: number = 0, stopWriteAtIdx: number = -1, readIdx: number = 0, defaultValRead: Form | null | undefined = null): boolean => sn.writeToFormPArray(object,  targetArray,  writeAtIdx,  stopWriteAtIdx,  readIdx,  defaultValRead)
+export const writeToFormPArray = (object: number, targetArray: Form[], writeAtIdx: number = 0, stopWriteAtIdx: number = -1, readIdx: number = 0, defaultValRead: Form | null = null): boolean => sn.writeToFormPArray(object,  targetArray,  writeAtIdx,  stopWriteAtIdx,  readIdx,  defaultValRead)
 export const writeToStringPArray = (object: number, targetArray: string[], writeAtIdx: number = 0, stopWriteAtIdx: number = -1, readIdx: number = 0, defaultValRead: string = ""): boolean => sn.writeToStringPArray(object,  targetArray,  writeAtIdx,  stopWriteAtIdx,  readIdx,  defaultValRead)

@@ -40,12 +40,12 @@ export const evalLuaFlt = (luaCode: string, transport: number, defaultVal: numbe
 export const evalLuaInt = (luaCode: string, transport: number, defaultVal: number = 0, minimizeLifetime: boolean = true): number => sn.evalLuaInt(luaCode,  transport,  defaultVal,  minimizeLifetime)
 export const evalLuaStr = (luaCode: string, transport: number, defaultVal: string = "", minimizeLifetime: boolean = true): string => sn.evalLuaStr(luaCode,  transport,  defaultVal,  minimizeLifetime)
 export const evalLuaObj = (luaCode: string, transport: number, defaultVal: number = 0, minimizeLifetime: boolean = true): number => sn.evalLuaObj(luaCode,  transport,  defaultVal,  minimizeLifetime)
-export const evalLuaForm = (luaCode: string, transport: number, defaultVal: Form | null | undefined = null, minimizeLifetime: boolean = true): Form | null | undefined => sn.evalLuaForm(luaCode,  transport,  defaultVal,  minimizeLifetime)
+export const evalLuaForm = (luaCode: string, transport: number, defaultVal: Form | null = null, minimizeLifetime: boolean = true): Form | null => sn.evalLuaForm(luaCode,  transport,  defaultVal,  minimizeLifetime)
 
 /** Inserts new (or replaces existing) {key -> value} pair. Expects that @transport is JMap object, if @transport is 0 it creates new JMap object.
     Returns @transport */
 export const setStr = (key: string, value: string, transport: number = 0): number => sn.setStr(key,  value,  transport)
 export const setFlt = (key: string, value: number, transport: number = 0): number => sn.setFlt(key,  value,  transport)
 export const setInt = (key: string, value: number, transport: number = 0): number => sn.setInt(key,  value,  transport)
-export const setForm = (key: string, value: Form | null | undefined, transport: number = 0): number => sn.setForm(key,  value,  transport)
+export const setForm = (key: string, value: Form | null, transport: number = 0): number => sn.setForm(key,  value,  transport)
 export const setObj = (key: string, value: number, transport: number = 0): number => sn.setObj(key,  value,  transport)

@@ -46,7 +46,7 @@ export namespace JMapL {
 
   export function FilterForms(
     o: number,
-    Predicate: (frm: Form | null | undefined, object: number) => boolean
+    Predicate: (frm: Form | null, object: number) => boolean
   ) {
     const r = JMap.object()
     ForAllKeys(o, (k) => {

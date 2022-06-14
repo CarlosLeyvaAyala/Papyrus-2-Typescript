@@ -24,52 +24,52 @@ import { Form } from "../skyrimPlatform"
 const sn = (sp as any).JFormDB
 
 /** associates given form key and entry (container). set entry to zero to destroy association */
-export const setEntry = (storageName: string, fKey: Form | null | undefined, entry: number): void => sn.setEntry(storageName,  fKey,  entry)
+export const setEntry = (storageName: string, fKey: Form | null, entry: number): void => sn.setEntry(storageName,  fKey,  entry)
 
 /** returns (or creates new if not found) JMap entry for given storage and form */
-export const makeEntry = (storageName: string, fKey: Form | null | undefined): number => sn.makeEntry(storageName,  fKey)
+export const makeEntry = (storageName: string, fKey: Form | null): number => sn.makeEntry(storageName,  fKey)
 
 /** search for entry for given storage and form */
-export const findEntry = (storageName: string, fKey: Form | null | undefined): number => sn.findEntry(storageName,  fKey)
+export const findEntry = (storageName: string, fKey: Form | null): number => sn.findEntry(storageName,  fKey)
 
 /** attempts to get value associated with path. */
-export const solveFlt = (fKey: Form | null | undefined, path: string, defaultVal: number = 0.0): number => sn.solveFlt(fKey,  path,  defaultVal)
-export const solveInt = (fKey: Form | null | undefined, path: string, defaultVal: number = 0): number => sn.solveInt(fKey,  path,  defaultVal)
-export const solveBool = (fKey: Form | null | undefined, path: string, defaultVal: boolean = false): boolean => sn.solveInt(fKey,  path,  defaultVal ? 1 : 0) === 1
-export const solveStr = (fKey: Form | null | undefined, path: string, defaultVal: string = ""): string => sn.solveStr(fKey,  path,  defaultVal)
-export const solveObj = (fKey: Form | null | undefined, path: string, defaultVal: number = 0): number => sn.solveObj(fKey,  path,  defaultVal)
-export const solveForm = (fKey: Form | null | undefined, path: string, defaultVal: Form | null | undefined = null): Form | null | undefined => sn.solveForm(fKey,  path,  defaultVal)
+export const solveFlt = (fKey: Form | null, path: string, defaultVal: number = 0.0): number => sn.solveFlt(fKey,  path,  defaultVal)
+export const solveInt = (fKey: Form | null, path: string, defaultVal: number = 0): number => sn.solveInt(fKey,  path,  defaultVal)
+export const solveBool = (fKey: Form | null, path: string, defaultVal: boolean = false): boolean => sn.solveInt(fKey,  path,  defaultVal ? 1 : 0) === 1
+export const solveStr = (fKey: Form | null, path: string, defaultVal: string = ""): string => sn.solveStr(fKey,  path,  defaultVal)
+export const solveObj = (fKey: Form | null, path: string, defaultVal: number = 0): number => sn.solveObj(fKey,  path,  defaultVal)
+export const solveForm = (fKey: Form | null, path: string, defaultVal: Form | null = null): Form | null => sn.solveForm(fKey,  path,  defaultVal)
 
 /** Attempts to assign value. Returns false if no such path
     With 'createMissingKeys=true' it creates any missing path elements: JFormDB.solveIntSetter(formKey, ".frostfall.keyB", 10, true) creates {frostfall: {keyB: 10}} structure */
-export const solveFltSetter = (fKey: Form | null | undefined, path: string, value: number, createMissingKeys: boolean = false): boolean => sn.solveFltSetter(fKey,  path,  value,  createMissingKeys)
-export const solveIntSetter = (fKey: Form | null | undefined, path: string, value: number, createMissingKeys: boolean = false): boolean => sn.solveIntSetter(fKey,  path,  value,  createMissingKeys)
-export const solveBoolSetter = (fKey: Form | null | undefined, path: string, value: boolean, createMissingKeys: boolean = false): boolean => sn.solveIntSetter(fKey,  path,  value ? 1 : 0,  createMissingKeys)
-export const solveStrSetter = (fKey: Form | null | undefined, path: string, value: string, createMissingKeys: boolean = false): boolean => sn.solveStrSetter(fKey,  path,  value,  createMissingKeys)
-export const solveObjSetter = (fKey: Form | null | undefined, path: string, value: number, createMissingKeys: boolean = false): boolean => sn.solveObjSetter(fKey,  path,  value,  createMissingKeys)
-export const solveFormSetter = (fKey: Form | null | undefined, path: string, value: Form | null | undefined, createMissingKeys: boolean = false): boolean => sn.solveFormSetter(fKey,  path,  value,  createMissingKeys)
+export const solveFltSetter = (fKey: Form | null, path: string, value: number, createMissingKeys: boolean = false): boolean => sn.solveFltSetter(fKey,  path,  value,  createMissingKeys)
+export const solveIntSetter = (fKey: Form | null, path: string, value: number, createMissingKeys: boolean = false): boolean => sn.solveIntSetter(fKey,  path,  value,  createMissingKeys)
+export const solveBoolSetter = (fKey: Form | null, path: string, value: boolean, createMissingKeys: boolean = false): boolean => sn.solveIntSetter(fKey,  path,  value ? 1 : 0,  createMissingKeys)
+export const solveStrSetter = (fKey: Form | null, path: string, value: string, createMissingKeys: boolean = false): boolean => sn.solveStrSetter(fKey,  path,  value,  createMissingKeys)
+export const solveObjSetter = (fKey: Form | null, path: string, value: number, createMissingKeys: boolean = false): boolean => sn.solveObjSetter(fKey,  path,  value,  createMissingKeys)
+export const solveFormSetter = (fKey: Form | null, path: string, value: Form | null, createMissingKeys: boolean = false): boolean => sn.solveFormSetter(fKey,  path,  value,  createMissingKeys)
 
 /** returns true, if capable resolve given path, e.g. it able to execute solve* or solver*Setter functions successfully */
-export const hasPath = (fKey: Form | null | undefined, path: string): boolean => sn.hasPath(fKey,  path)
+export const hasPath = (fKey: Form | null, path: string): boolean => sn.hasPath(fKey,  path)
 
 /** JMap-like interface functions:
 
     returns new array containing all keys */
-export const allKeys = (fKey: Form | null | undefined, key: string): number => sn.allKeys(fKey,  key)
+export const allKeys = (fKey: Form | null, key: string): number => sn.allKeys(fKey,  key)
 
 /** returns new array containing all values */
-export const allValues = (fKey: Form | null | undefined, key: string): number => sn.allValues(fKey,  key)
+export const allValues = (fKey: Form | null, key: string): number => sn.allValues(fKey,  key)
 
 /** returns value associated with key */
-export const getInt = (fKey: Form | null | undefined, key: string): number => sn.getInt(fKey,  key)
-export const getFlt = (fKey: Form | null | undefined, key: string): number => sn.getFlt(fKey,  key)
-export const getStr = (fKey: Form | null | undefined, key: string): string => sn.getStr(fKey,  key)
-export const getObj = (fKey: Form | null | undefined, key: string): number => sn.getObj(fKey,  key)
-export const getForm = (fKey: Form | null | undefined, key: string): Form | null | undefined => sn.getForm(fKey,  key)
+export const getInt = (fKey: Form | null, key: string): number => sn.getInt(fKey,  key)
+export const getFlt = (fKey: Form | null, key: string): number => sn.getFlt(fKey,  key)
+export const getStr = (fKey: Form | null, key: string): string => sn.getStr(fKey,  key)
+export const getObj = (fKey: Form | null, key: string): number => sn.getObj(fKey,  key)
+export const getForm = (fKey: Form | null, key: string): Form | null => sn.getForm(fKey,  key)
 
 /** creates key-value association. replaces existing value if any */
-export const setInt = (fKey: Form | null | undefined, key: string, value: number): void => sn.setInt(fKey,  key,  value)
-export const setFlt = (fKey: Form | null | undefined, key: string, value: number): void => sn.setFlt(fKey,  key,  value)
-export const setStr = (fKey: Form | null | undefined, key: string, value: string): void => sn.setStr(fKey,  key,  value)
-export const setObj = (fKey: Form | null | undefined, key: string, container: number): void => sn.setObj(fKey,  key,  container)
-export const setForm = (fKey: Form | null | undefined, key: string, value: Form | null | undefined): void => sn.setForm(fKey,  key,  value)
+export const setInt = (fKey: Form | null, key: string, value: number): void => sn.setInt(fKey,  key,  value)
+export const setFlt = (fKey: Form | null, key: string, value: number): void => sn.setFlt(fKey,  key,  value)
+export const setStr = (fKey: Form | null, key: string, value: string): void => sn.setStr(fKey,  key,  value)
+export const setObj = (fKey: Form | null, key: string, container: number): void => sn.setObj(fKey,  key,  container)
+export const setForm = (fKey: Form | null, key: string, value: Form | null): void => sn.setForm(fKey,  key,  value)

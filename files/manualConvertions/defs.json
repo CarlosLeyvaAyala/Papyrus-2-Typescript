@@ -1,0 +1,37 @@
+{
+  "JsonUtil": [
+    {
+      "type": "header",
+      "add": ["import { FileExists } from \"./MiscUtil\""]
+    },
+    {
+      "type": "substitute",
+      "display": "JsonExists",
+      "from": "(?isU)export const JsonExists.*endFunction",
+      "fileTranslation": "JsonUtil.JsonExists.ts"
+    },
+    {
+      "type": "add",
+      "display": "GetPathBoolValue",
+      "after": "(?i)export const GetPathFormValue.*",
+      "text": "export const GetPathBoolValue = (FileName: string, Path: string, missing: boolean = false): boolean => GetPathIntValue(FileName, Path, missing ? 1 : 0) != 0"
+    }
+  ],
+  "PapyrusUtil": [
+    {
+      "type": "substitute",
+      "display": "GetScriptVersion",
+      "from": "(?msU)export const GetScriptVersion.*returns+(d+)s*$.*endFunction",
+      "exprTranslation": "export const GetScriptVersion = (): number => $1"
+    },
+    {
+      "type": "substitute",
+      "pattern": "\\/\\*\\* ##\\n\\* ## Non-Native bool versions of some .*\\*\\/(.*)$",
+      "exprTranslation": "/*$1\\n*/"
+    },
+    {
+      "type": "comment",
+      "fileAdd": "PapyrusUtil.comment.txt"
+    }
+  ]
+}

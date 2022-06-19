@@ -3,6 +3,7 @@ import re
 import sugar
 import ReStr
 import Beautify
+import Header
 import os
 
 var blockCommentOpen = false ## \
@@ -28,10 +29,6 @@ proc ProcessLine(l: string): string =
     result.matched = l.match(r, matches)
     result.s = if (result.matched): f(l, matches) else: l
 
-    # if result.matched: 
-    #   # echo matches
-    #   echo result.s
-
   let sn = Replace(isScriptName, TranslateScriptName)
   let pr = Replace(isProperty, TranslateProperty)
   let fn = Replace(isFunction, TranslateFunction)
@@ -47,8 +44,6 @@ proc Process*(fn, version: string): void {.discardable.} =
   blockCommentOpen = false 
 
   let ugly = l.map(ProcessLine)
-  let beauty = Beautify(ugly)
-
-  writeFile(changeFileExt(fn, "ts"), beauty)
-  # for s in ugly:
-  #   echo s
+  let output = Beautify(ugly).AddHeader(fn, version)
+  
+  writeFile(changeFileExt(fn, "ts"), output)

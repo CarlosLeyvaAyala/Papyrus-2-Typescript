@@ -198,7 +198,7 @@ begin
 end;
 
 // Transforms arguments in the form 'arg1, arg2, ... argN' to
-// 'arg1´, arg2´, ... argN´'
+// 'arg1ï¿½, arg2ï¿½, ... argNï¿½'
 function TransformArgList(args: string; f: TFunc<string, string>): string;
 begin
   if args.Trim = '' then begin
@@ -455,4 +455,3 @@ begin
 end;
 
 end.
-

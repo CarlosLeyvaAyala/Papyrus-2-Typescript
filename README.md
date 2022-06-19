@@ -1,6 +1,6 @@
 # Papyrus-2-Typescript
 
-Converts Papyrus _.psc header files to _.ts files ready to use in Skyrim Platform.
+Converts Papyrus *.psc header files to *.ts files ready to use in Skyrim Platform.
 
 ## About
 
@@ -56,9 +56,17 @@ If you want to have your scripts in some other place, you can always just change
 
 ## Building
 
-[Delphi Community Edition][] will do.
+Build in release mode:
 
-Just open the project and build.
+    nimble build -d:release "Papyrus_2_Typescript.exe"
+
+Run test once compiled:
+
+    .\Papyrus_2_Typescript.exe "TestScript.psc"
+
+Compile in debug mode and run test:
+
+    nimble run "Papyrus_2_Typescript.exe" "TestScript.psc"
 
 [conversions]: /conversions/
 [delphi community edition]: https://www.embarcadero.com/products/delphi/starter/free-download

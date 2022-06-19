@@ -1,9 +1,9 @@
-# import strutils
 import sequtils
 import re
 import sugar
 import ReStr
-# import strformat
+import Beautify
+import os
 
 var blockCommentOpen = false ## \
   ## Used for flagging while parsing that a block comment has been opened
@@ -19,9 +19,6 @@ proc getLines(fn: string): seq[string] =
     close(f)
 
 const Flag = (regx: string) => re(regx, {reIgnoreCase, reStudy})
-
-proc TranslateBlockCommentStart(l: string, m: openArray[string]): string =
-  if l.contains(Flag(isBlockCommentLine)): return ""
 
 proc ProcessLine(l: string): string =
   type Match = tuple[matched: bool, s: string] 
@@ -42,7 +39,7 @@ proc ProcessLine(l: string): string =
   if sn.matched: return sn.s
   elif fn.matched: return fn.s
   elif pr.matched: return pr.s
-  else: return TranslateLineComments(l).TransformSpecialCases()
+  else: return l.TransformSpecialCases()
   
 proc Process*(fn, version: string): void {.discardable.} =
   ## Converts a Papyrus file named `fn` to Typescript.
@@ -50,6 +47,8 @@ proc Process*(fn, version: string): void {.discardable.} =
   blockCommentOpen = false 
 
   let ugly = l.map(ProcessLine)
+  let beauty = Beautify(ugly)
 
-  for s in ugly:
-    echo s
+  writeFile(changeFileExt(fn, "ts"), beauty)
+  # for s in ugly:
+  #   echo s

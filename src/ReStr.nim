@@ -214,25 +214,9 @@ proc TranslateFunction*(l: string, m: openArray[string]): string =
 ##\ Tranforms a whole function declaration from Papyrus to Ts.
 
 const
-  TranslateLineComments* = (s: string) =>
-    s.replace(";/", "/**")
-      .replace("/;", "*/")
-      .replace("{", "/**")
-      .replace("}", "*/")
-      .replace(";", "//")
-  
   toComment = r"$1// $2"
   
   # Transforms special cases, like PO3 Papyrus Extender
   TransformSpecialCases* = (s: string) => 
     s.replacef(re"(?i)(^\s*)(event .*$)", toComment)
       .replacef(re"(?i)(^\s*)(endevent.*$)", toComment)
-  
-  bcS = r"^\s*(;\/|{)"
-  bcE = r"((\/;)|})\s*$"
-  bcB = r"(.*)"
-
-  isBlockCommentStart* = bcS & bcB
-  isBlockCommentEnd* = bcB & bcE
-  isBlockCommentLine* = bcS & bcB & bcE
-  

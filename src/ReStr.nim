@@ -145,9 +145,8 @@ proc PapyrusToTsType(t: string): string =
     # FormType | null
     let nO = obj & " | null"
 
-    # Array type. Example: "form   [" => "(Form | null)["
-    let rx = re(l & r"\s*\[")
-    result = result.replace(rx, fmt"({nO})[")
+    # Array type. Example: "form[" => "(Form | null)["
+    result = result.replace(fmt"{l}[", fmt"({nO})[")
 
     # Nullable object type. Example: "form" => "Form | null"
     if l == result: result = result.replace(l, nO)
@@ -158,9 +157,9 @@ proc PapyrusArgsToTs(args: string): string =
   const T = proc (arg: string): string =
     const PapyDefaultToTs = (s: string) => s.toLowerAscii().replace("none", "null")
 
-    let varName = AvoidReserved(GetVarName(arg))
-    let varType = PapyrusToTsType(GetVarType(arg))
-    let defaultVal = PapyDefaultToTs(GetVarDefault(arg))
+    let varName = GetVarName(arg).AvoidReserved()
+    let varType = GetVarType(arg).PapyrusToTsType()
+    let defaultVal = GetVarDefault(arg).PapyDefaultToTs()
     let dv = if defaultVal != "": " = " & defaultVal.strip() else: ""
     return fmt"{varName}: {varType}{dv}"
 
@@ -213,3 +212,27 @@ proc TranslateFunction*(l: string, m: openArray[string]): string =
   let args = UntypeArgs(m[5])
   result = fmt"export const {fn} = ({input}): {typ} => {scriptNameVar}.{fn}({args})" 
 ##\ Tranforms a whole function declaration from Papyrus to Ts.
+
+const
+  TranslateLineComments* = (s: string) =>
+    s.replace(";/", "/**")
+      .replace("/;", "*/")
+      .replace("{", "/**")
+      .replace("}", "*/")
+      .replace(";", "//")
+  
+  toComment = r"$1// $2"
+  
+  # Transforms special cases, like PO3 Papyrus Extender
+  TransformSpecialCases* = (s: string) => 
+    s.replacef(re"(?i)(^\s*)(event .*$)", toComment)
+      .replacef(re"(?i)(^\s*)(endevent.*$)", toComment)
+  
+  bcS = r"^\s*(;\/|{)"
+  bcE = r"((\/;)|})\s*$"
+  bcB = r"(.*)"
+
+  isBlockCommentStart* = bcS & bcB
+  isBlockCommentEnd* = bcB & bcE
+  isBlockCommentLine* = bcS & bcB & bcE
+  

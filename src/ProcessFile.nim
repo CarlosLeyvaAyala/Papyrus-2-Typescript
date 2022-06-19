@@ -1,4 +1,4 @@
-import strutils
+# import strutils
 import sequtils
 import re
 import sugar
@@ -12,24 +12,28 @@ proc getLines(fn: string): seq[string] =
   ## Gets file content as a sequence
   var f = open(fn)
   try:
-    for l in f.lines:
-      result.add(l)
+    for l in f.lines: result.add(l)
   except:
     raise
   finally:
     close(f)
 
+const Flag = (regx: string) => re(regx, {reIgnoreCase, reStudy})
+
+proc TranslateBlockCommentStart(l: string, m: openArray[string]): string =
+  if l.contains(Flag(isBlockCommentLine)): return ""
+
 proc ProcessLine(l: string): string =
   type Match = tuple[matched: bool, s: string] 
   proc Replace (regx: string, f: (string, openArray[string]) -> string): Match =
     var matches: array[20, string]
-    let r = re(regx, {reIgnoreCase, reStudy})
+    let r = Flag(regx)
     result.matched = l.match(r, matches)
     result.s = if (result.matched): f(l, matches) else: l
 
-    if result.matched: 
-      # echo matches
-      echo result.s
+    # if result.matched: 
+    #   # echo matches
+    #   echo result.s
 
   let sn = Replace(isScriptName, TranslateScriptName)
   let pr = Replace(isProperty, TranslateProperty)
@@ -38,9 +42,8 @@ proc ProcessLine(l: string): string =
   if sn.matched: return sn.s
   elif fn.matched: return fn.s
   elif pr.matched: return pr.s
+  else: return TranslateLineComments(l).TransformSpecialCases()
   
-  return l.toUpperAscii()
-
 proc Process*(fn, version: string): void {.discardable.} =
   ## Converts a Papyrus file named `fn` to Typescript.
   let l = getLines(fn)
@@ -48,5 +51,5 @@ proc Process*(fn, version: string): void {.discardable.} =
 
   let ugly = l.map(ProcessLine)
 
-  # for s in ugly:
-  #   echo s
+  for s in ugly:
+    echo s

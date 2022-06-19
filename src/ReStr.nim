@@ -109,6 +109,8 @@ proc GetArgN (args: string, n: int): string =
   return if (matched): matches[n] else: ""
 
 const GetVarName = (args: string) => GetArgN(args, 3)
+const GetVarType = (args: string) => GetArgN(args, 0)
+const GetVarDefault = (args: string) => GetArgN(args, 4)
 
 # Renames TS reserved words that are not a problem in Papyrus
 const AvoidReserved = (s: string) => s.replace("default", "defaultVal")
@@ -118,8 +120,10 @@ proc TransformArgs(args: string, f: (string) -> string): string =
   if strip(args) == "": 
     return ""
 
-  const stripA = (s: string) => strip(s)
-  return args.split(",").map(stripA).map(f).foldr(a & ", " & b)
+  return args.split(",")
+    .map(s => strip(s))
+    .map(f)
+    .foldr(a & ", " & b)
 
 # Removes types from an argument list
 proc UntypeArgs(args: string): string =
@@ -133,8 +137,7 @@ proc PapyrusToTsType(t: string): string =
   # Easy primitives
   result = result.replace("float", "number").replace("int", "number").replace("bool", "boolean")
 
-  # const Nullable = (obj: string) => obj & " | null"
-
+  # Object types
   for obj in papyrusObjects:
     let l = obj.toLowerAscii()
     if not result.startsWith(l): continue
@@ -148,6 +151,28 @@ proc PapyrusToTsType(t: string): string =
 
     # Nullable object type. Example: "form" => "Form | null"
     if l == result: result = result.replace(l, nO)
+
+# Transforms Papyrus arguments to TS ones.
+# Used for creating the function header.
+proc PapyrusArgsToTs(args: string): string = 
+  const T = proc (arg: string): string =
+    const PapyDefaultToTs = (s: string) => s.toLowerAscii().replace("none", "null")
+
+    let varName = AvoidReserved(GetVarName(arg))
+    let varType = PapyrusToTsType(GetVarType(arg))
+    let defaultVal = PapyDefaultToTs(GetVarDefault(arg))
+    let dv = if defaultVal != "": " = " & defaultVal.strip() else: ""
+    return fmt"{varName}: {varType}{dv}"
+
+  try:
+    return TransformArgs(args, T)
+  except:
+    # If something fails, the more likely case is embedded Papyrus code;
+    # like the way most PapyrusUtil source files have inside them.
+    # This program aim is not to automate whole language translation, but
+    # only function headers, so that kind of code is output verbatim for a
+    # human to fix it.
+    return "// " & args
 
 const 
   scriptNameVar = "sn"  ## \
@@ -184,7 +209,7 @@ const
 proc TranslateFunction*(l: string, m: openArray[string]): string =
   let typ = PapyrusToTsType(m[1])
   let fn = m[4]
-  let input = m[5]
+  let input = PapyrusArgsToTs(m[5])
   let args = UntypeArgs(m[5])
   result = fmt"export const {fn} = ({input}): {typ} => {scriptNameVar}.{fn}({args})" 
-  ##\
+##\ Tranforms a whole function declaration from Papyrus to Ts.

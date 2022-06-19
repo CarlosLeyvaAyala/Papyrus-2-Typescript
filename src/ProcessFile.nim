@@ -23,7 +23,7 @@ proc ProcessLine(l: string): string =
   type Match = tuple[matched: bool, s: string] 
   proc Replace (regx: string, f: (string, openArray[string]) -> string): Match =
     var matches: array[20, string]
-    let r =re(regx, {reIgnoreCase, reStudy})
+    let r = re(regx, {reIgnoreCase, reStudy})
     result.matched = l.match(r, matches)
     result.s = if (result.matched): f(l, matches) else: l
 
@@ -33,8 +33,10 @@ proc ProcessLine(l: string): string =
 
   let sn = Replace(isScriptName, TranslateScriptName)
   let pr = Replace(isProperty, TranslateProperty)
+  let fn = Replace(isFunction, TranslateFunction)
 
   if sn.matched: return sn.s
+  elif fn.matched: return fn.s
   elif pr.matched: return pr.s
   
   return l.toUpperAscii()

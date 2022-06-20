@@ -1,9 +1,7 @@
 import json
 import ManualOps
 import regex
-import sequtils
 import strutils
-import sugar
 
 # Get substitution string
 proc GetSubsStr(o: JsonNode): string =

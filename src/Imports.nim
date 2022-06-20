@@ -8,10 +8,12 @@ import ManualOps
 import ReStr
 import json
 
+const spImport = "skyrimPlatform"
+
 proc ObjImports(txt: string): string =
   var decl = papyrusObjects
     .filter((s: string) => txt.contains(fmt" {s},") or txt.contains(fmt"({s} ") or txt.contains(fmt" {s} |") or txt.contains(fmt" {s})"))
-    .map(s => "import { $1 } from \"../skyrimPlatform\"" % s)
+    .map(s => "import { $1 } from \"$2\"" % [s, spImport])
   sort(decl)
   return if decl.len() == 0: "" else: decl.foldr(a & "\n" & b)
 
@@ -30,7 +32,7 @@ proc ManualImports(fileName: string): string =
   return if lst.len() == 0: "" else: lst.foldr(a & "\n" & b)
 
 proc AddImports*(txt, fileName: string): string = 
-  let i = "import * as sp from \"../skyrimPlatform\"\n\n"
+  let i = "import * as sp from \"$1\"\n\n" % spImport
   let d = [
     ObjImports(txt),
     ManualImports(fileName)

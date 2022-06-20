@@ -17,6 +17,26 @@
       "expr": "export const GetPathBoolValue = (FileName: string, Path: string, missing: boolean = false): boolean => GetPathIntValue(FileName, Path, missing ? 1 : 0) != 0"
     }
   ],
+  "MiscUtil": [
+    {
+      "type": "substitute",
+      "display": "GetNodeRotation",
+      "find": "--s:functionWithBody",
+      "expr": ""
+    },
+    {
+      "type": "substitute",
+      "display": "ExecuteBat",
+      "find": "--s:functionWithBody",
+      "expr": ""
+    },
+    {
+      "type": "substitute",
+      "display": "ScanCellActors",
+      "find": "--s:functionWithBody",
+      "expr": ""
+    }
+  ],
   "NiOverride": [
     {
       "type": "substitute",

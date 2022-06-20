@@ -39,13 +39,16 @@ proc ProcessLine(l: string): string =
   elif fn.matched: return fn.s
   elif pr.matched: return pr.s
   else: return l.TransformSpecialCases()
-  
+
 proc Process*(fn, version: string): void {.discardable.} =
   ## Converts a Papyrus file named `fn` to Typescript.
   let l = getLines(fn)
   blockCommentOpen = false 
 
   let ugly = l.map(ProcessLine)
-  let output = Beautify(ugly).AddImports(fn).MakeSubstitutions(fn).AddHeader(fn, version)
+  let output = Beautify(ugly)
+    .AddImports(fn)
+    .MakeSubstitutions(fn)
+    .AddHeader(fn, version)
   
   writeFile(changeFileExt(fn, "ts"), output)

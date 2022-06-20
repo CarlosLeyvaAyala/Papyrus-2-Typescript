@@ -28,7 +28,7 @@ CONTACT THE DEVELOPER.
     echo ""
   else:
     let version = GetFileV()
-    InitManualCfg()
+    InitManualCfg() # Read manual config files
 
     for f in params:
       try:

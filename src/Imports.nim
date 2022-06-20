@@ -3,6 +3,7 @@ import sequtils
 import strformat
 import strutils
 import sugar
+import Files
 import ManualOps
 import ReStr
 import json
@@ -16,8 +17,16 @@ proc ObjImports(txt: string): string =
 
 proc ManualImports(fileName: string): string = 
   var lst: seq[string]
+  const arr = "imports"
+  const fi = "file"
+
   for o in GetCfgProperty(fileName, "import"): 
-    for i in o{"add"}.getElems(): lst.add(i.getStr())
+    if o.hasKey(arr):
+      for i in o{arr}.getElems(): lst.add(i.getStr())
+    elif o.hasKey(fi):
+      lst.add(readFile(fmt"{manualFilesPath}/{o[fi].getStr()}"))
+    else: return ""
+
   return lst.foldr(a & "\n" & b)
 
 proc AddImports*(txt, fileName: string): string = 

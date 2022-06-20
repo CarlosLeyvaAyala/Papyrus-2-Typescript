@@ -2,36 +2,42 @@
   "JsonUtil": [
     {
       "type": "import",
-      "add": ["import { FileExists } from \"./MiscUtil\""]
+      "imports": ["import { FileExists } from \"./MiscUtil\""]
     },
     {
       "type": "substitute",
       "display": "JsonExists",
-      "from": "(?isU)export const JsonExists.*endFunction",
-      "fileTranslation": "JsonUtil.JsonExists.ts"
+      "find": "(?isU)export const JsonExists.*endFunction",
+      "file": "JsonUtil.JsonExists.ts"
     },
     {
       "type": "substitute",
       "display": "GetPathBoolValue",
-      "after": "(?isU)export const GetPathBoolValue.*endFunction",
-      "exprTranslation": "export const GetPathBoolValue = (FileName: string, Path: string, missing: boolean = false): boolean => GetPathIntValue(FileName, Path, missing ? 1 : 0) != 0"
+      "find": "(?isU)export const GetPathBoolValue.*endFunction",
+      "expr": "export const GetPathBoolValue = (FileName: string, Path: string, missing: boolean = false): boolean => GetPathIntValue(FileName, Path, missing ? 1 : 0) != 0"
     }
   ],
   "PapyrusUtil": [
     {
       "type": "substitute",
       "display": "GetScriptVersion",
-      "from": "(?msU)export const GetScriptVersion.*returns+(d+)s*$.*endFunction",
-      "exprTranslation": "export const GetScriptVersion = (): number => $1"
+      "find": "(?isU)export const GetScriptVersion =.*return\\s+(\\d+)\\s+.*endFunction",
+      "expr": "export const GetScriptVersion = (): number => $1"
     },
     {
       "type": "substitute",
-      "pattern": "\\/\\*\\* ##\\n\\* ## Non-Native bool versions of some .*\\*\\/(.*)$",
-      "exprTranslation": "/*$1\\n*/"
+      "find": "\\/\\*\\* ##\\n\\* ## Non-Native bool versions of some .*\\*\\/(.*)$",
+      "expr": "/*$1\\n*/"
     },
     {
       "type": "headerComment",
-      "fileAdd": "PapyrusUtil.comment.txt"
+      "file": "PapyrusUtil.comment.txt"
+    }
+  ],
+  "PO3_SKSEFunctions": [
+    {
+      "type": "import",
+      "file": "PO3_SKSEFunctions.NewForms.ts"
     }
   ]
 }

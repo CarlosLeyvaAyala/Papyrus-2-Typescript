@@ -14,7 +14,14 @@ proc GetSingleFileData(fileName: string): JsonNode =
   let fn = extractFilename(fileName).toLowerAscii()
   for k in manualCfg.keys: 
     let f = fmt"{k.toLowerAscii()}.psc"
-    if f == fn: return manualCfg[k]
+
+    if f == fn: 
+      # Need to add whole body back because manualCfg[k] returns only the array content
+      var body: string
+      body.toUgly(manualCfg[k])
+      let obj = "{ \"$1\": $2 }" % [k, body]
+
+      return obj.parseJson()
   return parseJson("{}")
 
 proc GetFileData(fileName: string): JsonNode =

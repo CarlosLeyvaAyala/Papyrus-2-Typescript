@@ -134,6 +134,15 @@ float function WrapFloat(float value, float end, float start = 0.0) global nativ
 int function SignInt(bool doSign, int value) global native
 float function SignFloat(bool doSign, float value) global native
 
+
+; ## Similar to SKSE's native StringUtil.Split() except results are whitespace trimmed. So comma, separated,list,can, be, spaced,or,not.
+string[] function StringSplit(string ArgString, string Delimiter = ",") global native
+
+; ## Opposite of StringSplit()
+string function StringJoin(string[] Values, string Delimiter = ",") global native
+
+
+
 ; ##
 ; ## Non-Native bool versions of some functions where SKSE version is bugged.
 ; ## SKSE version VMResultArray<bool> fails to be manipulated by other native functions past creation.
@@ -219,7 +228,6 @@ bool[] function SliceBoolArray(bool[] ArrayValues, int StartIndex, int EndIndex 
 	return Output
 endFunction
 
-
 ; ##
 ; ## DEPRECATED: SKSE now provides their own variable sized arrays for these types - mirrored here for backwards compatibility.
 ; ##
@@ -258,3 +266,4 @@ endFunction
 Alias[] function ResizeAliasArray(Alias[] ArrayValues, int toSize, Alias filler = none) global
 	return Utility.ResizeAliasArray(ArrayValues, toSize, filler)
 endFunction
+

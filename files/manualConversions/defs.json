@@ -7,13 +7,13 @@
     {
       "type": "substitute",
       "display": "JsonExists",
-      "find": "(?isU)export const JsonExists.*endFunction",
+      "find": "--s:functionWithBody",
       "file": "JsonUtil.JsonExists.ts"
     },
     {
       "type": "substitute",
       "display": "GetPathBoolValue",
-      "find": "(?isU)export const GetPathBoolValue.*endFunction",
+      "find": "--s:functionWithBody",
       "expr": "export const GetPathBoolValue = (FileName: string, Path: string, missing: boolean = false): boolean => GetPathIntValue(FileName, Path, missing ? 1 : 0) != 0"
     }
   ],
@@ -23,6 +23,36 @@
       "display": "GetScriptVersion",
       "find": "(?isU)export const GetScriptVersion =.*return\\s+(\\d+)\\s+.*endFunction",
       "expr": "export const GetScriptVersion = (): number => $1"
+    },
+    {
+      "type": "substitute",
+      "display": "ClearEmpty",
+      "find": "--s:functionWithBody",
+      "expr": "export const ClearEmpty = (ArrayValues: string[]): string[] => RemoveString(ArrayValues, \"\")"
+    },
+    {
+      "type": "substitute",
+      "display": "ClearNone",
+      "find": "--s:functionWithBody",
+      "expr": "export const ClearNone = (ArrayValues: Form[]): Form[] => RemoveForm(ArrayValues, null)"
+    },
+    {
+      "type": "substitute",
+      "display": "CountFalse",
+      "find": "--s:functionWithBody",
+      "expr": "export const CountFalse = (ArrayValues: boolean[]): number => CountBool(ArrayValues, false)"
+    },
+    {
+      "type": "substitute",
+      "display": "CountTrue",
+      "find": "--s:functionWithBody",
+      "expr": "export const CountTrue = (ArrayValues: boolean[]): number => CountBool(ArrayValues, true)"
+    },
+    {
+      "type": "substitute",
+      "display": "CountNone",
+      "find": "--s:functionWithBody",
+      "expr": "export const CountNone = (ArrayValues: Form[]): number => CountForm(ArrayValues, null)"
     },
     {
       "type": "substitute",

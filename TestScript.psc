@@ -141,6 +141,23 @@ string[] function StringSplit(string ArgString, string Delimiter = ",") global n
 ; ## Opposite of StringSplit()
 string function StringJoin(string[] Values, string Delimiter = ",") global native
 
+string[] function ClearEmpty(string[] ArrayValues) global
+	return RemoveString(ArrayValues, "")
+endFunction
+Form[] function ClearNone(Form[] ArrayValues) global
+	return RemoveForm(ArrayValues, none)
+endFunction
+
+int function CountFalse(bool[] ArrayValues) global
+	return CountBool(ArrayValues, false)
+endFunction
+int function CountTrue(bool[] ArrayValues) global
+	return CountBool(ArrayValues, true)
+endFunction
+int function CountNone(Form[] ArrayValues) global
+	return CountForm(ArrayValues, none)
+endFunction
+
 
 
 ; ##

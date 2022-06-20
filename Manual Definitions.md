@@ -36,6 +36,14 @@ This can be done by defining entries in `manualConvertions/defs.json`.
 
 Depending on what
 
+`--s:functionWithBody`
+
+```ts
+export const CountFalse = (ArrayValues: boolean[]): number => sn.CountFalse(ArrayValues)
+	return CountBool(ArrayValues, false)
+endFunction
+```
+
 [JSON Escape / Unescape][JSONEscape]
 
 [JSONEscape]: https://www.freeformatter.com/json-escape.html

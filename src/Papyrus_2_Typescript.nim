@@ -36,6 +36,6 @@ CONTACT THE DEVELOPER.
       except:
         echo "Error: " & getCurrentException().msg
 
-    when defined(release): 
-      echo "Press any key to continue"
-      discard stdin.readLine()
+  when defined(release): 
+    echo "Press any key to continue"
+    discard stdin.readLine()

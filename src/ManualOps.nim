@@ -44,3 +44,7 @@ proc ForEachCfgProperty*(fileName, property: string, F: (o: JsonNode) -> void): 
 proc GetManualConvertions*(fileName: string): JsonNode = 
   const T = (o: string) => o == "add" or o == "substitute"
   return GetCfgProperty(fileName, T)
+
+proc fileFromkey*(o: JsonNode, key: string = "file"): string = 
+  let fn = fmt"{manualFilesPath}/" & o{"file"}.getStr()
+  return readFile(fn)

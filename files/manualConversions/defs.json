@@ -27,7 +27,7 @@
     {
       "type": "substitute",
       "find": "(?is)\\/\\*\\* ##\\n\\* ## Non-Native bool versions of some .*\\*\\/(.*)$",
-      "expr": "/*$1\\n*/",
+      "expr": "/* NO LONGER NEEDED IN TYPESCRIPT$1*/",
       "comment1": "This will comment functions requiring manual translation, but no longer",
       "comment2": "really needed since we are now using Typescript"
     },

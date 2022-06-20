@@ -60,6 +60,7 @@ function AddPackageOverride(Actor targetActor, Package targetPackage, int priori
 ; Remove a previously added package override.
 bool function RemovePackageOverride(Actor targetActor, Package targetPackage) global native
 
+int function GetPathIntValue(string FileName, string Path, int missing = 0) global native
 float function GetPathFloatValue(string FileName, string Path, float missing = 0.0) global native
 string function GetPathStringValue(string FileName, string Path, string missing = "") global native
 form function GetPathFormValue(string FileName, string Path, form missing = none) global native
@@ -114,7 +115,7 @@ int function GetVersion() global native
 
 ; Get version of compiled papyrus scripts which should match return from GetVersion()
 int function GetScriptVersion() global
-	return 43
+	return 434
 endFunction
 
 ; ##

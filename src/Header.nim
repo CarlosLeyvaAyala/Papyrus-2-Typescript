@@ -30,8 +30,7 @@ proc AddComments(fileName: string): string =
   var lst: seq[string]
 
   for o in GetCfgProperty(fileName, "headerComment"):
-    let fn = fmt"{manualFilesPath}/" & o{"file"}.getStr()
-    lst.add(readFile(fn))
+    lst.add(o.fileFromkey())
 
   return if lst.len() == 0: "" else: lst.foldr(a & "\n\n" & b)
 

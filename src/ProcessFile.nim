@@ -1,13 +1,13 @@
-import strutils
-import sequtils
-import re
-import sugar
 import Beautify
-import Imports
 import Header
-import ReStr
-import Substitute
+import Imports
 import os
+import re
+import ReStr
+import sequtils
+import strutils
+import Substitute
+import sugar
 
 var blockCommentOpen = false ## \
   ## Used for flagging while parsing that a block comment has been opened

@@ -120,7 +120,7 @@ proc TransformArgs(args: string, f: (string) -> string): string =
   if strip(args) == "": 
     return ""
 
-  return args.split(",")
+  return args.split(re",(?=[\w\s]+)")
     .map(s => strip(s))
     .map(f)
     .foldr(a & ", " & b)

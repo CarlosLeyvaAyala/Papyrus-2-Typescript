@@ -2,14 +2,16 @@
 Unit containing all regex constants and functions needed to translate 
 from Papyrus to Typescript.
 ]##
+import algorithm
+import ManualOps
 import strformat
-import sugar
-import strutils
-import sequtils
 import re
+import sequtils
+import strutils
+import sugar
 
 const 
-  papyrusObjects* = @[
+  papyrusObjects = @[
     "WorldSpace",
     "WordOfPower",
     "Weather",
@@ -101,6 +103,11 @@ const
     "Action"
   ]
 
+proc GetPapyrusObjects*(getCustomTypes: bool = true): seq[string] = 
+  if not getCustomTypes: return papyrusObjects
+  result = concat(papyrusObjects, GetCustomTypes())
+  result.sort(SortOrder.Descending)
+
 proc GetArgN (args: string, n: int): string = 
   const argsRegex = r"((\w+)(\[\s*\])*)\s(\w+)\s*=?(.*)"
   var matches: array[20, string]
@@ -138,7 +145,7 @@ proc PapyrusToTsType(t: string): string =
   result = result.replace("float", "number").replace("int", "number").replace("bool", "boolean")
 
   # Object types
-  for obj in papyrusObjects:
+  for obj in GetPapyrusObjects():
     let l = obj.toLowerAscii()
     if not result.startsWith(l): continue
 

@@ -5,7 +5,12 @@ import strutils
 import sugar
 import Files
 
-var manualCfg: JsonNode
+var 
+  manualCfg: JsonNode
+  workingFile: string
+
+proc SetWorkingFile*(fn: string) =
+  workingFile = extractFilename(fn)
 
 proc InitManualCfg*(): void {.discardable.} =
   manualCfg = parseJson(readFile(manualDefs))
@@ -44,6 +49,9 @@ proc GetCfgProperty*(fileName: string, Test: (objType: string) -> bool): JsonNod
 proc GetCfgProperty*(fileName, property: string): JsonNode =
   return GetCfgProperty(fileName, (o) => o == property)
 
+proc GetCfgProperty*(property: string): JsonNode =
+  return GetCfgProperty(workingFile, (o) => o == property)
+
 proc ForEachCfgProperty*(fileName, property: string, F: (o: JsonNode) -> void): void {.discardable.} = 
   let objs = GetCfgProperty(fileName, property)
   for o in objs: F(o)
@@ -59,3 +67,11 @@ proc GetSubstitutions*(fileName: string): JsonNode =
 proc fileFromkey*(o: JsonNode, key: string = "file"): string = 
   let fn = fmt"{manualFilesPath}/" & o{"file"}.getStr()
   return readFile(fn)
+
+# Returns custom types, like the ones declared in PO3
+proc GetCustomTypes*(): seq[string] =
+  result = @[]
+  const arr = "values"
+  for o in GetCfgProperty("types"): 
+    if o.hasKey(arr):
+      for i in o{arr}.getElems(): result.add(i.getStr())

@@ -1,17 +1,19 @@
 import algorithm
+import Files
+import json
+import ManualOps
+import ReStr
 import sequtils
 import strformat
 import strutils
 import sugar
-import Files
-import ManualOps
-import ReStr
-import json
 
 const spImport = "skyrimPlatform"
 
 proc ObjImports(txt: string): string =
-  var decl = papyrusObjects
+  # We don't get custom types because we only need vanilla objects. 
+  # New types can be added with imports if necessary.
+  var decl = GetPapyrusObjects(false)
     .filter((s: string) => txt.contains(fmt" {s},") or txt.contains(fmt"({s} ") or txt.contains(fmt" {s} |") or txt.contains(fmt" {s})"))
     .map(s => "import { $1 } from \"$2\"" % [s, spImport])
   sort(decl)

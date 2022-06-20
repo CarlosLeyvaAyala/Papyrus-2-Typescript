@@ -1,6 +1,6 @@
+import ManualOps
 import os
 import ProcessFile
-import ManualOps
 import strformat
 
 proc GetFileV(): string =

@@ -11,10 +11,10 @@
       "fileTranslation": "JsonUtil.JsonExists.ts"
     },
     {
-      "type": "add",
+      "type": "substitute",
       "display": "GetPathBoolValue",
-      "after": "(?i)export const GetPathFormValue.*",
-      "text": "export const GetPathBoolValue = (FileName: string, Path: string, missing: boolean = false): boolean => GetPathIntValue(FileName, Path, missing ? 1 : 0) != 0"
+      "after": "(?isU)export const GetPathBoolValue.*endFunction",
+      "exprTranslation": "export const GetPathBoolValue = (FileName: string, Path: string, missing: boolean = false): boolean => GetPathIntValue(FileName, Path, missing ? 1 : 0) != 0"
     }
   ],
   "PapyrusUtil": [

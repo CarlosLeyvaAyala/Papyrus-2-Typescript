@@ -1,4 +1,4 @@
-##[GetPapyrusObjects'
+##[ReStr'
 Unit containing all regex constants and functions needed to translate 
 from Papyrus to Typescript.
 ]##
@@ -9,7 +9,7 @@ import sequtils
 import re
 
 const 
-  papyrusObjects = @[
+  papyrusObjects* = @[
     "WorldSpace",
     "WordOfPower",
     "Weather",

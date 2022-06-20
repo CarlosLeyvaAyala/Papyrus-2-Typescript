@@ -47,6 +47,13 @@ function AddPackageOverride(Actor targetActor, Package targetPackage, int priori
 ; Remove a previously added package override.
 bool function RemovePackageOverride(Actor targetActor, Package targetPackage) global native
 
+float function GetPathFloatValue(string FileName, string Path, float missing = 0.0) global native
+string function GetPathStringValue(string FileName, string Path, string missing = "") global native
+form function GetPathFormValue(string FileName, string Path, form missing = none) global native
+bool function GetPathBoolValue(string FileName, string Path, bool missing = false) global
+	return GetPathIntValue(FileName, Path, (missing as int)) != 0
+endFunction
+
 ; Check if a json file exists or not
 bool function JsonExists(string FileName) global
 	if !FileName

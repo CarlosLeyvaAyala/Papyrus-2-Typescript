@@ -17,11 +17,37 @@
       "expr": "export const GetPathBoolValue = (FileName: string, Path: string, missing: boolean = false): boolean => GetPathIntValue(FileName, Path, missing ? 1 : 0) != 0"
     }
   ],
+  "NiOverride": [
+    {
+      "type": "substitute",
+      "display": "GetScriptVersion",
+      "find": "--s:functionReturnsInt",
+      "expr": "export const GetScriptVersion = (): number => $1"
+    },
+    {
+      "type": "substitute",
+      "display": "SetMorphValue",
+      "find": "--s:functionWithBody",
+      "expr": "export const SetMorphValue = (ref: ObjectReference | null, morphName: string, value: number): void => sn.SetBodyMorph(ref, morphName, \"RSMLegacy\", value)"
+    },
+    {
+      "type": "substitute",
+      "display": "GetMorphValue",
+      "find": "--s:functionWithBody",
+      "expr": "export const GetMorphValue = (ref: ObjectReference | null, morphName: string): number => sn.GetBodyMorph(ref, morphName, \"RSMLegacy\")"
+    },
+    {
+      "type": "substitute",
+      "display": "ClearMorphValue",
+      "find": "--s:functionWithBody",
+      "expr": "export const ClearMorphValue = (ref: ObjectReference | null, morphName: string): void => sn.ClearBodyMorph(ref, morphName, \"RSMLegacy\")"
+    }
+  ],
   "PapyrusUtil": [
     {
       "type": "substitute",
       "display": "GetScriptVersion",
-      "find": "(?isU)export const GetScriptVersion =.*return\\s+(\\d+)\\s+.*endFunction",
+      "find": "--s:functionReturnsInt",
       "expr": "export const GetScriptVersion = (): number => $1"
     },
     {
@@ -34,7 +60,7 @@
       "type": "substitute",
       "display": "ClearNone",
       "find": "--s:functionWithBody",
-      "expr": "export const ClearNone = (ArrayValues: Form[]): Form[] => RemoveForm(ArrayValues, null)"
+      "expr": "export const ClearNone = (ArrayValues: (Form | null)[]): (Form | null)[] => RemoveForm(ArrayValues, null)"
     },
     {
       "type": "substitute",
@@ -52,7 +78,7 @@
       "type": "substitute",
       "display": "CountNone",
       "find": "--s:functionWithBody",
-      "expr": "export const CountNone = (ArrayValues: Form[]): number => CountForm(ArrayValues, null)"
+      "expr": "export const CountNone = (ArrayValues: (Form | null)[]): number => CountForm(ArrayValues, null)"
     },
     {
       "type": "substitute",

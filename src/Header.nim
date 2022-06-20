@@ -1,5 +1,6 @@
 import Files
 import json
+import regex
 import strformat
 import sugar
 import strutils
@@ -51,5 +52,7 @@ proc AddHeader*(txt, fileName, version: string): string =
       AddComments(fileName), # Extra header info
       AddVersion(version), 
       AddDisclaimer()
-    ].foldr(a & "\n\n" & b).strip() & "\n*/\n"
+    ].foldr(a & "\n\n" & b)
+    .replace(re"\n{3,}", "\n\n")
+    .strip() & "\n*/\n"
   return h & IfDebug() & txt

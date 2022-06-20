@@ -41,6 +41,11 @@
       "display": "ClearMorphValue",
       "find": "--s:functionWithBody",
       "expr": "export const ClearMorphValue = (ref: ObjectReference | null, morphName: string): void => sn.ClearBodyMorph(ref, morphName, \"RSMLegacy\")"
+    },
+    {
+      "type": "import",
+      "file": "NiOverride.enums.ts",
+      "comment": "Enums to make life easier"
     }
   ],
   "PapyrusUtil": [

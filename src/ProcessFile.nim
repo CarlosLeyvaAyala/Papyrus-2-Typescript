@@ -45,8 +45,7 @@ proc ProcessLine(l: string): string =
 proc Process*(fn, version: string): void {.discardable.} =
   ## Converts a Papyrus file named `fn` to Typescript.
   SetWorkingFile(fn)
-  for i in GetPapyrusObjects(): echo i
-
+  
   let l = getLines(fn)
   blockCommentOpen = false 
 

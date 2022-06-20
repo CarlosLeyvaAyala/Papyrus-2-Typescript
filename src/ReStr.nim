@@ -137,7 +137,7 @@ proc UntypeArgs(args: string): string =
   return TransformArgs(args, (s) => AvoidReserved(GetVarName(s)))
 
 # Transforms a variable type from Papyrus to Typescript
-proc PapyrusToTsType(t: string): string = 
+proc PapyrusToTsType(t: string, areArgs: bool): string = 
   result = t.strip().toLowerAscii()
   if result == "": return "void"
 
@@ -153,7 +153,10 @@ proc PapyrusToTsType(t: string): string =
     let nO = obj & " | null"
 
     # Array type. Example: "form[" => "(Form | null)["
-    result = result.replace(fmt"{l}[", fmt"({nO})[")
+    if areArgs: 
+      result = result.replace(fmt"{l}[]", fmt"({nO})[] | null")
+    else:
+      result = result.replace(fmt"{l}[", fmt"({nO})[")
 
     # Nullable object type. Example: "form" => "Form | null"
     if l == result: result = result.replace(l, nO)
@@ -165,7 +168,7 @@ proc PapyrusArgsToTs(args: string): string =
     const PapyDefaultToTs = (s: string) => s.toLowerAscii().replace("none", "null")
 
     let varName = GetVarName(arg).AvoidReserved()
-    let varType = GetVarType(arg).PapyrusToTsType()
+    let varType = GetVarType(arg).PapyrusToTsType(true)
     let defaultVal = GetVarDefault(arg).PapyDefaultToTs()
     let dv = if defaultVal != "": " = " & defaultVal.strip() else: ""
     return fmt"{varName}: {varType}{dv}"
@@ -213,7 +216,7 @@ const
   ## Used to check if a line is a function header.
 
 proc TranslateFunction*(l: string, m: openArray[string]): string =
-  let typ = PapyrusToTsType(m[1])
+  let typ = PapyrusToTsType(m[1], false)
   let fn = m[4]
   let input = PapyrusArgsToTs(m[5])
   let args = UntypeArgs(m[5])

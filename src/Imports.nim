@@ -13,11 +13,11 @@ proc ObjImports(txt: string): string =
     .filter((s: string) => txt.contains(fmt" {s},") or txt.contains(fmt"({s} ") or txt.contains(fmt" {s} |") or txt.contains(fmt" {s})"))
     .map(s => "import { $1 } from \"../skyrimPlatform\"" % s)
   sort(decl)
-  return decl.foldr(a & "\n" & b)
+  return if decl.len() == 0: "" else: decl.foldr(a & "\n" & b)
 
 proc ManualImports(fileName: string): string = 
   var lst: seq[string]
-  const arr = "imports"
+  const arr = "values"
   const fi = "file"
 
   for o in GetCfgProperty(fileName, "import"): 
@@ -27,14 +27,15 @@ proc ManualImports(fileName: string): string =
       lst.add(readFile(fmt"{manualFilesPath}/{o[fi].getStr()}"))
     else: return ""
 
-  return lst.foldr(a & "\n" & b)
+  return if lst.len() == 0: "" else: lst.foldr(a & "\n" & b)
 
 proc AddImports*(txt, fileName: string): string = 
   let i = "import * as sp from \"../skyrimPlatform\"\n\n"
-  let decl = [
+  let d = [
     ObjImports(txt),
     ManualImports(fileName)
-    ].foldr(a & "\n" & b)
+    ]
+  let decl = if d.len() == 0: "" else: d.foldr(a & "\n" & b)
   return i & decl & "\n\n" & txt
 
 type People = tuple

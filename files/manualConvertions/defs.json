@@ -2,7 +2,7 @@
   "JsonUtil": [
     {
       "type": "import",
-      "imports": ["import { FileExists } from \"./MiscUtil\""]
+      "values": ["import { FileExists } from \"./MiscUtil\""]
     },
     {
       "type": "substitute",
@@ -27,17 +27,26 @@
     {
       "type": "substitute",
       "find": "\\/\\*\\* ##\\n\\* ## Non-Native bool versions of some .*\\*\\/(.*)$",
-      "expr": "/*$1\\n*/"
+      "expr": "/*$1\\n*/",
+      "comment1": "This will comment functions requiring manual translation, but not really",
+      "comment2": "needed when using Typescript"
     },
     {
       "type": "headerComment",
-      "file": "PapyrusUtil.comment.txt"
+      "file": "PapyrusUtil.comment.txt",
+      "comment": "Header talking about general changes to this file"
     }
   ],
   "PO3_SKSEFunctions": [
     {
       "type": "import",
-      "file": "PO3_SKSEFunctions.NewForms.ts"
+      "file": "PO3_SKSEFunctions.NewForms.ts",
+      "comment": "Declaration of the new custom types"
+    },
+    {
+      "type": "types",
+      "values": ["Debris", "FootstepSet", "LightingTemplate", "MaterialObject"],
+      "comment": "PO3 introduces these custom types"
     }
   ]
 }

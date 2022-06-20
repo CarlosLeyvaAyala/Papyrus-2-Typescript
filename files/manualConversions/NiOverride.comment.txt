@@ -1,0 +1,5 @@
+Manual additions:
+  - Some enums were added for convenience and to (hopefully) make some function
+    parameters a bit less arcane.
+  - Enums are fully documented with TsDoc. If you use Visual Studio Code, you
+    will get all kind of hints by hovering over those enums.

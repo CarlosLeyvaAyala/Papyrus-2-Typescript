@@ -46,6 +46,11 @@
       "type": "import",
       "file": "NiOverride.enums.ts",
       "comment": "Enums to make life easier"
+    },
+    {
+      "type": "headerComment",
+      "file": "NiOverride.comment.txt",
+      "comment": "Header talking about new enums"
     }
   ],
   "PapyrusUtil": [

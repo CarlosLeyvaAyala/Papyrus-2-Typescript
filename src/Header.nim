@@ -1,6 +1,5 @@
 import Files
 import json
-import regex
 import strformat
 import sugar
 import strutils
@@ -35,24 +34,38 @@ proc AddComments(fileName: string): string =
 
   return if lst.len() == 0: "" else: lst.foldr(a & "\n\n" & b)
 
-proc AddManualConversion(fileName: string): string = 
+proc AddManualReplacement(obj: JsonNode, msg: string): string = 
   var lst: seq[string]
-  for o in GetManualConvertions(fileName): lst.add(o{"display"}.getStr())
+  for o in obj: lst.add(o{"display"}.getStr())
   const tab = "\t"
   let l = lst
     .filter(s => s.strip() != "")
     .map(s => fmt"{tab}- {s}")
     
   let list = if l.len() == 0: "" else: l.foldr(a & "\n" & b)
-  return if list.len() == 0: "" else: "Manually converted functions. Please test:\n" & list
+  return if list.len() == 0: "" else: msg & ":\n" & list
+
+proc AddManualConversion(fileName: string): string = 
+  AddManualReplacement(GetManualConvertions(fileName), "Manually converted functions. Please test")
+
+const delBecause = "Functions deleted because they need manual translation and are"
+
+proc AddDeprecated(fileName: string): string = 
+  const msg = fmt"{delBecause} already deprecated"
+  AddManualReplacement(GetCfgProperty(fileName, "deprecated"), msg)
+
+proc AddRedundant(fileName: string): string = 
+  const msg = fmt"{delBecause} not really needed in Typescript"
+  AddManualReplacement(GetCfgProperty(fileName, "redundant"), msg)
 
 proc AddHeader*(txt, fileName, version: string): string = 
   let h = "/*\n" & @[
-      AddManualConversion(fileName), # Manually converted functions
-      AddComments(fileName), # Extra header info
       AddVersion(version), 
+      AddManualConversion(fileName), 
+      AddRedundant(fileName),
+      AddDeprecated(fileName),
+      AddComments(fileName),
       AddDisclaimer()
     ].foldr(a & "\n\n" & b)
-    .replace(re"\n{3,}", "\n\n")
     .strip() & "\n*/\n"
   return h & IfDebug() & txt

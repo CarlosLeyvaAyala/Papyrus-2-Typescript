@@ -1,3 +1,4 @@
+import strutils
 import sequtils
 import re
 import sugar
@@ -50,5 +51,7 @@ proc Process*(fn, version: string): void {.discardable.} =
     .AddImports(fn)
     .MakeSubstitutions(fn)
     .AddHeader(fn, version)
-  
+    .replace(re"\n{3,}", "\n\n")
+    .strip() & "\n"
+
   writeFile(changeFileExt(fn, "ts"), output)

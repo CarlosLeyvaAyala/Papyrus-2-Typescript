@@ -19,22 +19,19 @@
   ],
   "MiscUtil": [
     {
-      "type": "substitute",
+      "type": "deprecated",
       "display": "GetNodeRotation",
-      "find": "--s:functionWithBody",
-      "expr": ""
+      "find": "--s:functionWithBody"
     },
     {
-      "type": "substitute",
+      "type": "deprecated",
       "display": "ExecuteBat",
-      "find": "--s:functionWithBody",
-      "expr": ""
+      "find": "--s:functionWithBody"
     },
     {
-      "type": "substitute",
+      "type": "deprecated",
       "display": "ScanCellActors",
-      "find": "--s:functionWithBody",
-      "expr": ""
+      "find": "--s:functionWithBody"
     }
   ],
   "NiOverride": [
@@ -112,17 +109,87 @@
     },
     {
       "type": "substitute",
-      "find": "(?isU)\\/\\*\\* ##\\n\\* ## Non-Native bool versions of some .*\\*\\/(.*)$",
-      "expr": "/* ALL FUNCTIONS BELOW HERE ARE NO LONGER NEEDED IN TYPESCRIPT AND THEY ARE TOO MUCH WORK TO TRANSLATE $1*/",
-      "comment1": "This will comment functions requiring manual translation, but no longer",
-      "comment2": "really needed since we are now using Typescript"
+      "find": "(?is)\\/\\*\\* ##\\n\\* ## Non-Native bool versions of some .*\\*\\/(.*)$"
     },
     {
-      "type": "substitute",
-      "find": "(?isU)\\/\\*\\* ##\\n\\* ## DEPRECATED: SKSE now provides their own variable sized .*\\*\\/(.*)$",
-      "expr": "/* ALL FUNCTIONS BELOW HERE ARE NO LONGER NEEDED IN TYPESCRIPT AND THEY ARE TOO MUCH WORK TO TRANSLATE $1",
-      "comment1": "This will comment functions requiring manual translation, but no longer",
-      "comment2": "really needed since we are now using Typescript"
+      "type": "redundant",
+      "display": "ResizeBoolArray",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "redundant",
+      "display": "PushBool",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "redundant",
+      "display": "RemoveBool",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "redundant",
+      "display": "MergeBoolArray",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "redundant",
+      "display": "SliceBoolArray",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FloatArray",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "IntArray",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "BoolArray",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "StringArray",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FormArray",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "AliasArray",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "ResizeFloatArray",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "ResizeIntArray",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "ResizeStringArray",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "ResizeFormArray",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "ResizeAliasArray",
+      "find": "--s:functionWithBody"
     },
     {
       "type": "headerComment",
@@ -140,6 +207,459 @@
       "type": "types",
       "values": ["Debris", "FootstepSet", "LightingTemplate", "MaterialObject"],
       "comment": "PO3 introduces these custom types"
+    }
+  ],
+  "StorageUtil": [
+    {
+      "type": "substitute",
+      "display": "FormListFilterByType",
+      "find": "--s:functionWithBody",
+      "expr": "export const FormListFilterByType = (ObjKey: Form | null, KeyName: string, FormTypeID: number, ReturnMatching: boolean = true): (Form | null)[] => FormListFilterByTypes(ObjKey, KeyName, [FormTypeID], ReturnMatching)"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileSetIntValue",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileSetFloatValue",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileSetStringValue",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileSetFormValue",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileAdjustIntValue",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileAdjustFloatValue",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileUnsetIntValue",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileUnsetFloatValue",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileUnsetStringValue",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileUnsetFormValue",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileHasIntValue",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileHasFloatValue",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileHasStringValue",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileHasFormValue",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileGetIntValue",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileGetFloatValue",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileGetStringValue",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileGetFormValue",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileIntListAdd",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileFloatListAdd",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileStringListAdd",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileFormListAdd",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileIntListAdjust",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileFloatListAdjust",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileIntListRemove",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileFloatListRemove",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileStringListRemove",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileFormListRemove",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileIntListGet",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileFloatListGet",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileStringListGet",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileFormListGet",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileIntListSet",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileFloatListSet",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileStringListSet",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileFormListSet",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileIntListClear",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileFloatListClear",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileStringListClear",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileFormListClear",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileIntListRemoveAt",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileFloatListRemoveAt",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileStringListRemoveAt",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileFormListRemoveAt",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileIntListInsert",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileFloatListInsert",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileStringListInsert",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileFormListInsert",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileIntListCount",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileFloatListCount",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileStringListCount",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileFormListCount",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileIntListFind",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileFloatListFind",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileStringListFind",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileFormListFind",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileIntListHas",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileFloatListHas",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileStringListHas",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileFormListHas",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileIntListSlice",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileFloatListSlice",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileStringListSlice",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileFormListSlice",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileIntListResize",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileFloatListResize",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileStringListResize",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileFormListResize",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileIntListCopy",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileFloatListCopy",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileStringListCopy",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "FileFormListCopy",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "debug_SaveFile",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "debug_FileGetIntKeysCount",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "debug_FileGetFloatKeysCount",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "debug_FileGetStringKeysCount",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "debug_FileGetIntListKeysCount",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "debug_FileGetFloatListKeysCount",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "debug_FileGetStringListKeysCount",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "debug_FileGetIntKey",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "debug_FileGetFloatKey",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "debug_FileGetStringKey",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "debug_FileGetIntListKey",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "debug_FileGetFloatListKey",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "debug_FileGetStringListKey",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "debug_FileDeleteAllValues",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "debug_SetDebugMode",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "ImportFile",
+      "find": "--s:functionWithBody"
+    },
+    {
+      "type": "deprecated",
+      "display": "ExportFile",
+      "find": "--s:functionWithBody"
     }
   ]
 }

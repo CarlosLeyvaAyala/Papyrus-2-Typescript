@@ -52,6 +52,10 @@ proc GetManualConvertions*(fileName: string): JsonNode =
   const T = (o: string) => o == "add" or o == "substitute"
   return GetCfgProperty(fileName, T)
 
+proc GetSubstitutions*(fileName: string): JsonNode = 
+  const T = (o: string) => o == "add" or o == "substitute" or o == "deprecated" or o == "redundant"
+  return GetCfgProperty(fileName, T)
+
 proc fileFromkey*(o: JsonNode, key: string = "file"): string = 
   let fn = fmt"{manualFilesPath}/" & o{"file"}.getStr()
   return readFile(fn)

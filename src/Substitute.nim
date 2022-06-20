@@ -14,7 +14,7 @@ proc GetSubsStr(o: JsonNode): string =
 proc SpecialOrSelf(rawRx: string, o: JsonNode, m: RegexMatch): string =
   let spMode = m.groupFirstCapture(0, rawRx)
   if spMode == "functionWithBody":
-    return r"(?isU)(?isU)export const $1.*endFunction" % o{"display"}.getStr("Lololol function is null")
+    return r"(?isU)(?isU)export const $1 .*endFunction" % o{"display"}.getStr("Lololol function is null")
   elif spMode == "functionReturnsInt":
     return r"(?isU)export const $1 =.*return\s+(\d+)\s+.*endFunction" % o{"display"}.getStr("Lololol function is null")
   return rawRx
@@ -29,7 +29,7 @@ proc SpecialOrSelf(o: JsonNode): string =
 
 proc MakeSubstitutions*(txt, fileName: string): string = 
   var tx = txt
-  for o in GetManualConvertions(fileName):
+  for o in GetSubstitutions(fileName):
     let rx = o.SpecialOrSelf()
     if rx == "": continue
     let to = o.GetSubsStr()

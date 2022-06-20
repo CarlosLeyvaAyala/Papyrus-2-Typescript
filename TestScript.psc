@@ -1,5 +1,18 @@
 Scriptname TestScript Hidden 
 
+
+	;-------
+	;SETTERS
+	;-------
+		
+	Function ApplyMaterialShader(ObjectReference akRef, MaterialObject akMatObject, float directionalThresholdAngle) global native
+	
+	Function AddKeywordToRef(ObjectReference akRef, Keyword akKeyword) global native	
+	
+	Function MoveToNearestNavmeshLocation(ObjectReference akRef) global native
+				
+	Function RemoveAllModItems(ObjectReference akRef, String asModName, bool abOnlyUnequip = false) global native
+	
 ;----------------------------------------------------------------------------------------------------------
 ;COMMENT
 ;----------------------------------------------------------------------------------------------------------

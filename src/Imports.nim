@@ -9,7 +9,7 @@ import json
 
 proc ObjImports(txt: string): string =
   var decl = papyrusObjects
-    .filter(s => txt.contains(fmt": {s}") or txt.contains(fmt"({s}"))
+    .filter((s: string) => txt.contains(fmt" {s},") or txt.contains(fmt"({s} ") or txt.contains(fmt" {s} |") or txt.contains(fmt" {s})"))
     .map(s => "import { $1 } from \"../skyrimPlatform\"" % s)
   sort(decl)
   return decl.foldr(a & "\n" & b)

@@ -1,5 +1,7 @@
-import std/os
+import os
 import ProcessFile
+import ManualOps
+import strformat
 
 proc GetFileV(): string =
   when defined(release): 
@@ -25,11 +27,12 @@ CONTACT THE DEVELOPER.
     echo "You need to drag and drop some files to this executable or send some files as parameters."
   else:
     let version = GetFileV()
+    InitManualCfg()
 
     for f in params:
       try:
         Process(f, version)
-        echo "Files were successfully translated"
+        echo fmt"'{extractFilename(f)}' was successfully translated"
       except:
         echo "Error: " & getCurrentException().msg
 

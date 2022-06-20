@@ -71,3 +71,4 @@ modules/
 # Releases
 *.7z
 *.js
+TestScript.ts

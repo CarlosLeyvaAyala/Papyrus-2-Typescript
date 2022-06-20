@@ -1,7 +1,7 @@
 {
   "JsonUtil": [
     {
-      "type": "header",
+      "type": "import",
       "add": ["import { FileExists } from \"./MiscUtil\""]
     },
     {
@@ -30,7 +30,7 @@
       "exprTranslation": "/*$1\\n*/"
     },
     {
-      "type": "comment",
+      "type": "headerComment",
       "fileAdd": "PapyrusUtil.comment.txt"
     }
   ]

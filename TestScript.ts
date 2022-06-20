@@ -1,4 +1,14 @@
 /*
+Manually converted functions. Please test:
+	- JsonExists
+	- GetPathBoolValue
+	- GetScriptVersion
+
+All functions at the bottom of this file need manual converting, but
+it seems to me (Carlos Leyva) this whole module was done for dealing
+with some Papyrus limitations that Typescript doesn't have, so it may
+be not worth using this module at all.
+
 ==============================================
 Typescript definitions for v1.0
 ==============================================
@@ -17,6 +27,18 @@ to the folder where `skyrimPlatform.ts` is found, otherwise you'll get
 If you want to have this script in some other place, just change the
 relative path of each `import`.
 */
+
+
+********************************************
+This file was generated with a debug build
+and this message was shown to highlight the 
+fact that this module may contain errors 
+because of that.
+
+This is a developer oversight. Contact him.
+********************************************
+
+
 const sn = (sp as any).TestScript
 
 /** ----------------------------------------------------------------------------------------------------------

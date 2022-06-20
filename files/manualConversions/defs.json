@@ -92,8 +92,15 @@
     },
     {
       "type": "substitute",
-      "find": "(?is)\\/\\*\\* ##\\n\\* ## Non-Native bool versions of some .*\\*\\/(.*)$",
-      "expr": "/* NO LONGER NEEDED IN TYPESCRIPT$1*/",
+      "find": "(?isU)\\/\\*\\* ##\\n\\* ## Non-Native bool versions of some .*\\*\\/(.*)$",
+      "expr": "/* ALL FUNCTIONS BELOW HERE ARE NO LONGER NEEDED IN TYPESCRIPT AND THEY ARE TOO MUCH WORK TO TRANSLATE $1*/",
+      "comment1": "This will comment functions requiring manual translation, but no longer",
+      "comment2": "really needed since we are now using Typescript"
+    },
+    {
+      "type": "substitute",
+      "find": "(?isU)\\/\\*\\* ##\\n\\* ## DEPRECATED: SKSE now provides their own variable sized .*\\*\\/(.*)$",
+      "expr": "/* ALL FUNCTIONS BELOW HERE ARE NO LONGER NEEDED IN TYPESCRIPT AND THEY ARE TOO MUCH WORK TO TRANSLATE $1",
       "comment1": "This will comment functions requiring manual translation, but no longer",
       "comment2": "really needed since we are now using Typescript"
     },

@@ -2,3 +2,7 @@ All functions at the bottom of this file need manual converting, but
 it seems to me (Carlos Leyva) this whole module was done for dealing
 with some Papyrus limitations that Typescript doesn't have, so it may
 be not worth using this module at all.
+
+If someone wants to manually translate those functions I'll gladly add
+those definitions so this program automatically replaces them when it
+finds them.

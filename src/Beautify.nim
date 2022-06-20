@@ -2,7 +2,6 @@ import sequtils
 import regex
 import sugar
 import strutils
-# import strformat
 
 proc ToTsDoc(lines: seq[string]): string =
   let txt = "/**" & lines.map(s => "* " & s).foldr(a & "\n" & b) & "*/"

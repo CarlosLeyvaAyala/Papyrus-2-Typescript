@@ -36,17 +36,4 @@ proc AddImports*(txt, fileName: string): string =
     ManualImports(fileName)
     ]
   let decl = if d.len() == 0: "" else: d.foldr(a & "\n" & b)
-  return i & decl & "\n\n" & txt
-
-type People = tuple
-  year: int
-  name: string
-
-var a: seq[People]
-
-a.add((2000, "John"))
-a.add((2005, "Marie"))
-a.add((2010, "Jane"))
-
-# Sorting with default system.cmp
-a.sort()
+  return (i & decl).strip() & "\n\n" & txt

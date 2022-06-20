@@ -5,6 +5,7 @@ import Beautify
 import Imports
 import Header
 import ReStr
+import Substitute
 import os
 
 var blockCommentOpen = false ## \
@@ -45,6 +46,6 @@ proc Process*(fn, version: string): void {.discardable.} =
   blockCommentOpen = false 
 
   let ugly = l.map(ProcessLine)
-  let output = Beautify(ugly).AddImports(fn).AddHeader(fn, version)
+  let output = Beautify(ugly).AddImports(fn).MakeSubstitutions(fn).AddHeader(fn, version)
   
   writeFile(changeFileExt(fn, "ts"), output)

@@ -10,16 +10,22 @@ var manualCfg: JsonNode
 proc InitManualCfg*(): void {.discardable.} =
   manualCfg = parseJson(readFile(manualDefs))
 
+proc GetSingleFileData(fileName: string): JsonNode =
+  let fn = extractFilename(fileName).toLowerAscii()
+  for k in manualCfg.keys: 
+    let f = fmt"{k.toLowerAscii()}.psc"
+    if f == fn: return manualCfg[k]
+  return parseJson("{}")
+
 proc GetFileData(fileName: string): JsonNode =
-  when defined(release): 
-    let fn = extractFilename(fileName).toLowerAscii()
-    for k in manualCfg.keys: 
-      let f = fmt"{k.toLowerAscii()}.psc"
-      if f == fn: return manualCfg[k]
-    return parseJson("{}")
+  when not defined(release):
+    if fileName == "TestScript.psc": 
+      return manualCfg
+    else:
+      return GetSingleFileData(fileName)
   else:
-    return manualCfg
-    
+    return GetSingleFileData(fileName)
+
 proc GetCfgProperty*(fileName: string, Test: (objType: string) -> bool): JsonNode =
   result = parseJson("[]")
   let d = GetFileData(fileName)

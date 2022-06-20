@@ -44,6 +44,14 @@ export const CountFalse = (ArrayValues: boolean[]): number => sn.CountFalse(Arra
 endFunction
 ```
 
+`--s:functionReturnsInt`
+
+```ts
+export const GetScriptVersion = (): number => sn.GetScriptVersion()
+	return 7
+EndFunction
+```
+
 [JSON Escape / Unescape][JSONEscape]
 
 [JSONEscape]: https://www.freeformatter.com/json-escape.html

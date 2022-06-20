@@ -73,3 +73,6 @@ Compile in debug mode and run test:
 [papyrusutil]: https://www.nexusmods.com/skyrimspecialedition/mods/13048
 [skyrim platform]: https://www.nexusmods.com/skyrimspecialedition/mods/54909
 [symlinks]: https://www.howtogeek.com/howto/16226/complete-guide-to-symbolic-links-symlinks-on-windows-or-linux/
+
+[nim-regex]: https://github.com/nitely/nim-regex
+[wNim]: https://github.com/khchen/wNim

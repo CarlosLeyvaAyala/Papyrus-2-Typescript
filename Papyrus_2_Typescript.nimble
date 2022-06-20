@@ -12,3 +12,4 @@ bin           = @["Papyrus_2_Typescript"]
 
 requires "nim >= 1.6.6"
 requires "regex >= 0.19.0"
+# requires "wnim >= 0.13.1"

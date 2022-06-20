@@ -24,7 +24,8 @@ CONTACT THE DEVELOPER.
   # Process files
   let params = commandLineParams()
   if params.len == 0:
-    echo "You need to drag and drop some files to this executable or send some files as parameters."
+    echo "You need to drag and drop some files to the batch file or send some files as parameters from the command line."
+    echo ""
   else:
     let version = GetFileV()
     InitManualCfg()
@@ -35,7 +36,3 @@ CONTACT THE DEVELOPER.
         echo fmt"'{extractFilename(f)}' was successfully translated"
       except:
         echo "Error: " & getCurrentException().msg
-
-  when defined(release): 
-    echo "Press any key to continue"
-    discard stdin.readLine()

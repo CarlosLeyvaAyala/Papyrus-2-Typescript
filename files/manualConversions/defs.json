@@ -1,4 +1,19 @@
 {
+  "JContainers": [
+    {
+      "type": "substitute",
+      "display": "__isInstalled (made private)",
+      "find": "(?im)^export (const __isInstalled.*)$",
+      "expr": "$1",
+      "comment": "Makes __isInstalled private"
+    },
+    {
+      "type": "substitute",
+      "display": "isInstalled",
+      "find": "(?ismU)^export const isInstalled =.*return\\s+.*&&\\s+(\\d+)\\s+.*&&\\s+(\\d+)\\s+.*endFunction",
+      "expr": "export const isInstalled = (): boolean => __isInstalled() && APIVersion() === $1 && featureVersion() === $2"
+    }
+  ],
   "JsonUtil": [
     {
       "type": "import",

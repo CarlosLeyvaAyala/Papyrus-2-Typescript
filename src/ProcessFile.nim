@@ -30,15 +30,5 @@ proc Process*(fn, version: string): void {.discardable.} =
     .AddHeader(version)
     .replace(re"(\n\s*){3,}", "\n\n")
     .strip() & "\n"
-  # let l = getLines(fn)
-  # blockCommentOpen = false 
-
-  # let ugly = l.map(ProcessLine)
-  # let output = Beautify(ugly)
-  #   .AddImports(fn)
-  #   .MakeSubstitutions(fn)
-  #   .AddHeader(fn, version)
-  #   .replace(re"\n{3,}", "\n\n")
-  #   .strip() & "\n"
 
   writeFile(changeFileExt(fn, "ts"), output)

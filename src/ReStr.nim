@@ -217,7 +217,7 @@ const
 
   # ========================================================================
   ## Used to check if a line is a function header.
-  isFunc = re"(?imsU)^[^\S\r\n]*(((\w*)[^\S\r\n]*(\[[^\S\r\n]*\][^\S\r\n]*)*)[^\S\r\n]+)?function (\w*)\s*\((.*)\).*$"
+  isFunc = re"(?imsU)^[^\S\r\n]*(((\w*)[^\S\r\n]*(\[[^\S\r\n]*\][^\S\r\n]*)*)[^\S\r\n]+)?function (\w*)\s*\((.*)\)\s+.*$"
 
 proc TranslateFunction(m: RegexMatch, l: string): string =
   # Remove Papyrus' line continuations, like in: 

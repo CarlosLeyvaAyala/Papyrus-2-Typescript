@@ -19,7 +19,10 @@ SET /p AppVersion="Input the app version you are about to release: "
 
 :: DON'T CHANGE THESE
 SET appName="Papyrus-2-Typescript"
-SET modEsp="SandowPP.esp"
+SET exe="Papyrus_2_Typescript.exe"
+SET binDir="bin"
+SET filesDir="files"
+SET batFile="Drop_your_files_here.bat"
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :: You need to update ALL these variables so they point towards
@@ -27,31 +30,9 @@ SET modEsp="SandowPP.esp"
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :: 7 zip path
 SET zipExe="C:\Program Files\7-Zip\7z"
-:: Path to my library you downloaded from github at
-:: https://github.com/CarlosLeyvaAyala/DM-SkyrimSE-Library.git
-SET baseLib="F:\Skyrim SE\MO2\mods\DM-SkyrimSE-Library\"
-SET lib=%baseLib%"scripts\"
 :: This points towards a dir github will ignore. It saves backups
 :: for newly released versions
 SET backupDir="backups"
-
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-:: External libraries required by this mod
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-SET req1="DM_Utils.pex"
-SET req2="DM_MeterWidgetScript.pex"
-:: Whole folder with Lua scripts
-SET req3=%baseLib%"SKSE\"
-
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-:: Files needed to compile, but not distributable.
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-:: These are included in this github repo, but they are
-:: already distributed by SkyUI.
-SET exc1="SKI_*"
-:: Unneeded developing helpers
-SET exc2="__*" "*.md"
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :: Create release zip (*.7z) file
@@ -61,14 +42,10 @@ SET exc2="__*" "*.md"
 :: Compression level = 9
 SET comp=-mx9
 %zipExe% d %appName%.7z
-%zipExe% a -t7z %appName%.7z bin
-@REM %zipExe% a -t7z %appName%.7z SKSE -spf2 %comp%
+%zipExe% a -t7z %appName%.7z %exe% %binDir% %filesDir% %batFile%
 
-:: Put libraries in the correct folder
-@REM %zipExe% rn %appName%.7z %req1% scripts\%req1% %req2% scripts\%req2% %comp%
-
-:: Delete undesired files from zip
-@REM %zipExe% d %appName%.7z scripts\source %exc1% %exc2% -r -bb1 %comp%
+:: Put files in the correct folder
+%zipExe% rn %appName%.7z %exe% %binDir%\%exe% %filesDir% %binDir%\%filesDir%
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :: Copy backup

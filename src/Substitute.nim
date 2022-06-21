@@ -14,9 +14,9 @@ proc GetSubsStr(o: JsonNode): string =
 proc SpecialOrSelf(rawRx: string, o: JsonNode, m: RegexMatch): string =
   let spMode = m.groupFirstCapture(0, rawRx)
   if spMode == "functionWithBody":
-    return r"(?isU)(?isU)export const $1 .*endFunction" % o{"display"}.getStr("Lololol function is null")
+    return r"(?ismU)^export const $1 .*endFunction" % o{"display"}.getStr("Lololol function is null")
   elif spMode == "functionReturnsInt":
-    return r"(?isU)export const $1 =.*return\s+(\d+)\s+.*endFunction" % o{"display"}.getStr("Lololol function is null")
+    return r"(?ismU)^export const $1 =.*return\s+(\d+)\s+.*endFunction" % o{"display"}.getStr("Lololol function is null")
   return rawRx
 
 # Returns substitution content, either verbatim or by special command
@@ -36,3 +36,5 @@ proc MakeSubstitutions*(txt, fileName: string): string =
     let r = re(rx)
     tx = tx.replace(r, to)
   tx
+
+proc MakeSubstitutions*(txt: string): string = MakeSubstitutions(txt, WorkingFile())

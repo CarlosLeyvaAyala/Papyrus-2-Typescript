@@ -69,3 +69,5 @@ proc AddHeader*(txt, fileName, version: string): string =
     ].foldr(a & "\n\n" & b)
     .strip() & "\n*/\n"
   return h & IfDebug() & txt
+
+proc AddHeader*(txt, version: string): string = AddHeader(txt, WorkingFile(), version)

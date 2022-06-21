@@ -4,6 +4,7 @@ import strformat
 import strutils
 import sugar
 import Files
+import regex
 
 var 
   manualCfg: JsonNode
@@ -12,10 +13,16 @@ var
 proc SetWorkingFile*(fn: string) =
   workingFile = extractFilename(fn)
 
+proc WorkingFile*: string = workingFile
+
 proc InitManualCfg*(): void {.discardable.} =
   manualCfg = parseJson(readFile(manualDefs))
 
 proc GetSingleFileData(fileName: string): JsonNode =
+  var (d, name, e) = splitFile(fileName)
+  discard d
+  discard e
+
   let fn = extractFilename(fileName).toLowerAscii()
   for k in manualCfg.keys: 
     let f = fmt"{k.toLowerAscii()}.psc"

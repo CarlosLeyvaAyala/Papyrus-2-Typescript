@@ -1,5 +1,19 @@
 Scriptname TestScript Hidden 
 
+float property skillDefault2H = 0.5 AutoReadOnly
+float property skillDefault1H = 0.25 AutoReadOnly
+float property skillDefaultBl = 0.25 AutoReadOnly
+float property skillDefaultAr = 0.2 AutoReadOnly
+float property skillDefaultHa = 0.33 AutoReadOnly
+float property skillDefaultLa = 0.2 AutoReadOnly
+float property skillDefaultSn = 0.25 AutoReadOnly
+float property skillDefaultSm = 0.25 AutoReadOnly
+float property skillDefaultAl = 0.2 AutoReadOnly
+float property skillDefaultCo = 0.0 AutoReadOnly
+	float property skillDefaultDe = 0.0 AutoReadOnly
+float property skillDefaultIl = 0.0 AutoReadOnly
+float property skillDefaultRe = 0.15 AutoReadOnly
+		float property weightGainRate = 1.0 Auto Hidden
 
 	;-------
 	;SETTERS
@@ -159,6 +173,15 @@ int function CountNone(Form[] ArrayValues) global
 endFunction
 
 
+Function RegisterForHitEventEx(ActiveMagicEffect akActiveEffect, Form akAggressorFilter = None, Form akSourceFilter = None, Form akProjectileFilter = None, \
+int aiPowerFilter = -1, int aiSneakFilter = -1, int aiBashFilter = -1, int aiBlockFilter = -1, bool abMatch = true) global native	
+
+Function UnregisterForHitEventEx(ActiveMagicEffect akActiveEffect, Form akAggressorFilter = None, Form akSourceFilter = None, Form akProjectileFilter = None, \
+int aiPowerFilter = -1, int aiSneakFilter = -1, int aiBashFilter = -1, int aiBlockFilter = -1, bool abMatch = true) global native
+
+  ;comment
+string function GetPathStringValue(string missing = ";") global native ; comment
+
 
 ; ##
 ; ## Non-Native bool versions of some functions where SKSE version is bugged.
@@ -280,7 +303,12 @@ endFunction
 Form[] function ResizeFormArray(Form[] ArrayValues, int toSize, Form filler = none) global
 	return Utility.ResizeFormArray(ArrayValues, toSize, filler)
 endFunction
+Function RegisterForHitEventEx(ActiveMagicEffect akActiveEffect, Form akAggressorFilter = None, Form akSourceFilter = None, Form akProjectileFilter = None, \
+int aiPowerFilter = -1, int aiSneakFilter = -1, int aiBashFilter = -1, int aiBlockFilter = -1, bool abMatch = true) global native	
+
+Function UnregisterForHitEventEx(ActiveMagicEffect akActiveEffect, Form akAggressorFilter = None, Form akSourceFilter = None, Form akProjectileFilter = None, \
+
+int aiPowerFilter = -1, int aiSneakFilter = -1, int aiBashFilter = -1, int aiBlockFilter = -1, bool abMatch = true) global native
 Alias[] function ResizeAliasArray(Alias[] ArrayValues, int toSize, Alias filler = none) global
 	return Utility.ResizeAliasArray(ArrayValues, toSize, filler)
 endFunction
-

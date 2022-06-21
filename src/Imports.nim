@@ -41,3 +41,5 @@ proc AddImports*(txt, fileName: string): string =
     ]
   let decl = if d.len() == 0: "" else: d.foldr(a & "\n" & b)
   return (i & decl).strip() & "\n\n" & txt
+
+proc AddImports*(txt: string): string = AddImports(txt, WorkingFile())

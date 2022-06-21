@@ -195,7 +195,7 @@ const
   ## ```
   
   # ========================================================================
-  isScriptName = re"(?i)^\s*scriptname (\w*)(extends )?(.*)?( hidden)?" ## \
+  isScriptName = re"(?im)^\s*scriptname (\w*)(extends )?(.*)?( hidden)?" ## \
   ## Used to check if a line is a Papyrus script name.
   # Used for extracting the script name. See `scriptNameVar <#scriptNameVar>`_.
   

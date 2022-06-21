@@ -67,7 +67,7 @@ proc AddHeader*(txt, fileName, version: string): string =
       AddComments(fileName),
       AddDisclaimer()
     ].foldr(a & "\n\n" & b)
-    .strip() & "\n*/\n"
+    .strip() & "\n*/\n\n"
   return h & IfDebug() & txt
 
 proc AddHeader*(txt, version: string): string = AddHeader(txt, WorkingFile(), version)

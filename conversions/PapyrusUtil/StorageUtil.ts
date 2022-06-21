@@ -105,14 +105,8 @@ https://github.com/CarlosLeyvaAyala/Papyrus-2-Typescript
 The program has no way to know the intention of the humans that made
 the scripts, so it's always advisable to manually check all generated
 files to make sure everything is declared as it should.
-
-Take note the program assumes this script exists in some subfolder
-to the folder where `skyrimPlatform.ts` is found, otherwise you'll get
-"Cannot find module..." type of errors.
-
-If you want to have this script in some other place, just change the
-relative path of each `import`.
 */
+
 import * as sp from "skyrimPlatform"
 
 import { Form } from "skyrimPlatform"
@@ -149,8 +143,8 @@ const sn = (sp as any).StorageUtil
 * 	StorageUtil.SetIntValue(none, "myValue", 1)
 * 	StorageUtil.SetFloatValue(none, "myValue", 5.0)
 * 	int value = StorageUtil.GetIntValue(none, "myValue")
-* 	value == 1 // true
-* 	value == 5 // false
+* 	value == 1 ; true
+* 	value == 5 ; false
 * 
 * 	When choosing names for variables try to remember that all mods access the same storage, so if you
 * 	create a variable with name "Name" then many other mods could use the same variable but in different
@@ -174,13 +168,13 @@ const sn = (sp as any).StorageUtil
 * 	to make someone invisible using your mod. But if your mod isn't present then nothing happens.
 * 	This is just an example, I'm sure you can find better ways to implement compatibility, it would
 * 	help to include a documentation for other modders if you do.
-* ///
+* ;/
 * 
 * 
 * 
 * 
 * 
-* ///
+* ;/
 * 	Storage functions - values in save game file.
 */
 
@@ -451,7 +445,7 @@ export const FormListSort = (ObjKey: Form | null, KeyName: string): void => sn.F
 export const IntListSlice = (ObjKey: Form | null, KeyName: string, slice: number[], startIndex: number = 0): void => sn.IntListSlice(ObjKey, KeyName, slice, startIndex)
 export const FloatListSlice = (ObjKey: Form | null, KeyName: string, slice: number[], startIndex: number = 0): void => sn.FloatListSlice(ObjKey, KeyName, slice, startIndex)
 export const StringListSlice = (ObjKey: Form | null, KeyName: string, slice: string[], startIndex: number = 0): void => sn.StringListSlice(ObjKey, KeyName, slice, startIndex)
-export const FormListSlice = (ObjKey: Form | null, KeyName: string, slice: (Form | null)[], startIndex: number = 0): void => sn.FormListSlice(ObjKey, KeyName, slice, startIndex)
+export const FormListSlice = (ObjKey: Form | null, KeyName: string, slice: (Form | null)[] | null, startIndex: number = 0): void => sn.FormListSlice(ObjKey, KeyName, slice, startIndex)
 
 /** Sizes the given list to a set number of elements. If the list exists already it will be truncated
 *    when given fewer elements, or resized to the appropriate length with the filler argument being used as
@@ -482,7 +476,7 @@ export const FormListResize = (ObjKey: Form | null, KeyName: string, toLength: n
 export const IntListCopy = (ObjKey: Form | null, KeyName: string, copy: number[]): boolean => sn.IntListCopy(ObjKey, KeyName, copy)
 export const FloatListCopy = (ObjKey: Form | null, KeyName: string, copy: number[]): boolean => sn.FloatListCopy(ObjKey, KeyName, copy)
 export const StringListCopy = (ObjKey: Form | null, KeyName: string, copy: string[]): boolean => sn.StringListCopy(ObjKey, KeyName, copy)
-export const FormListCopy = (ObjKey: Form | null, KeyName: string, copy: (Form | null)[]): boolean => sn.FormListCopy(ObjKey, KeyName, copy)
+export const FormListCopy = (ObjKey: Form | null, KeyName: string, copy: (Form | null)[] | null): boolean => sn.FormListCopy(ObjKey, KeyName, copy)
 
 /** Outputs the values currently stored by the given object+key.
 * 
@@ -506,7 +500,7 @@ export const FormListToArray = (ObjKey: Form | null, KeyName: string): (Form | n
 *                               If set to FALSE, inverts the resulting array with forms that have a type that DO NOT match.
 */
 export const FormListFilterByTypes = (ObjKey: Form | null, KeyName: string, FormTypeIDs: number[], ReturnMatching: boolean = true): (Form | null)[] => sn.FormListFilterByTypes(ObjKey, KeyName, FormTypeIDs, ReturnMatching)
-/** Convenience version of FormListFilterByTypes() for when only getting a single type. */
+/** Convenience version of FormListFilterByTypes() for when only getting a single type. */
 export const FormListFilterByType = (ObjKey: Form | null, KeyName: string, FormTypeID: number, ReturnMatching: boolean = true): (Form | null)[] => FormListFilterByTypes(ObjKey, KeyName, [FormTypeID], ReturnMatching)
 
 /** Counts each type of of any KeyName that starts with a given string prefix on all objects.
@@ -523,7 +517,7 @@ export const CountFloatListPrefix = (PrefixKey: string): number => sn.CountFloat
 export const CountStringListPrefix = (PrefixKey: string): number => sn.CountStringListPrefix(PrefixKey)
 export const CountFormListPrefix = (PrefixKey: string): number => sn.CountFormListPrefix(PrefixKey)
 
-/** Performs all of the above prefix counts in one go. */
+/** Performs all of the above prefix counts in one go. */
 export const CountAllPrefix = (PrefixKey: string): number => sn.CountAllPrefix(PrefixKey)
 
 /** Counts each type of of any KeyName that starts with a given string prefix on all objects.
@@ -541,7 +535,7 @@ export const CountObjFloatListPrefix = (ObjKey: Form | null, PrefixKey: string):
 export const CountObjStringListPrefix = (ObjKey: Form | null, PrefixKey: string): number => sn.CountObjStringListPrefix(ObjKey, PrefixKey)
 export const CountObjFormListPrefix = (ObjKey: Form | null, PrefixKey: string): number => sn.CountObjFormListPrefix(ObjKey, PrefixKey)
 
-/** Performs all of the above prefix counts in one go. */
+/** Performs all of the above prefix counts in one go. */
 export const CountAllObjPrefix = (ObjKey: Form | null, PrefixKey: string): number => sn.CountAllObjPrefix(ObjKey, PrefixKey)
 
 /** Clears each type of of any KeyName that starts with a given string prefix on all objects.
@@ -559,7 +553,7 @@ export const ClearFloatListPrefix = (PrefixKey: string): number => sn.ClearFloat
 export const ClearStringListPrefix = (PrefixKey: string): number => sn.ClearStringListPrefix(PrefixKey)
 export const ClearFormListPrefix = (PrefixKey: string): number => sn.ClearFormListPrefix(PrefixKey)
 
-/** Performs all of the above prefix clears in one go. */
+/** Performs all of the above prefix clears in one go. */
 export const ClearAllPrefix = (PrefixKey: string): number => sn.ClearAllPrefix(PrefixKey)
 
 /** Clears each type of of any KeyName that starts with a given string prefix on specific objects.
@@ -578,7 +572,7 @@ export const ClearObjFloatListPrefix = (ObjKey: Form | null, PrefixKey: string):
 export const ClearObjStringListPrefix = (ObjKey: Form | null, PrefixKey: string): number => sn.ClearObjStringListPrefix(ObjKey, PrefixKey)
 export const ClearObjFormListPrefix = (ObjKey: Form | null, PrefixKey: string): number => sn.ClearObjFormListPrefix(ObjKey, PrefixKey)
 
-/** Performs all of the above prefix clears in one go. */
+/** Performs all of the above prefix clears in one go. */
 export const ClearAllObjPrefix = (ObjKey: Form | null, PrefixKey: string): number => sn.ClearAllObjPrefix(ObjKey, PrefixKey)
 
 /** Debug functions - can be helpful to find problems or for development.

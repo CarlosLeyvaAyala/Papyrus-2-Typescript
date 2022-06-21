@@ -16,14 +16,8 @@ https://github.com/CarlosLeyvaAyala/Papyrus-2-Typescript
 The program has no way to know the intention of the humans that made
 the scripts, so it's always advisable to manually check all generated
 files to make sure everything is declared as it should.
-
-Take note the program assumes this script exists in some subfolder
-to the folder where `skyrimPlatform.ts` is found, otherwise you'll get
-"Cannot find module..." type of errors.
-
-If you want to have this script in some other place, just change the
-relative path of each `import`.
 */
+
 import * as sp from "skyrimPlatform"
 
 import { Actor } from "skyrimPlatform"
@@ -51,18 +45,18 @@ export const ScanCellObjects = (formType: number, CenterOn: ObjectReference | nu
 */
 export const ScanCellNPCs = (CenterOn: ObjectReference | null, radius: number = 0.0, HasKeyword: Keyword | null = null, IgnoreDead: boolean = true): (Actor | null)[] => sn.ScanCellNPCs(CenterOn, radius, HasKeyword, IgnoreDead)
 
-/** Same as ScanCellNPCs(), however it filters the return by a given faction and (optionally) their rank in that faction. */
+/** Same as ScanCellNPCs(), however it filters the return by a given faction and (optionally) their rank in that faction. */
 export const ScanCellNPCsByFaction = (FindFaction: Faction | null, CenterOn: ObjectReference | null, radius: number = 0.0, minRank: number = 0, maxRank: number = 127, IgnoreDead: boolean = true): (Actor | null)[] => sn.ScanCellNPCsByFaction(FindFaction, CenterOn, radius, minRank, maxRank, IgnoreDead)
 
 /** Camera functions
 */
 
-/** Toggle freefly camera. */
+/** Toggle freefly camera. */
 export const ToggleFreeCamera = (stopTime: boolean = false): void => sn.ToggleFreeCamera(stopTime)
-/** Set freefly cam speed. */
+/** Set freefly cam speed. */
 export const SetFreeCameraSpeed = (speed: number): void => sn.SetFreeCameraSpeed(speed)
 
-/** Set current freefly cam state & set the speed if enabling */
+/** Set current freefly cam state & set the speed if enabling */
 export const SetFreeCameraState = (enable: boolean, speed: number = 10.0): void => sn.SetFreeCameraState(enable, speed)
 
 /** File related functions
@@ -82,28 +76,28 @@ export const FilesInFolder = (directory: string, extension: string = "*"): strin
 */
 export const FoldersInFolder = (directory: string): string[] => sn.FoldersInFolder(directory)
 
-/** Check if a given file exists relative to root Skyrim directory. Example: FileExists("data/meshes/example.nif") */
+/** Check if a given file exists relative to root Skyrim directory. Example: FileExists("data/meshes/example.nif") */
 export const FileExists = (fileName: string): boolean => sn.FileExists(fileName)
 
-/** Read string from file. Do not read large files! */
+/** Read string from file. Do not read large files! */
 export const ReadFromFile = (fileName: string): string => sn.ReadFromFile(fileName)
 
-/** Write string to file. */
+/** Write string to file. */
 export const WriteToFile = (fileName: string, text: string, append: boolean = true, timestamp: boolean = false): boolean => sn.WriteToFile(fileName, text, append, timestamp)
 
 /** Misc
 */
 
-/** Print text to console. */
+/** Print text to console. */
 export const PrintConsole = (text: string): void => sn.PrintConsole(text)
 
-/** Get race's editor ID. */
+/** Get race's editor ID. */
 export const GetRaceEditorID = (raceForm: Race | null): string => sn.GetRaceEditorID(raceForm)
 
-/** Get race's editor ID. */
+/** Get race's editor ID. */
 export const GetActorRaceEditorID = (actorRef: Actor | null): string => sn.GetActorRaceEditorID(actorRef)
 
-/** Set HUD on / off - NOT CURRENT WORKING IN SKYRIM SPECIAL EDITION */
+/** Set HUD on / off - NOT CURRENT WORKING IN SKYRIM SPECIAL EDITION */
 export const SetMenus = (enabled: boolean): void => sn.SetMenus(enabled)
 
 /** Get node rotation
@@ -116,4 +110,4 @@ export const SetMenus = (enabled: boolean): void => sn.SetMenus(enabled)
 * function ExecuteBat(string fileName) global native
 */
 
-/** LEGACY v3.3 - Added Ignoredead parameter to function, aliased for backwards compatability with v3.2. */
+/** LEGACY v3.3 - Added Ignoredead parameter to function, aliased for backwards compatability with v3.2. */

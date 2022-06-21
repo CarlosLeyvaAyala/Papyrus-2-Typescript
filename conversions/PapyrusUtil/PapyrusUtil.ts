@@ -49,14 +49,8 @@ https://github.com/CarlosLeyvaAyala/Papyrus-2-Typescript
 The program has no way to know the intention of the humans that made
 the scripts, so it's always advisable to manually check all generated
 files to make sure everything is declared as it should.
-
-Take note the program assumes this script exists in some subfolder
-to the folder where `skyrimPlatform.ts` is found, otherwise you'll get
-"Cannot find module..." type of errors.
-
-If you want to have this script in some other place, just change the
-relative path of each `import`.
 */
+
 import * as sp from "skyrimPlatform"
 
 import { Actor } from "skyrimPlatform"
@@ -66,10 +60,10 @@ import { ObjectReference } from "skyrimPlatform"
 
 const sn = (sp as any).PapyrusUtil
 
-/** Get version of papyrus DLL library. Version 4.1 will return 41. */
+/** Get version of papyrus DLL library. Version 4.1 will return 41. */
 export const GetVersion = (): number => sn.GetVersion()
 
-/** Get version of compiled papyrus scripts which should match return from GetVersion() */
+/** Get version of compiled papyrus scripts which should match return from GetVersion() */
 export const GetScriptVersion = (): number => 43
 
 /** ##
@@ -78,9 +72,9 @@ export const GetScriptVersion = (): number => 43
 * Few extra array types not provided by SKSE normally to help avoid having to use and cast Form arrays
 */
 export const ActorArray = (size: number, filler: Actor | null = null): (Actor | null)[] => sn.ActorArray(size, filler)
-export const ResizeActorArray = (ArrayValues: (Actor | null)[], toSize: number, filler: Actor | null = null): (Actor | null)[] => sn.ResizeActorArray(ArrayValues, toSize, filler)
+export const ResizeActorArray = (ArrayValues: (Actor | null)[] | null, toSize: number, filler: Actor | null = null): (Actor | null)[] => sn.ResizeActorArray(ArrayValues, toSize, filler)
 export const ObjRefArray = (size: number, filler: ObjectReference | null = null): (ObjectReference | null)[] => sn.ObjRefArray(size, filler)
-export const ResizeObjRefArray = (ArrayValues: (ObjectReference | null)[], toSize: number, filler: ObjectReference | null = null): (ObjectReference | null)[] => sn.ResizeObjRefArray(ArrayValues, toSize, filler)
+export const ResizeObjRefArray = (ArrayValues: (ObjectReference | null)[] | null, toSize: number, filler: ObjectReference | null = null): (ObjectReference | null)[] => sn.ResizeObjRefArray(ArrayValues, toSize, filler)
 
 /** ## Append a value to the end of the given array and return the new array.
 * ## NOTE: The array has to be recreated each time you call this. For the sake of memory usage and performance, DO NOT use these to build up an array through a loop,
@@ -88,31 +82,31 @@ export const ResizeObjRefArray = (ArrayValues: (ObjectReference | null)[], toSiz
 */
 export const PushFloat = (ArrayValues: number[], push: number): number[] => sn.PushFloat(ArrayValues, push)
 export const PushInt = (ArrayValues: number[], push: number): number[] => sn.PushInt(ArrayValues, push)
-/** bool[] function PushBool(bool[] ArrayValues, bool push) global native // // Bugged - Non-native version available below */
+/** bool[] function PushBool(bool[] ArrayValues, bool push) global native ; // Bugged - Non-native version available below */
 export const PushString = (ArrayValues: string[], push: string): string[] => sn.PushString(ArrayValues, push)
-export const PushForm = (ArrayValues: (Form | null)[], push: Form | null): (Form | null)[] => sn.PushForm(ArrayValues, push)
-export const PushAlias = (ArrayValues: (Alias | null)[], push: Alias | null): (Alias | null)[] => sn.PushAlias(ArrayValues, push)
-export const PushActor = (ArrayValues: (Actor | null)[], push: Actor | null): (Actor | null)[] => sn.PushActor(ArrayValues, push)
-export const PushObjRef = (ArrayValues: (ObjectReference | null)[], push: ObjectReference | null): (ObjectReference | null)[] => sn.PushObjRef(ArrayValues, push)
+export const PushForm = (ArrayValues: (Form | null)[] | null, push: Form | null): (Form | null)[] => sn.PushForm(ArrayValues, push)
+export const PushAlias = (ArrayValues: (Alias | null)[] | null, push: Alias | null): (Alias | null)[] => sn.PushAlias(ArrayValues, push)
+export const PushActor = (ArrayValues: (Actor | null)[] | null, push: Actor | null): (Actor | null)[] => sn.PushActor(ArrayValues, push)
+export const PushObjRef = (ArrayValues: (ObjectReference | null)[] | null, push: ObjectReference | null): (ObjectReference | null)[] => sn.PushObjRef(ArrayValues, push)
 
-/** ## Removes all elements from the given array matching the provided value and returns the shortened array. */
+/** ## Removes all elements from the given array matching the provided value and returns the shortened array. */
 export const RemoveFloat = (ArrayValues: number[], ToRemove: number): number[] => sn.RemoveFloat(ArrayValues, ToRemove)
 export const RemoveInt = (ArrayValues: number[], ToRemove: number): number[] => sn.RemoveInt(ArrayValues, ToRemove)
-/** bool[] function RemoveBool(bool[] ArrayValues, bool ToRemove) global native // // Bugged - Non-native version available below */
+/** bool[] function RemoveBool(bool[] ArrayValues, bool ToRemove) global native ; // Bugged - Non-native version available below */
 export const RemoveString = (ArrayValues: string[], ToRemove: string): string[] => sn.RemoveString(ArrayValues, ToRemove)
-export const RemoveForm = (ArrayValues: (Form | null)[], ToRemove: Form | null): (Form | null)[] => sn.RemoveForm(ArrayValues, ToRemove)
-export const RemoveAlias = (ArrayValues: (Alias | null)[], ToRemove: Alias | null): (Alias | null)[] => sn.RemoveAlias(ArrayValues, ToRemove)
-export const RemoveActor = (ArrayValues: (Actor | null)[], ToRemove: Actor | null): (Actor | null)[] => sn.RemoveActor(ArrayValues, ToRemove)
-export const RemoveObjRef = (ArrayValues: (ObjectReference | null)[], ToRemove: ObjectReference | null): (ObjectReference | null)[] => sn.RemoveObjRef(ArrayValues, ToRemove)
+export const RemoveForm = (ArrayValues: (Form | null)[] | null, ToRemove: Form | null): (Form | null)[] => sn.RemoveForm(ArrayValues, ToRemove)
+export const RemoveAlias = (ArrayValues: (Alias | null)[] | null, ToRemove: Alias | null): (Alias | null)[] => sn.RemoveAlias(ArrayValues, ToRemove)
+export const RemoveActor = (ArrayValues: (Actor | null)[] | null, ToRemove: Actor | null): (Actor | null)[] => sn.RemoveActor(ArrayValues, ToRemove)
+export const RemoveObjRef = (ArrayValues: (ObjectReference | null)[] | null, ToRemove: ObjectReference | null): (ObjectReference | null)[] => sn.RemoveObjRef(ArrayValues, ToRemove)
 
-/** ## Removes all duplicate elements from the given array and returns the shortened array with only a single instance of all element values. */
+/** ## Removes all duplicate elements from the given array and returns the shortened array with only a single instance of all element values. */
 export const RemoveDupeFloat = (ArrayValues: number[]): number[] => sn.RemoveDupeFloat(ArrayValues)
 export const RemoveDupeInt = (ArrayValues: number[]): number[] => sn.RemoveDupeInt(ArrayValues)
 export const RemoveDupeString = (ArrayValues: string[]): string[] => sn.RemoveDupeString(ArrayValues)
-export const RemoveDupeForm = (ArrayValues: (Form | null)[]): (Form | null)[] => sn.RemoveDupeForm(ArrayValues)
-export const RemoveDupeAlias = (ArrayValues: (Alias | null)[]): (Alias | null)[] => sn.RemoveDupeAlias(ArrayValues)
-export const RemoveDupeActor = (ArrayValues: (Actor | null)[]): (Actor | null)[] => sn.RemoveDupeActor(ArrayValues)
-export const RemoveDupeObjRef = (ArrayValues: (ObjectReference | null)[]): (ObjectReference | null)[] => sn.RemoveDupeObjRef(ArrayValues)
+export const RemoveDupeForm = (ArrayValues: (Form | null)[] | null): (Form | null)[] => sn.RemoveDupeForm(ArrayValues)
+export const RemoveDupeAlias = (ArrayValues: (Alias | null)[] | null): (Alias | null)[] => sn.RemoveDupeAlias(ArrayValues)
+export const RemoveDupeActor = (ArrayValues: (Actor | null)[] | null): (Actor | null)[] => sn.RemoveDupeActor(ArrayValues)
+export const RemoveDupeObjRef = (ArrayValues: (ObjectReference | null)[] | null): (ObjectReference | null)[] => sn.RemoveDupeObjRef(ArrayValues)
 
 /** ## Get an array of values from ArrayValues1 that ARE NOT among the values of ArrayValues2. Duplicates are removed by default.
 * ## Setting CompareBoth = true will change the behavior to also include the reverse comparison of ArrayValues2 values that are not present in ArrayValues1.
@@ -121,53 +115,53 @@ export const RemoveDupeObjRef = (ArrayValues: (ObjectReference | null)[]): (Obje
 export const GetDiffFloat = (ArrayValues1: number[], ArrayValues2: number[], CompareBoth: boolean = false, IncludeDupes: boolean = false): number[] => sn.GetDiffFloat(ArrayValues1, ArrayValues2, CompareBoth, IncludeDupes)
 export const GetDiffInt = (ArrayValues1: number[], ArrayValues2: number[], CompareBoth: boolean = false, IncludeDupes: boolean = false): number[] => sn.GetDiffInt(ArrayValues1, ArrayValues2, CompareBoth, IncludeDupes)
 export const GetDiffString = (ArrayValues1: string[], ArrayValues2: string[], CompareBoth: boolean = false, IncludeDupes: boolean = false): string[] => sn.GetDiffString(ArrayValues1, ArrayValues2, CompareBoth, IncludeDupes)
-export const GetDiffForm = (ArrayValues1: (Form | null)[], ArrayValues2: (Form | null)[], CompareBoth: boolean = false, IncludeDupes: boolean = false): (Form | null)[] => sn.GetDiffForm(ArrayValues1, ArrayValues2, CompareBoth, IncludeDupes)
-export const GetDiffAlias = (ArrayValues1: (Alias | null)[], ArrayValues2: (Alias | null)[], CompareBoth: boolean = false, IncludeDupes: boolean = false): (Alias | null)[] => sn.GetDiffAlias(ArrayValues1, ArrayValues2, CompareBoth, IncludeDupes)
-export const GetDiffActor = (ArrayValues1: (Actor | null)[], ArrayValues2: (Actor | null)[], CompareBoth: boolean = false, IncludeDupes: boolean = false): (Actor | null)[] => sn.GetDiffActor(ArrayValues1, ArrayValues2, CompareBoth, IncludeDupes)
-export const GetDiffObjRef = (ArrayValues1: (ObjectReference | null)[], ArrayValues2: (ObjectReference | null)[], CompareBoth: boolean = false, IncludeDupes: boolean = false): (ObjectReference | null)[] => sn.GetDiffObjRef(ArrayValues1, ArrayValues2, CompareBoth, IncludeDupes)
+export const GetDiffForm = (ArrayValues1: (Form | null)[] | null, ArrayValues2: (Form | null)[] | null, CompareBoth: boolean = false, IncludeDupes: boolean = false): (Form | null)[] => sn.GetDiffForm(ArrayValues1, ArrayValues2, CompareBoth, IncludeDupes)
+export const GetDiffAlias = (ArrayValues1: (Alias | null)[] | null, ArrayValues2: (Alias | null)[] | null, CompareBoth: boolean = false, IncludeDupes: boolean = false): (Alias | null)[] => sn.GetDiffAlias(ArrayValues1, ArrayValues2, CompareBoth, IncludeDupes)
+export const GetDiffActor = (ArrayValues1: (Actor | null)[] | null, ArrayValues2: (Actor | null)[] | null, CompareBoth: boolean = false, IncludeDupes: boolean = false): (Actor | null)[] => sn.GetDiffActor(ArrayValues1, ArrayValues2, CompareBoth, IncludeDupes)
+export const GetDiffObjRef = (ArrayValues1: (ObjectReference | null)[] | null, ArrayValues2: (ObjectReference | null)[] | null, CompareBoth: boolean = false, IncludeDupes: boolean = false): (ObjectReference | null)[] => sn.GetDiffObjRef(ArrayValues1, ArrayValues2, CompareBoth, IncludeDupes)
 
-/** ## Get an array of values that are present in both ArrayValues1 and ArrayValues2. */
+/** ## Get an array of values that are present in both ArrayValues1 and ArrayValues2. */
 export const GetMatchingFloat = (ArrayValues1: number[], ArrayValues2: number[]): number[] => sn.GetMatchingFloat(ArrayValues1, ArrayValues2)
 export const GetMatchingInt = (ArrayValues1: number[], ArrayValues2: number[]): number[] => sn.GetMatchingInt(ArrayValues1, ArrayValues2)
 export const GetMatchingString = (ArrayValues1: string[], ArrayValues2: string[]): string[] => sn.GetMatchingString(ArrayValues1, ArrayValues2)
-export const GetMatchingForm = (ArrayValues1: (Form | null)[], ArrayValues2: (Form | null)[]): (Form | null)[] => sn.GetMatchingForm(ArrayValues1, ArrayValues2)
-export const GetMatchingAlias = (ArrayValues1: (Alias | null)[], ArrayValues2: (Alias | null)[]): (Alias | null)[] => sn.GetMatchingAlias(ArrayValues1, ArrayValues2)
-export const GetMatchingActor = (ArrayValues1: (Actor | null)[], ArrayValues2: (Actor | null)[]): (Actor | null)[] => sn.GetMatchingActor(ArrayValues1, ArrayValues2)
-export const GetMatchingObjRef = (ArrayValues1: (ObjectReference | null)[], ArrayValues2: (ObjectReference | null)[]): (ObjectReference | null)[] => sn.GetMatchingObjRef(ArrayValues1, ArrayValues2)
+export const GetMatchingForm = (ArrayValues1: (Form | null)[] | null, ArrayValues2: (Form | null)[] | null): (Form | null)[] => sn.GetMatchingForm(ArrayValues1, ArrayValues2)
+export const GetMatchingAlias = (ArrayValues1: (Alias | null)[] | null, ArrayValues2: (Alias | null)[] | null): (Alias | null)[] => sn.GetMatchingAlias(ArrayValues1, ArrayValues2)
+export const GetMatchingActor = (ArrayValues1: (Actor | null)[] | null, ArrayValues2: (Actor | null)[] | null): (Actor | null)[] => sn.GetMatchingActor(ArrayValues1, ArrayValues2)
+export const GetMatchingObjRef = (ArrayValues1: (ObjectReference | null)[] | null, ArrayValues2: (ObjectReference | null)[] | null): (ObjectReference | null)[] => sn.GetMatchingObjRef(ArrayValues1, ArrayValues2)
 
-/** ## Returns the number of instances an array has an element equal to the given value */
+/** ## Returns the number of instances an array has an element equal to the given value */
 export const CountFloat = (ArrayValues: number[], EqualTo: number): number => sn.CountFloat(ArrayValues, EqualTo)
 export const CountInt = (ArrayValues: number[], EqualTo: number): number => sn.CountInt(ArrayValues, EqualTo)
 export const CountBool = (ArrayValues: boolean[], EqualTo: boolean): number => sn.CountBool(ArrayValues, EqualTo)
 export const CountString = (ArrayValues: string[], EqualTo: string): number => sn.CountString(ArrayValues, EqualTo)
-export const CountForm = (ArrayValues: (Form | null)[], EqualTo: Form | null): number => sn.CountForm(ArrayValues, EqualTo)
-export const CountAlias = (ArrayValues: (Alias | null)[], EqualTo: Alias | null): number => sn.CountAlias(ArrayValues, EqualTo)
-export const CountActor = (ArrayValues: (Actor | null)[], EqualTo: Actor | null): number => sn.CountActor(ArrayValues, EqualTo)
-export const CountObjRef = (ArrayValues: (ObjectReference | null)[], EqualTo: ObjectReference | null): number => sn.CountObjRef(ArrayValues, EqualTo)
+export const CountForm = (ArrayValues: (Form | null)[] | null, EqualTo: Form | null): number => sn.CountForm(ArrayValues, EqualTo)
+export const CountAlias = (ArrayValues: (Alias | null)[] | null, EqualTo: Alias | null): number => sn.CountAlias(ArrayValues, EqualTo)
+export const CountActor = (ArrayValues: (Actor | null)[] | null, EqualTo: Actor | null): number => sn.CountActor(ArrayValues, EqualTo)
+export const CountObjRef = (ArrayValues: (ObjectReference | null)[] | null, EqualTo: ObjectReference | null): number => sn.CountObjRef(ArrayValues, EqualTo)
 
-/** ## Returns two arrays combined into one, optionally also removing any duplicate occurrences of a value. */
+/** ## Returns two arrays combined into one, optionally also removing any duplicate occurrences of a value. */
 export const MergeFloatArray = (ArrayValues1: number[], ArrayValues2: number[], RemoveDupes: boolean = false): number[] => sn.MergeFloatArray(ArrayValues1, ArrayValues2, RemoveDupes)
 export const MergeIntArray = (ArrayValues1: number[], ArrayValues2: number[], RemoveDupes: boolean = false): number[] => sn.MergeIntArray(ArrayValues1, ArrayValues2, RemoveDupes)
-/** bool[] function MergeBoolArray(bool[] ArrayValues1, bool[] ArrayValues2, bool RemoveDupes = false) global native // // Bugged - Non-native version available below */
+/** bool[] function MergeBoolArray(bool[] ArrayValues1, bool[] ArrayValues2, bool RemoveDupes = false) global native ; // Bugged - Non-native version available below */
 export const MergeStringArray = (ArrayValues1: string[], ArrayValues2: string[], RemoveDupes: boolean = false): string[] => sn.MergeStringArray(ArrayValues1, ArrayValues2, RemoveDupes)
-export const MergeFormArray = (ArrayValues1: (Form | null)[], ArrayValues2: (Form | null)[], RemoveDupes: boolean = false): (Form | null)[] => sn.MergeFormArray(ArrayValues1, ArrayValues2, RemoveDupes)
-export const MergeAliasArray = (ArrayValues1: (Alias | null)[], ArrayValues2: (Alias | null)[], RemoveDupes: boolean = false): (Alias | null)[] => sn.MergeAliasArray(ArrayValues1, ArrayValues2, RemoveDupes)
-export const MergeActorArray = (ArrayValues1: (Actor | null)[], ArrayValues2: (Actor | null)[], RemoveDupes: boolean = false): (Actor | null)[] => sn.MergeActorArray(ArrayValues1, ArrayValues2, RemoveDupes)
-export const MergeObjRefArray = (ArrayValues1: (ObjectReference | null)[], ArrayValues2: (ObjectReference | null)[], RemoveDupes: boolean = false): (ObjectReference | null)[] => sn.MergeObjRefArray(ArrayValues1, ArrayValues2, RemoveDupes)
+export const MergeFormArray = (ArrayValues1: (Form | null)[] | null, ArrayValues2: (Form | null)[] | null, RemoveDupes: boolean = false): (Form | null)[] => sn.MergeFormArray(ArrayValues1, ArrayValues2, RemoveDupes)
+export const MergeAliasArray = (ArrayValues1: (Alias | null)[] | null, ArrayValues2: (Alias | null)[] | null, RemoveDupes: boolean = false): (Alias | null)[] => sn.MergeAliasArray(ArrayValues1, ArrayValues2, RemoveDupes)
+export const MergeActorArray = (ArrayValues1: (Actor | null)[] | null, ArrayValues2: (Actor | null)[] | null, RemoveDupes: boolean = false): (Actor | null)[] => sn.MergeActorArray(ArrayValues1, ArrayValues2, RemoveDupes)
+export const MergeObjRefArray = (ArrayValues1: (ObjectReference | null)[] | null, ArrayValues2: (ObjectReference | null)[] | null, RemoveDupes: boolean = false): (ObjectReference | null)[] => sn.MergeObjRefArray(ArrayValues1, ArrayValues2, RemoveDupes)
 
 /** ## Returns a sub section of an array indicated by a starting and ending index.
 * ## The default argument "int EndIndex = -1" clamps the to the end of the array. Equivalent of setting EndIndex = (ArrayValues.Length - 1)
 */
 export const SliceFloatArray = (ArrayValues: number[], StartIndex: number, EndIndex: number = -1): number[] => sn.SliceFloatArray(ArrayValues, StartIndex, EndIndex)
 export const SliceIntArray = (ArrayValues: number[], StartIndex: number, EndIndex: number = -1): number[] => sn.SliceIntArray(ArrayValues, StartIndex, EndIndex)
-/** bool[] function SliceBoolArray(bool[] ArrayValues, int StartIndex, int EndIndex = -1) global native // // Bugged - Non-native version available below */
+/** bool[] function SliceBoolArray(bool[] ArrayValues, int StartIndex, int EndIndex = -1) global native ; // Bugged - Non-native version available below */
 export const SliceStringArray = (ArrayValues: string[], StartIndex: number, EndIndex: number = -1): string[] => sn.SliceStringArray(ArrayValues, StartIndex, EndIndex)
-export const SliceFormArray = (ArrayValues: (Form | null)[], StartIndex: number, EndIndex: number = -1): (Form | null)[] => sn.SliceFormArray(ArrayValues, StartIndex, EndIndex)
-export const SliceAliasArray = (ArrayValues: (Alias | null)[], StartIndex: number, EndIndex: number = -1): (Alias | null)[] => sn.SliceAliasArray(ArrayValues, StartIndex, EndIndex)
-export const SliceActorArray = (ArrayValues: (Actor | null)[], StartIndex: number, EndIndex: number = -1): (Actor | null)[] => sn.SliceActorArray(ArrayValues, StartIndex, EndIndex)
-export const SliceObjRefArray = (ArrayValues: (ObjectReference | null)[], StartIndex: number, EndIndex: number = -1): (ObjectReference | null)[] => sn.SliceObjRefArray(ArrayValues, StartIndex, EndIndex)
+export const SliceFormArray = (ArrayValues: (Form | null)[] | null, StartIndex: number, EndIndex: number = -1): (Form | null)[] => sn.SliceFormArray(ArrayValues, StartIndex, EndIndex)
+export const SliceAliasArray = (ArrayValues: (Alias | null)[] | null, StartIndex: number, EndIndex: number = -1): (Alias | null)[] => sn.SliceAliasArray(ArrayValues, StartIndex, EndIndex)
+export const SliceActorArray = (ArrayValues: (Actor | null)[] | null, StartIndex: number, EndIndex: number = -1): (Actor | null)[] => sn.SliceActorArray(ArrayValues, StartIndex, EndIndex)
+export const SliceObjRefArray = (ArrayValues: (ObjectReference | null)[] | null, StartIndex: number, EndIndex: number = -1): (ObjectReference | null)[] => sn.SliceObjRefArray(ArrayValues, StartIndex, EndIndex)
 
-/** ## Sorts a given array's elements alphanumerically. Sorted in ascending order by default. */
+/** ## Sorts a given array's elements alphanumerically. Sorted in ascending order by default. */
 export const SortIntArray = (ArrayValues: number[], descending: boolean = false): void => sn.SortIntArray(ArrayValues, descending)
 export const SortFloatArray = (ArrayValues: number[], descending: boolean = false): void => sn.SortFloatArray(ArrayValues, descending)
 export const SortStringArray = (ArrayValues: string[], descending: boolean = false): void => sn.SortStringArray(ArrayValues, descending)
@@ -191,7 +185,7 @@ export const CountNone = (ArrayValues: (Form | null)[]): number => CountForm(Arr
 */
 export const StringSplit = (ArgString: string, Delimiter: string = ","): string[] => sn.StringSplit(ArgString, Delimiter)
 
-/** ## Opposite of StringSplit() */
+/** ## Opposite of StringSplit() */
 export const StringJoin = (Values: string[], Delimiter: string = ","): string => sn.StringJoin(Values, Delimiter)
 
 /** ##
@@ -203,7 +197,7 @@ export const StringJoin = (Values: string[], Delimiter: string = ","): string =>
 export const AddIntValues = (Values: number[]): number => sn.AddIntValues(Values)
 export const AddFloatValues = (Values: number[]): number => sn.AddFloatValues(Values)
 
-/** ## Returns the value clamped to the min or max when out of range */
+/** ## Returns the value clamped to the min or max when out of range */
 export const ClampInt = (value: number, min: number, max: number): number => sn.ClampInt(value, min, max)
 export const ClampFloat = (value: number, min: number, max: number): number => sn.ClampFloat(value, min, max)
 
@@ -214,6 +208,6 @@ export const ClampFloat = (value: number, min: number, max: number): number => s
 export const WrapInt = (value: number, end: number, start: number = 0): number => sn.WrapInt(value, end, start)
 export const WrapFloat = (value: number, end: number, start: number = 0.0): number => sn.WrapFloat(value, end, start)
 
-/** ## Returns the given value signed if bool is true, unsigned if false, regardless if value started out signed or not.  */
+/** ## Returns the given value signed if bool is true, unsigned if false, regardless if value started out signed or not.  */
 export const SignInt = (doSign: boolean, value: number): number => sn.SignInt(doSign, value)
 export const SignFloat = (doSign: boolean, value: number): number => sn.SignFloat(doSign, value)

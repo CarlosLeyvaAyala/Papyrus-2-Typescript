@@ -23,14 +23,8 @@ https://github.com/CarlosLeyvaAyala/Papyrus-2-Typescript
 The program has no way to know the intention of the humans that made
 the scripts, so it's always advisable to manually check all generated
 files to make sure everything is declared as it should.
-
-Take note the program assumes this script exists in some subfolder
-to the folder where `skyrimPlatform.ts` is found, otherwise you'll get
-"Cannot find module..." type of errors.
-
-If you want to have this script in some other place, just change the
-relative path of each `import`.
 */
+
 import * as sp from "skyrimPlatform"
 
 import { Armor } from "skyrimPlatform"
@@ -143,14 +137,14 @@ export const AddOverrideBool = (ref: ObjectReference | null, isFemale: boolean, 
 export const AddOverrideString = (ref: ObjectReference | null, isFemale: boolean, arm: Armor | null, addon: ArmorAddon | null, node: string, key: number, index: number, value: string, persist: boolean): void => sn.AddOverrideString(ref, isFemale, arm, addon, node, key, index, value, persist)
 export const AddOverrideTextureSet = (ref: ObjectReference | null, isFemale: boolean, arm: Armor | null, addon: ArmorAddon | null, node: string, key: number, index: number, value: TextureSet | null, persist: boolean): void => sn.AddOverrideTextureSet(ref, isFemale, arm, addon, node, key, index, value, persist)
 
-/** Gets the saved override value */
+/** Gets the saved override value */
 export const GetOverrideFloat = (ref: ObjectReference | null, isFemale: boolean, arm: Armor | null, addon: ArmorAddon | null, node: string, key: number, index: number): number => sn.GetOverrideFloat(ref, isFemale, arm, addon, node, key, index)
 export const GetOverrideInt = (ref: ObjectReference | null, isFemale: boolean, arm: Armor | null, addon: ArmorAddon | null, node: string, key: number, index: number): number => sn.GetOverrideInt(ref, isFemale, arm, addon, node, key, index)
 export const GetOverrideBool = (ref: ObjectReference | null, isFemale: boolean, arm: Armor | null, addon: ArmorAddon | null, node: string, key: number, index: number): boolean => sn.GetOverrideBool(ref, isFemale, arm, addon, node, key, index)
 export const GetOverrideString = (ref: ObjectReference | null, isFemale: boolean, arm: Armor | null, addon: ArmorAddon | null, node: string, key: number, index: number): string => sn.GetOverrideString(ref, isFemale, arm, addon, node, key, index)
 export const GetOverrideTextureSet = (ref: ObjectReference | null, isFemale: boolean, arm: Armor | null, addon: ArmorAddon | null, node: string, key: number, index: number): TextureSet | null => sn.GetOverrideTextureSet(ref, isFemale, arm, addon, node, key, index)
 
-/** Gets the property straight from the node (Handy if you need the current value if an override D.N.E yet) */
+/** Gets the property straight from the node (Handy if you need the current value if an override D.N.E yet) */
 export const GetPropertyFloat = (ref: ObjectReference | null, firstPerson: boolean, arm: Armor | null, addon: ArmorAddon | null, node: string, key: number, index: number): number => sn.GetPropertyFloat(ref, firstPerson, arm, addon, node, key, index)
 export const GetPropertyInt = (ref: ObjectReference | null, firstPerson: boolean, arm: Armor | null, addon: ArmorAddon | null, node: string, key: number, index: number): number => sn.GetPropertyInt(ref, firstPerson, arm, addon, node, key, index)
 export const GetPropertyBool = (ref: ObjectReference | null, firstPerson: boolean, arm: Armor | null, addon: ArmorAddon | null, node: string, key: number, index: number): boolean => sn.GetPropertyBool(ref, firstPerson, arm, addon, node, key, index)
@@ -162,7 +156,7 @@ export const GetPropertyString = (ref: ObjectReference | null, firstPerson: bool
 */
 export const HasArmorAddonNode = (ref: ObjectReference | null, firstPerson: boolean, arm: Armor | null, addon: ArmorAddon | null, node: string, debug: boolean = false): boolean => sn.HasArmorAddonNode(ref, firstPerson, arm, addon, node, debug)
 
-/** Applies all armor properties visually to the actor, this shouldn't be necessary under normal circumstances */
+/** Applies all armor properties visually to the actor, this shouldn't be necessary under normal circumstances */
 export const ApplyOverrides = (ref: ObjectReference | null): void => sn.ApplyOverrides(ref)
 
 /** ObjectReference must be an Actor (These could work for non-actor objects, untested)
@@ -177,14 +171,14 @@ export const AddNodeOverrideBool = (ref: ObjectReference | null, isFemale: boole
 export const AddNodeOverrideString = (ref: ObjectReference | null, isFemale: boolean, node: string, key: number, index: number, value: string, persist: boolean): void => sn.AddNodeOverrideString(ref, isFemale, node, key, index, value, persist)
 export const AddNodeOverrideTextureSet = (ref: ObjectReference | null, isFemale: boolean, node: string, key: number, index: number, value: TextureSet | null, persist: boolean): void => sn.AddNodeOverrideTextureSet(ref, isFemale, node, key, index, value, persist)
 
-/** Return the stored override, returns default (nil) values if the override D.N.E */
+/** Return the stored override, returns default (nil) values if the override D.N.E */
 export const GetNodeOverrideFloat = (ref: ObjectReference | null, isFemale: boolean, node: string, key: number, index: number): number => sn.GetNodeOverrideFloat(ref, isFemale, node, key, index)
 export const GetNodeOverrideInt = (ref: ObjectReference | null, isFemale: boolean, node: string, key: number, index: number): number => sn.GetNodeOverrideInt(ref, isFemale, node, key, index)
 export const GetNodeOverrideBool = (ref: ObjectReference | null, isFemale: boolean, node: string, key: number, index: number): boolean => sn.GetNodeOverrideBool(ref, isFemale, node, key, index)
 export const GetNodeOverrideString = (ref: ObjectReference | null, isFemale: boolean, node: string, key: number, index: number): string => sn.GetNodeOverrideString(ref, isFemale, node, key, index)
 export const GetNodeOverrideTextureSet = (ref: ObjectReference | null, isFemale: boolean, node: string, key: number, index: number): TextureSet | null => sn.GetNodeOverrideTextureSet(ref, isFemale, node, key, index)
 
-/** Gets the property straight from the node (Handy if you need the current value if an override D.N.E yet) */
+/** Gets the property straight from the node (Handy if you need the current value if an override D.N.E yet) */
 export const GetNodePropertyFloat = (ref: ObjectReference | null, firstPerson: boolean, node: string, key: number, index: number): number => sn.GetNodePropertyFloat(ref, firstPerson, node, key, index)
 export const GetNodePropertyInt = (ref: ObjectReference | null, firstPerson: boolean, node: string, key: number, index: number): number => sn.GetNodePropertyInt(ref, firstPerson, node, key, index)
 export const GetNodePropertyBool = (ref: ObjectReference | null, firstPerson: boolean, node: string, key: number, index: number): boolean => sn.GetNodePropertyBool(ref, firstPerson, node, key, index)
@@ -211,14 +205,14 @@ export const AddWeaponOverrideBool = (ref: ObjectReference | null, isFemale: boo
 export const AddWeaponOverrideString = (ref: ObjectReference | null, isFemale: boolean, firstPerson: boolean, weap: Weapon | null, node: string, key: number, index: number, value: string, persist: boolean): void => sn.AddWeaponOverrideString(ref, isFemale, firstPerson, weap, node, key, index, value, persist)
 export const AddWeaponOverrideTextureSet = (ref: ObjectReference | null, isFemale: boolean, firstPerson: boolean, weap: Weapon | null, node: string, key: number, index: number, value: TextureSet | null, persist: boolean): void => sn.AddWeaponOverrideTextureSet(ref, isFemale, firstPerson, weap, node, key, index, value, persist)
 
-/** Gets the saved override value */
+/** Gets the saved override value */
 export const GetWeaponOverrideFloat = (ref: ObjectReference | null, isFemale: boolean, firstPerson: boolean, weap: Weapon | null, node: string, key: number, index: number): number => sn.GetWeaponOverrideFloat(ref, isFemale, firstPerson, weap, node, key, index)
 export const GetWeaponOverrideInt = (ref: ObjectReference | null, isFemale: boolean, firstPerson: boolean, weap: Weapon | null, node: string, key: number, index: number): number => sn.GetWeaponOverrideInt(ref, isFemale, firstPerson, weap, node, key, index)
 export const GetWeaponOverrideBool = (ref: ObjectReference | null, isFemale: boolean, firstPerson: boolean, weap: Weapon | null, node: string, key: number, index: number): boolean => sn.GetWeaponOverrideBool(ref, isFemale, firstPerson, weap, node, key, index)
 export const GetWeaponOverrideString = (ref: ObjectReference | null, isFemale: boolean, firstPerson: boolean, weap: Weapon | null, node: string, key: number, index: number): string => sn.GetWeaponOverrideString(ref, isFemale, firstPerson, weap, node, key, index)
 export const GetWeaponOverrideTextureSet = (ref: ObjectReference | null, isFemale: boolean, firstPerson: boolean, weap: Weapon | null, node: string, key: number, index: number): TextureSet | null => sn.GetWeaponOverrideTextureSet(ref, isFemale, firstPerson, weap, node, key, index)
 
-/** Gets the property straight from the node (Handy if you need the current value if an override D.N.E yet) */
+/** Gets the property straight from the node (Handy if you need the current value if an override D.N.E yet) */
 export const GetWeaponPropertyFloat = (ref: ObjectReference | null, firstPerson: boolean, weap: Weapon | null, node: string, key: number, index: number): number => sn.GetWeaponPropertyFloat(ref, firstPerson, weap, node, key, index)
 export const GetWeaponPropertyInt = (ref: ObjectReference | null, firstPerson: boolean, weap: Weapon | null, node: string, key: number, index: number): number => sn.GetWeaponPropertyInt(ref, firstPerson, weap, node, key, index)
 export const GetWeaponPropertyBool = (ref: ObjectReference | null, firstPerson: boolean, weap: Weapon | null, node: string, key: number, index: number): boolean => sn.GetWeaponPropertyBool(ref, firstPerson, weap, node, key, index)
@@ -230,7 +224,7 @@ export const GetWeaponPropertyString = (ref: ObjectReference | null, firstPerson
 */
 export const HasWeaponNode = (ref: ObjectReference | null, firstPerson: boolean, weap: Weapon | null, node: string, debug: boolean = false): boolean => sn.HasWeaponNode(ref, firstPerson, weap, node, debug)
 
-/** Applies all armor properties visually to the actor, this shouldn't be necessary under normal circumstances */
+/** Applies all armor properties visually to the actor, this shouldn't be necessary under normal circumstances */
 export const ApplyWeaponOverrides = (ref: ObjectReference | null): void => sn.ApplyWeaponOverrides(ref)
 
 /** ----------------------------------------------------
@@ -247,14 +241,14 @@ export const AddSkinOverrideBool = (ref: ObjectReference | null, isFemale: boole
 export const AddSkinOverrideString = (ref: ObjectReference | null, isFemale: boolean, firstPerson: boolean, slotMask: number, key: number, index: number, value: string, persist: boolean): void => sn.AddSkinOverrideString(ref, isFemale, firstPerson, slotMask, key, index, value, persist)
 export const AddSkinOverrideTextureSet = (ref: ObjectReference | null, isFemale: boolean, firstPerson: boolean, slotMask: number, key: number, index: number, value: TextureSet | null, persist: boolean): void => sn.AddSkinOverrideTextureSet(ref, isFemale, firstPerson, slotMask, key, index, value, persist)
 
-/** Gets the saved override value */
+/** Gets the saved override value */
 export const GetSkinOverrideFloat = (ref: ObjectReference | null, isFemale: boolean, firstPerson: boolean, slotMask: number, key: number, index: number): number => sn.GetSkinOverrideFloat(ref, isFemale, firstPerson, slotMask, key, index)
 export const GetSkinOverrideInt = (ref: ObjectReference | null, isFemale: boolean, firstPerson: boolean, slotMask: number, key: number, index: number): number => sn.GetSkinOverrideInt(ref, isFemale, firstPerson, slotMask, key, index)
 export const GetSkinOverrideBool = (ref: ObjectReference | null, isFemale: boolean, firstPerson: boolean, slotMask: number, key: number, index: number): boolean => sn.GetSkinOverrideBool(ref, isFemale, firstPerson, slotMask, key, index)
 export const GetSkinOverrideString = (ref: ObjectReference | null, isFemale: boolean, firstPerson: boolean, slotMask: number, key: number, index: number): string => sn.GetSkinOverrideString(ref, isFemale, firstPerson, slotMask, key, index)
 export const GetSkinOverrideTextureSet = (ref: ObjectReference | null, isFemale: boolean, firstPerson: boolean, slotMask: number, key: number, index: number): TextureSet | null => sn.GetSkinOverrideTextureSet(ref, isFemale, firstPerson, slotMask, key, index)
 
-/** Gets the property straight from the node (Handy if you need the current value if an override D.N.E yet) */
+/** Gets the property straight from the node (Handy if you need the current value if an override D.N.E yet) */
 export const GetSkinPropertyFloat = (ref: ObjectReference | null, firstPerson: boolean, slotMask: number, key: number, index: number): number => sn.GetSkinPropertyFloat(ref, firstPerson, slotMask, key, index)
 export const GetSkinPropertyInt = (ref: ObjectReference | null, firstPerson: boolean, slotMask: number, key: number, index: number): number => sn.GetSkinPropertyInt(ref, firstPerson, slotMask, key, index)
 export const GetSkinPropertyBool = (ref: ObjectReference | null, firstPerson: boolean, slotMask: number, key: number, index: number): boolean => sn.GetSkinPropertyBool(ref, firstPerson, slotMask, key, index)
@@ -271,61 +265,61 @@ export const ApplySkinOverrides = (ref: ObjectReference | null): void => sn.Appl
 */
 export const RemoveAllOverrides = (): void => sn.RemoveAllOverrides()
 
-/** Removes all Armor based overrides for a particular actor */
+/** Removes all Armor based overrides for a particular actor */
 export const RemoveAllReferenceOverrides = (ref: ObjectReference | null): void => sn.RemoveAllReferenceOverrides(ref)
 
-/** Removes all ArmorAddon overrides for a particular actor and armor */
+/** Removes all ArmorAddon overrides for a particular actor and armor */
 export const RemoveAllArmorOverrides = (ref: ObjectReference | null, isFemale: boolean, arm: Armor | null): void => sn.RemoveAllArmorOverrides(ref, isFemale, arm)
 
-/** Removes all overrides for a particular actor, armor, and addon */
+/** Removes all overrides for a particular actor, armor, and addon */
 export const RemoveAllArmorAddonOverrides = (ref: ObjectReference | null, isFemale: boolean, arm: Armor | null, addon: ArmorAddon | null): void => sn.RemoveAllArmorAddonOverrides(ref, isFemale, arm, addon)
 
-/** Removes all overrides for a particukar actor, armor, addon, and nodeName */
+/** Removes all overrides for a particukar actor, armor, addon, and nodeName */
 export const RemoveAllArmorAddonNodeOverrides = (ref: ObjectReference | null, isFemale: boolean, arm: Armor | null, addon: ArmorAddon | null, node: string): void => sn.RemoveAllArmorAddonNodeOverrides(ref, isFemale, arm, addon, node)
 
-/** Removes one particular override from an actor, armor, addon, node name, key, index */
+/** Removes one particular override from an actor, armor, addon, node name, key, index */
 export const RemoveOverride = (ref: ObjectReference | null, isFemale: boolean, arm: Armor | null, addon: ArmorAddon | null, node: string, key: number, index: number): void => sn.RemoveOverride(ref, isFemale, arm, addon, node, key, index)
 
-/** Removes ALL Node based overrides for ALL actors (Global purge) */
+/** Removes ALL Node based overrides for ALL actors (Global purge) */
 export const RemoveAllNodeOverrides = (): void => sn.RemoveAllNodeOverrides()
 
-/** Removes all Node based overrides for a particular actor */
+/** Removes all Node based overrides for a particular actor */
 export const RemoveAllReferenceNodeOverrides = (ref: ObjectReference | null): void => sn.RemoveAllReferenceNodeOverrides(ref)
 
-/** Removes all Node based overrides for a particular actor, gender, and nodeName */
+/** Removes all Node based overrides for a particular actor, gender, and nodeName */
 export const RemoveAllNodeNameOverrides = (ref: ObjectReference | null, isFemale: boolean, node: string): void => sn.RemoveAllNodeNameOverrides(ref, isFemale, node)
 
-/** Removes one particular override from an actor, of a particular gender, nodeName, key, and index */
+/** Removes one particular override from an actor, of a particular gender, nodeName, key, and index */
 export const RemoveNodeOverride = (ref: ObjectReference | null, isFemale: boolean, node: string, key: number, index: number): void => sn.RemoveNodeOverride(ref, isFemale, node, key, index)
 
-/** Removes ALL weapon based overrides from ALL actors (Global purge) */
+/** Removes ALL weapon based overrides from ALL actors (Global purge) */
 export const RemoveAllWeaponBasedOverrides = (): void => sn.RemoveAllWeaponBasedOverrides()
 
-/** Removes all weapon based overrides for a particular actor */
+/** Removes all weapon based overrides for a particular actor */
 export const RemoveAllReferenceWeaponOverrides = (ref: ObjectReference | null): void => sn.RemoveAllReferenceWeaponOverrides(ref)
 
-/** Removes all weapon overrides for a particular actor, gender, view, and weapon */
+/** Removes all weapon overrides for a particular actor, gender, view, and weapon */
 export const RemoveAllWeaponOverrides = (ref: ObjectReference | null, isFemale: boolean, firstPerson: boolean, weap: Weapon | null): void => sn.RemoveAllWeaponOverrides(ref, isFemale, firstPerson, weap)
 
-/** Removes all overrides for a particukar actor, gender, view, weapon, and nodeName */
+/** Removes all overrides for a particukar actor, gender, view, weapon, and nodeName */
 export const RemoveAllWeaponNodeOverrides = (ref: ObjectReference | null, isFemale: boolean, firstPerson: boolean, weap: Weapon | null, node: string): void => sn.RemoveAllWeaponNodeOverrides(ref, isFemale, firstPerson, weap, node)
 
-/** Removes a particular weapon override */
+/** Removes a particular weapon override */
 export const RemoveWeaponOverride = (ref: ObjectReference | null, isFemale: boolean, firstPerson: boolean, weap: Weapon | null, node: string, key: number, index: number): void => sn.RemoveWeaponOverride(ref, isFemale, firstPerson, weap, node, key, index)
 
-/** Removes ALL skin based overrides from ALL actors (Global purge) */
+/** Removes ALL skin based overrides from ALL actors (Global purge) */
 export const RemoveAllSkinBasedOverrides = (): void => sn.RemoveAllSkinBasedOverrides()
 
-/** Removes all skin based overrides for a particular actor */
+/** Removes all skin based overrides for a particular actor */
 export const RemoveAllReferenceSkinOverrides = (ref: ObjectReference | null): void => sn.RemoveAllReferenceSkinOverrides(ref)
 
-/** Removes all skin overrides for a particular actor, gender, view, and weapon */
+/** Removes all skin overrides for a particular actor, gender, view, and weapon */
 export const RemoveAllSkinOverrides = (ref: ObjectReference | null, isFemale: boolean, firstPerson: boolean, slotMask: number): void => sn.RemoveAllSkinOverrides(ref, isFemale, firstPerson, slotMask)
 
-/** Removes a particular skin override */
+/** Removes a particular skin override */
 export const RemoveSkinOverride = (ref: ObjectReference | null, isFemale: boolean, firstPerson: boolean, slotMask: number, key: number, index: number): void => sn.RemoveSkinOverride(ref, isFemale, firstPerson, slotMask, key, index)
 
-/** Overlay Data */
+/** Overlay Data */
 export const GetNumBodyOverlays = (): number => sn.GetNumBodyOverlays()
 export const GetNumHandOverlays = (): number => sn.GetNumHandOverlays()
 export const GetNumFeetOverlays = (): number => sn.GetNumFeetOverlays()
@@ -336,16 +330,16 @@ export const GetNumSpellHandOverlays = (): number => sn.GetNumSpellHandOverlays(
 export const GetNumSpellFeetOverlays = (): number => sn.GetNumSpellFeetOverlays()
 export const GetNumSpellFaceOverlays = (): number => sn.GetNumSpellFaceOverlays()
 
-/** Adds all enabled overlays to an Actor (Cannot add to player, always exists for player) */
+/** Adds all enabled overlays to an Actor (Cannot add to player, always exists for player) */
 export const AddOverlays = (ref: ObjectReference | null): void => sn.AddOverlays(ref)
 
-/** Returns whether this actor has overlays enabled (Always true for player) */
+/** Returns whether this actor has overlays enabled (Always true for player) */
 export const HasOverlays = (ref: ObjectReference | null): boolean => sn.HasOverlays(ref)
 
-/** Removes overlays from an actor (Cannot remove from player) */
+/** Removes overlays from an actor (Cannot remove from player) */
 export const RemoveOverlays = (ref: ObjectReference | null): void => sn.RemoveOverlays(ref)
 
-/** Restores the original non-diffuse skin textures to skin overlays */
+/** Restores the original non-diffuse skin textures to skin overlays */
 export const RevertOverlays = (ref: ObjectReference | null): void => sn.RevertOverlays(ref)
 
 /** Restores the original non-diffuse skin textures to particular overlay
@@ -356,7 +350,7 @@ export const RevertOverlays = (ref: ObjectReference | null): void => sn.RevertOv
 */
 export const RevertOverlay = (ref: ObjectReference | null, nodeName: string, armorMask: number, addonMask: number): void => sn.RevertOverlay(ref, nodeName, armorMask, addonMask)
 
-/** Restores the original non-diffuse skin textures to all head overlays */
+/** Restores the original non-diffuse skin textures to all head overlays */
 export const RevertHeadOverlays = (ref: ObjectReference | null): void => sn.RevertHeadOverlays(ref)
 
 /** Restores the original non-diffuse skin textures to particular overlay
@@ -367,40 +361,40 @@ export const RevertHeadOverlays = (ref: ObjectReference | null): void => sn.Reve
 */
 export const RevertHeadOverlay = (ref: ObjectReference | null, nodeName: string, partType: number, shaderType: number): void => sn.RevertHeadOverlay(ref, nodeName, partType, shaderType)
 
-/** Sets a body morph value on an actor */
+/** Sets a body morph value on an actor */
 export const SetMorphValue = (ref: ObjectReference | null, morphName: string, value: number): void => sn.SetBodyMorph(ref, morphName, "RSMLegacy", value)
 
-/** Gets a body morph value on an actor */
+/** Gets a body morph value on an actor */
 export const GetMorphValue = (ref: ObjectReference | null, morphName: string): number => sn.GetBodyMorph(ref, morphName, "RSMLegacy")
 
-/** Clears a body morph value on an actor */
+/** Clears a body morph value on an actor */
 export const ClearMorphValue = (ref: ObjectReference | null, morphName: string): void => sn.ClearBodyMorph(ref, morphName, "RSMLegacy")
 
-/** Returns true if there are any body morphs with this key and name */
+/** Returns true if there are any body morphs with this key and name */
 export const HasBodyMorph = (ref: ObjectReference | null, morphName: string, keyName: string): boolean => sn.HasBodyMorph(ref, morphName, keyName)
 
-/** Sets a body morph value on an actor */
+/** Sets a body morph value on an actor */
 export const SetBodyMorph = (ref: ObjectReference | null, morphName: string, keyName: string, value: number): void => sn.SetBodyMorph(ref, morphName, keyName, value)
 
-/** Gets a body morph value on an actor */
+/** Gets a body morph value on an actor */
 export const GetBodyMorph = (ref: ObjectReference | null, morphName: string, keyName: string): number => sn.GetBodyMorph(ref, morphName, keyName)
 
-/** Clears a body morph value on an actor */
+/** Clears a body morph value on an actor */
 export const ClearBodyMorph = (ref: ObjectReference | null, morphName: string, keyName: string): void => sn.ClearBodyMorph(ref, morphName, keyName)
 
-/** Returns true if there are any body morphs with this key */
+/** Returns true if there are any body morphs with this key */
 export const HasBodyMorphKey = (ref: ObjectReference | null, keyName: string): boolean => sn.HasBodyMorphKey(ref, keyName)
 
-/** Clears all body morphs with this key */
+/** Clears all body morphs with this key */
 export const ClearBodyMorphKeys = (ref: ObjectReference | null, keyName: string): void => sn.ClearBodyMorphKeys(ref, keyName)
 
-/** Returns true if there are any body morphs with this name */
+/** Returns true if there are any body morphs with this name */
 export const HasBodyMorphName = (ref: ObjectReference | null, keyName: string): boolean => sn.HasBodyMorphName(ref, keyName)
 
-/** Clears all body morphs with this name */
+/** Clears all body morphs with this name */
 export const ClearBodyMorphNames = (ref: ObjectReference | null, morphName: string): void => sn.ClearBodyMorphNames(ref, morphName)
 
-/** Clears all body morphs for an actor */
+/** Clears all body morphs for an actor */
 export const ClearMorphs = (ref: ObjectReference | null): void => sn.ClearMorphs(ref)
 
 /** Updates the weight data post morph value
@@ -408,21 +402,21 @@ export const ClearMorphs = (ref: ObjectReference | null): void => sn.ClearMorphs
 */
 export const UpdateModelWeight = (ref: ObjectReference | null): void => sn.UpdateModelWeight(ref)
 
-/** Returns all Body Morph names applied to the reference */
+/** Returns all Body Morph names applied to the reference */
 export const GetMorphNames = (ref: ObjectReference | null): string[] => sn.GetMorphNames(ref)
 
-/** Returns all Body Morph keys applied for the morph name */
+/** Returns all Body Morph keys applied for the morph name */
 export const GetMorphKeys = (ref: ObjectReference | null, morphName: string): string[] => sn.GetMorphKeys(ref, morphName)
 
-/** Returns all References currently being morphed */
+/** Returns all References currently being morphed */
 export const GetMorphedReferences = (): (ObjectReference | null)[] => sn.GetMorphedReferences()
 
-/** Calls the function by name on target for each morphed reference */
+/** Calls the function by name on target for each morphed reference */
 export const ForEachMorphedReference = (callback: string, target: Form | null): void => sn.ForEachMorphedReference(callback, target)
 
-/** Call this function prior to frequent changes in dyes to prevent massive lag */
+/** Call this function prior to frequent changes in dyes to prevent massive lag */
 export const EnableTintTextureCache = (): void => sn.EnableTintTextureCache()
-/** Call this when finished frequent dye edits */
+/** Call this when finished frequent dye edits */
 export const ReleaseTintTextureCache = (): void => sn.ReleaseTintTextureCache()
 
 /** -------------- Unique Item functions -----------------
@@ -438,10 +432,10 @@ export const ReleaseTintTextureCache = (): void => sn.ReleaseTintTextureCache()
 */
 export const GetItemUniqueID = (akActor: ObjectReference | null, weaponSlot: number, slotMask: number, makeUnique: boolean = true): number => sn.GetItemUniqueID(akActor, weaponSlot, slotMask, makeUnique)
 
-/** Returns a number for a unique item in the world, when it's placed in inventory it will maintain this ID */
+/** Returns a number for a unique item in the world, when it's placed in inventory it will maintain this ID */
 export const GetObjectUniqueID = (akObject: ObjectReference | null, makeUnique: boolean = true): number => sn.GetObjectUniqueID(akObject, makeUnique)
 
-/** Returns the base form associated with this uniqueId */
+/** Returns the base form associated with this uniqueId */
 export const GetFormFromUniqueID = (uniqueId: number): Form | null => sn.GetFormFromUniqueID(uniqueId)
 
 /** Returns the reference that is holding the item described by this uniqueId
@@ -457,7 +451,7 @@ export const SetItemDyeColor = (uniqueId: number, maskIndex: number, color: numb
 export const GetItemDyeColor = (uniqueId: number, maskIndex: number): number => sn.GetItemDyeColor(uniqueId, maskIndex)
 export const ClearItemDyeColor = (uniqudId: number, maskIndex: number): void => sn.ClearItemDyeColor(uniqudId, maskIndex)
 
-/** Regenerates the tintmask of the dyed object, use after assigning/clearing dye colors */
+/** Regenerates the tintmask of the dyed object, use after assigning/clearing dye colors */
 export const UpdateItemDyeColor = (akActor: ObjectReference | null, uniqueId: number): void => sn.UpdateItemDyeColor(akActor, uniqueId)
 
 /** v2 Dye Functions
@@ -488,13 +482,13 @@ export const UpdateItemTextureLayers = (akActor: ObjectReference | null, uniqueI
 */
 export const IsFormDye = (akForm: Form | null): boolean => sn.IsFormDye(akForm)
 
-/** Returns the dye color bound to this form */
+/** Returns the dye color bound to this form */
 export const GetFormDyeColor = (akForm: Form | null): number => sn.GetFormDyeColor(akForm)
 
-/** Registers the Form as a Dye with a color, 0x00FFFFFF is the universal dye */
+/** Registers the Form as a Dye with a color, 0x00FFFFFF is the universal dye */
 export const RegisterFormDyeColor = (akForm: Form | null, color: number): void => sn.RegisterFormDyeColor(akForm, color)
 
-/** Removes this form as a  */
+/** Removes this form as a  */
 export const UnregisterFormDyeColor = (akForm: Form | null): void => sn.UnregisterFormDyeColor(akForm)
 
 /** -------------------------------------------------
@@ -516,28 +510,28 @@ export const UnregisterFormDyeColor = (akForm: Form | null): void => sn.Unregist
 */
 export const HasNodeTransformPosition = (akRef: ObjectReference | null, firstPerson: boolean, isFemale: boolean, nodeName: string, key: string): boolean => sn.HasNodeTransformPosition(akRef, firstPerson, isFemale, nodeName, key)
 
-/** Adds a position override for the particular key, pos[0-2] correspond to x,y,z */
+/** Adds a position override for the particular key, pos[0-2] correspond to x,y,z */
 export const AddNodeTransformPosition = (akRef: ObjectReference | null, firstPerson: boolean, isFemale: boolean, nodeName: string, key: string, pos: number[]): void => sn.AddNodeTransformPosition(akRef, firstPerson, isFemale, nodeName, key, pos)
 
-/** Returns a position override for the particular key an array of size 3 corresponding to x,y,z */
+/** Returns a position override for the particular key an array of size 3 corresponding to x,y,z */
 export const GetNodeTransformPosition = (akRef: ObjectReference | null, firstPerson: boolean, isFemale: boolean, nodeName: string, key: string): number[] => sn.GetNodeTransformPosition(akRef, firstPerson, isFemale, nodeName, key)
 
-/** Removes a particular position override, returns true if it removed, false if did not exist */
+/** Removes a particular position override, returns true if it removed, false if did not exist */
 export const RemoveNodeTransformPosition = (akRef: ObjectReference | null, firstPerson: boolean, isFemale: boolean, nodeName: string, key: string): boolean => sn.RemoveNodeTransformPosition(akRef, firstPerson, isFemale, nodeName, key)
 
-/** Checks whether there is a scale override for the particular parameters */
+/** Checks whether there is a scale override for the particular parameters */
 export const HasNodeTransformScale = (akRef: ObjectReference | null, firstPerson: boolean, isFemale: boolean, nodeName: string, key: string): boolean => sn.HasNodeTransformScale(akRef, firstPerson, isFemale, nodeName, key)
 
-/** Adds a scale override for the particular key, pos[0-2] correspond to x,y,z */
+/** Adds a scale override for the particular key, pos[0-2] correspond to x,y,z */
 export const AddNodeTransformScale = (akRef: ObjectReference | null, firstPerson: boolean, isFemale: boolean, nodeName: string, key: string, scale: number): void => sn.AddNodeTransformScale(akRef, firstPerson, isFemale, nodeName, key, scale)
 
-/** Returns a scale value override for the particular key, 0.0 if did not exist or failed */
+/** Returns a scale value override for the particular key, 0.0 if did not exist or failed */
 export const GetNodeTransformScale = (akRef: ObjectReference | null, firstPerson: boolean, isFemale: boolean, nodeName: string, key: string): number => sn.GetNodeTransformScale(akRef, firstPerson, isFemale, nodeName, key)
 
-/** Removes a particular scale override, returns true if it removed, false if did not exist */
+/** Removes a particular scale override, returns true if it removed, false if did not exist */
 export const RemoveNodeTransformScale = (akRef: ObjectReference | null, firstPerson: boolean, isFemale: boolean, nodeName: string, key: string): boolean => sn.RemoveNodeTransformScale(akRef, firstPerson, isFemale, nodeName, key)
 
-/** Checks whether there is a rotation override for the particular parameters */
+/** Checks whether there is a rotation override for the particular parameters */
 export const HasNodeTransformRotation = (akRef: ObjectReference | null, firstPerson: boolean, isFemale: boolean, nodeName: string, key: string): boolean => sn.HasNodeTransformRotation(akRef, firstPerson, isFemale, nodeName, key)
 
 /** Adds a rotation override for the particular key given either a size 3 or 9 array
@@ -552,16 +546,16 @@ export const AddNodeTransformRotation = (akRef: ObjectReference | null, firstPer
 */
 export const GetNodeTransformRotation = (akRef: ObjectReference | null, firstPerson: boolean, isFemale: boolean, nodeName: string, key: string, type: number = 0): number[] => sn.GetNodeTransformRotation(akRef, firstPerson, isFemale, nodeName, key, type)
 
-/** Checks whether there is a scale override for the particular parameters */
+/** Checks whether there is a scale override for the particular parameters */
 export const HasNodeTransformScaleMode = (akRef: ObjectReference | null, firstPerson: boolean, isFemale: boolean, nodeName: string, key: string): boolean => sn.HasNodeTransformScaleMode(akRef, firstPerson, isFemale, nodeName, key)
 
-/** Adds a scale mode override for a node, Modes=[0,1,2,3] [Multiplicative,Averaged,Additive,Maximum] */
+/** Adds a scale mode override for a node, Modes=[0,1,2,3] [Multiplicative,Averaged,Additive,Maximum] */
 export const AddNodeTransformScaleMode = (akRef: ObjectReference | null, firstPerson: boolean, isFemale: boolean, nodeName: string, key: string, scaleMode: number): void => sn.AddNodeTransformScaleMode(akRef, firstPerson, isFemale, nodeName, key, scaleMode)
 
-/** Returns a scale mode override for the particular key, -1 if non-existent */
+/** Returns a scale mode override for the particular key, -1 if non-existent */
 export const GetNodeTransformScaleMode = (akRef: ObjectReference | null, firstPerson: boolean, isFemale: boolean, nodeName: string, key: string): number => sn.GetNodeTransformScaleMode(akRef, firstPerson, isFemale, nodeName, key)
 
-/** Removes a particular scale mode override, returns true if it removed, false if did not exist */
+/** Removes a particular scale mode override, returns true if it removed, false if did not exist */
 export const RemoveNodeTransformScaleMode = (akRef: ObjectReference | null, firstPerson: boolean, isFemale: boolean, nodeName: string, key: string): boolean => sn.RemoveNodeTransformScaleMode(akRef, firstPerson, isFemale, nodeName, key)
 
 /** Returns the inverse scale, alters the in pos to the inverse out pos and the in rotation to the out inverse rotation
@@ -569,7 +563,7 @@ export const RemoveNodeTransformScaleMode = (akRef: ObjectReference | null, firs
 */
 export const GetInverseTransform = (in_out_pos: number[], in_out_rotation: number[], in_scale: number = 1.0): number => sn.GetInverseTransform(in_out_pos, in_out_rotation, in_scale)
 
-/** Removes a particular scale override, returns true if it removed, false if did not exist */
+/** Removes a particular scale override, returns true if it removed, false if did not exist */
 export const RemoveNodeTransformRotation = (akRef: ObjectReference | null, firstPerson: boolean, isFemale: boolean, nodeName: string, key: string): boolean => sn.RemoveNodeTransformRotation(akRef, firstPerson, isFemale, nodeName, key)
 
 /** Updates and computes ALL resulting transformation overrides for the particular reference
@@ -577,10 +571,10 @@ export const RemoveNodeTransformRotation = (akRef: ObjectReference | null, first
 */
 export const UpdateAllReferenceTransforms = (akRef: ObjectReference | null): void => sn.UpdateAllReferenceTransforms(akRef)
 
-/** Removes all transforms for a particular reference */
+/** Removes all transforms for a particular reference */
 export const RemoveAllReferenceTransforms = (akRef: ObjectReference | null): void => sn.RemoveAllReferenceTransforms(akRef)
 
-/** Removes all transforms from all references */
+/** Removes all transforms from all references */
 export const RemoveAllTransforms = (): void => sn.RemoveAllTransforms()
 
 /** Updates and computes a particular node's transformation override
@@ -593,10 +587,10 @@ export const UpdateNodeTransform = (akRef: ObjectReference | null, firstPerson: 
 */
 export const SetNodeDestination = (akRef: ObjectReference | null, firstPerson: boolean, isFemale: boolean, nodeName: string, destination: string): void => sn.SetNodeDestination(akRef, firstPerson, isFemale, nodeName, destination)
 
-/** Returns the node destination of the particular parameters */
+/** Returns the node destination of the particular parameters */
 export const GetNodeDestination = (akRef: ObjectReference | null, firstPerson: boolean, isFemale: boolean, nodeName: string): string => sn.GetNodeDestination(akRef, firstPerson, isFemale, nodeName)
 
-/** Removes a node destination for a particular node, does not revert the physical mesh, only removes the key */
+/** Removes a node destination for a particular node, does not revert the physical mesh, only removes the key */
 export const RemoveNodeDestination = (akRef: ObjectReference | null, firstPerson: boolean, isFemale: boolean, nodeName: string): boolean => sn.RemoveNodeDestination(akRef, firstPerson, isFemale, nodeName)
 
 /** These functions can be used to walk all of the current nodes if necessary

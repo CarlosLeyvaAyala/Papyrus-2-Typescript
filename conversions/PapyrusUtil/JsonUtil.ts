@@ -15,14 +15,8 @@ https://github.com/CarlosLeyvaAyala/Papyrus-2-Typescript
 The program has no way to know the intention of the humans that made
 the scripts, so it's always advisable to manually check all generated
 files to make sure everything is declared as it should.
-
-Take note the program assumes this script exists in some subfolder
-to the folder where `skyrimPlatform.ts` is found, otherwise you'll get
-"Cannot find module..." type of errors.
-
-If you want to have this script in some other place, just change the
-relative path of each `import`.
 */
+
 import * as sp from "skyrimPlatform"
 
 import { Form } from "skyrimPlatform"
@@ -60,22 +54,22 @@ export const Load = (FileName: string): boolean => sn.Load(FileName)
 export const Save = (FileName: string, minify: boolean = false): boolean => sn.Save(FileName, minify)
 export const Unload = (FileName: string, saveChanges: boolean = true, minify: boolean = false): boolean => sn.Unload(FileName, saveChanges, minify)
 
-/** Check if given file has had any changes to it they haven't yet been saved */
+/** Check if given file has had any changes to it they haven't yet been saved */
 export const IsPendingSave = (FileName: string): boolean => sn.IsPendingSave(FileName)
-/** Check if the given file was succesfully loaded and has no json parser errors */
+/** Check if the given file was succesfully loaded and has no json parser errors */
 export const IsGood = (FileName: string): boolean => sn.IsGood(FileName)
-/** Get a formatted error string of any json parser errors on a file, returns as empty string if no errors. */
+/** Get a formatted error string of any json parser errors on a file, returns as empty string if no errors. */
 export const GetErrors = (FileName: string): string => sn.GetErrors(FileName)
-/** Returns a list of all filenames in a given folder that end in .json */
+/** Returns a list of all filenames in a given folder that end in .json */
 export const JsonInFolder = (folderPath: string): string[] => sn.JsonInFolder(folderPath)
-/** Check if a json file exists or not */
+/** Check if a json file exists or not */
 export const JsonExists = (FileName: string): boolean => {
   if (!FileName) return false
   else if (FileName.indexOf(".json") == -1) FileName += ".json"
   return FileExists("data/skse/plugins/StorageUtilData/" + FileName)
 }
 
-/** See StorageUtil.psc for equivalent function usage instructions */
+/** See StorageUtil.psc for equivalent function usage instructions */
 export const SetIntValue = (FileName: string, KeyName: string, value: number): number => sn.SetIntValue(FileName, KeyName, value)
 export const SetFloatValue = (FileName: string, KeyName: string, value: number): number => sn.SetFloatValue(FileName, KeyName, value)
 export const SetStringValue = (FileName: string, KeyName: string, value: string): string => sn.SetStringValue(FileName, KeyName, value)
@@ -154,7 +148,7 @@ export const FormListHas = (FileName: string, KeyName: string, value: Form | nul
 export const IntListSlice = (FileName: string, KeyName: string, slice: number[], startIndex: number = 0): void => sn.IntListSlice(FileName, KeyName, slice, startIndex)
 export const FloatListSlice = (FileName: string, KeyName: string, slice: number[], startIndex: number = 0): void => sn.FloatListSlice(FileName, KeyName, slice, startIndex)
 export const StringListSlice = (FileName: string, KeyName: string, slice: string[], startIndex: number = 0): void => sn.StringListSlice(FileName, KeyName, slice, startIndex)
-export const FormListSlice = (FileName: string, KeyName: string, slice: (Form | null)[], startIndex: number = 0): void => sn.FormListSlice(FileName, KeyName, slice, startIndex)
+export const FormListSlice = (FileName: string, KeyName: string, slice: (Form | null)[] | null, startIndex: number = 0): void => sn.FormListSlice(FileName, KeyName, slice, startIndex)
 
 export const IntListResize = (FileName: string, KeyName: string, toLength: number, filler: number = 0): number => sn.IntListResize(FileName, KeyName, toLength, filler)
 export const FloatListResize = (FileName: string, KeyName: string, toLength: number, filler: number = 0.0): number => sn.FloatListResize(FileName, KeyName, toLength, filler)
@@ -164,7 +158,7 @@ export const FormListResize = (FileName: string, KeyName: string, toLength: numb
 export const IntListCopy = (FileName: string, KeyName: string, copy: number[]): boolean => sn.IntListCopy(FileName, KeyName, copy)
 export const FloatListCopy = (FileName: string, KeyName: string, copy: number[]): boolean => sn.FloatListCopy(FileName, KeyName, copy)
 export const StringListCopy = (FileName: string, KeyName: string, copy: string[]): boolean => sn.StringListCopy(FileName, KeyName, copy)
-export const FormListCopy = (FileName: string, KeyName: string, copy: (Form | null)[]): boolean => sn.FormListCopy(FileName, KeyName, copy)
+export const FormListCopy = (FileName: string, KeyName: string, copy: (Form | null)[] | null): boolean => sn.FormListCopy(FileName, KeyName, copy)
 
 export const IntListToArray = (FileName: string, KeyName: string): number[] => sn.IntListToArray(FileName, KeyName)
 export const FloatListToArray = (FileName: string, KeyName: string): number[] => sn.FloatListToArray(FileName, KeyName)
@@ -233,10 +227,10 @@ export const IsPathObject = (FileName: string, Path: string): boolean => sn.IsPa
 export const SetPathIntArray = (FileName: string, Path: string, arr: number[], append: boolean = false): void => sn.SetPathIntArray(FileName, Path, arr, append)
 export const SetPathFloatArray = (FileName: string, Path: string, arr: number[], append: boolean = false): void => sn.SetPathFloatArray(FileName, Path, arr, append)
 export const SetPathStringArray = (FileName: string, Path: string, arr: string[], append: boolean = false): void => sn.SetPathStringArray(FileName, Path, arr, append)
-export const SetPathFormArray = (FileName: string, Path: string, arr: (Form | null)[], append: boolean = false): void => sn.SetPathFormArray(FileName, Path, arr, append)
+export const SetPathFormArray = (FileName: string, Path: string, arr: (Form | null)[] | null, append: boolean = false): void => sn.SetPathFormArray(FileName, Path, arr, append)
 
 export const ClearPath = (FileName: string, Path: string): void => sn.ClearPath(FileName, Path)
 export const ClearPathIndex = (FileName: string, Path: string, Index: number): void => sn.ClearPathIndex(FileName, Path, Index)
 
-/** Debug use */
+/** Debug use */
 export const ClearAll = (FileName: string): void => sn.ClearAll(FileName)

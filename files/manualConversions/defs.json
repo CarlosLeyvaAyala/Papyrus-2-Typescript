@@ -209,6 +209,12 @@
       "comment": "PO3 introduces these custom types"
     }
   ],
+  "PO3_Events_*": [
+    {
+      "type": "substitute",
+      "find": "(?imsU)^\\s*Event.*EndEvent"
+    }
+  ],
   "StorageUtil": [
     {
       "type": "substitute",

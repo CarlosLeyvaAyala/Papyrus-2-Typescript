@@ -4,12 +4,10 @@ import ManualOps
 import os
 import re
 import ReStr
-import sequtils
 import strutils
 import Substitute
-import sugar
 
-proc getLines(fn: string): seq[string] = 
+proc getLines*(fn: string): seq[string] = 
   ## Gets file content as a sequence
   var f = open(fn)
   try:
@@ -19,25 +17,6 @@ proc getLines(fn: string): seq[string] =
   finally:
     close(f)
 
-const Flag = (regx: string) => re(regx, {reIgnoreCase, reStudy})
-
-proc ProcessLine(l: string): string =
-  type Match = tuple[matched: bool, s: string] 
-  # proc Replace (regx: string, f: (string, openArray[string]) -> string): Match =
-  #   var matches: array[20, string]
-  #   let r = Flag(regx)
-  #   result.matched = l.match(r, matches)
-  #   result.s = if (result.matched): f(l, matches) else: l
-
-  # let sn = Replace(isScriptName, TranslateScriptName)
-  # let pr = Replace(isProperty, TranslateProperty)
-  # let fn = Replace(isFunction, TranslateFunction)
-
-  # if sn.matched: return sn.s
-  # elif fn.matched: return fn.s
-  # elif pr.matched: return pr.s
-  # else: return l.TransformSpecialCases()
-
 proc Process*(fn, version: string): void {.discardable.} =
   ## Converts a Papyrus file named `fn` to Typescript.
   SetWorkingFile(fn)
@@ -46,10 +25,10 @@ proc Process*(fn, version: string): void {.discardable.} =
     .TranslateProperties()
     .TranslateFunctions()
     .TranslateComments()
-    .AddImports()
     .MakeSubstitutions()
+    .AddImports()
     .AddHeader(version)
-    .replace(re"\n{3,}", "\n\n")
+    .replace(re"(\n\s*){3,}", "\n\n")
     .strip() & "\n"
   # let l = getLines(fn)
   # blockCommentOpen = false 

@@ -4,13 +4,16 @@ import strformat
 import strutils
 import sugar
 import Files
+import sequtils
 import regex
 
 var 
   manualCfg: JsonNode
   workingFile: string
+  workingJson: JsonNode # Cache to accelerate file data finding
 
 proc SetWorkingFile*(fn: string) =
+  workingJson = nil
   workingFile = extractFilename(fn)
 
 proc WorkingFile*: string = workingFile
@@ -19,22 +22,25 @@ proc InitManualCfg*(): void {.discardable.} =
   manualCfg = parseJson(readFile(manualDefs))
 
 proc GetSingleFileData(fileName: string): JsonNode =
-  var (d, name, e) = splitFile(fileName)
+  if workingJson != nil: return workingJson
+
+  var (d, fn, e) = splitFile(fileName)
   discard d
   discard e
 
-  let fn = extractFilename(fileName).toLowerAscii()
+  var files: seq[string] = @[]
+  
   for k in manualCfg.keys: 
-    let f = fmt"{k.toLowerAscii()}.psc"
+    let f = re("(?i)" & k.replace("*", ".*"))
 
-    if f == fn: 
+    if fn.contains(f): 
       # Need to add whole body back because manualCfg[k] returns only the array content
       var body: string
       body.toUgly(manualCfg[k])
-      let obj = "{ \"$1\": $2 }" % [k, body]
-
-      return obj.parseJson()
-  return parseJson("{}")
+      files.add("\"$1\": $2" % [k, body])
+  let content = if files.len == 0: "" else: files.foldr(a & ", " & b)
+  workingJson = parseJson("{ $1 }" % content)
+  return workingJson
 
 proc GetFileData(fileName: string): JsonNode =
   when not defined(release):

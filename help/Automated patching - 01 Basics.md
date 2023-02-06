@@ -23,12 +23,12 @@ For example, each time a new version of PapyrusUtil comes out, you would need to
 
 ```ts
 export const JsonExists = (FileName: string): boolean => sn.JsonExists(FileName)
-	if !FileName
-		return false
-	elseIf StringUtil.Find(FileName, ".json") == -1
-		FileName += ".json"
-	endIf
-	return MiscUtil.FileExists("data/skse/plugins/StorageUtilData/"+FileName)
+  if !FileName
+    return false
+  elseIf StringUtil.Find(FileName, ".json") == -1
+    FileName += ".json"
+  endIf
+  return MiscUtil.FileExists("data/skse/plugins/StorageUtilData/"+FileName)
 endFunction
 ```
 
@@ -54,15 +54,17 @@ The basic structure of that file is this:
 
 ```json
 {
-	"file name 1": [{}, {}, {}],
-	"file name 2": [
-		{
-			"properties": "of object 1"
-		},
-		{
-			"properties": "of object 2"
-		}
-	]
+{
+  "file name 1": [{}, {}, {}],
+  "file name 2": [
+    {
+      "properties": "of object 1"
+    },
+    {
+      "properties": "of object 2"
+    }
+  ]
+}
 }
 ```
 
@@ -73,9 +75,9 @@ Let's see an example.
 
 ```json
 {
-	"NiOverride": [{}, {}, {}],
-	"LibFire": [{}, {}, {}],
-	"PapyrusUtil": [{}, {}, {}]
+  "NiOverride": [{}, {}, {}],
+  "LibFire": [{}, {}, {}],
+  "PapyrusUtil": [{}, {}, {}]
 }
 ```
 
@@ -115,17 +117,17 @@ Patches are applied in a top to down fashion, like this:
 
 ```json
 {
-	"file name 2": [
-		{
-			"patch order": "#1"
-		},
-		{
-			"patch order": "#2"
-		},
-		{
-			"patch order": "#3"
-		}
-	]
+  "file name 2": [
+    {
+      "patch order": "#1"
+    },
+    {
+      "patch order": "#2"
+    },
+    {
+      "patch order": "#3"
+    }
+  ]
 }
 ```
 

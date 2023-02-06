@@ -36,6 +36,7 @@ const sn = (sp as any).JDB
 export const solveFlt = (path: string, defaultVal: number = 0.0): number => sn.solveFlt(path, defaultVal)
 export const solveInt = (path: string, defaultVal: number = 0): number => sn.solveInt(path, defaultVal)
 export const solveStr = (path: string, defaultVal: string = ""): string => sn.solveStr(path, defaultVal)
+export const solveBool = (path: string, defaultVal: boolean = false): boolean => sn.solveInt(path,  defaultVal ? 1 : 0) === 1
 export const solveObj = (path: string, defaultVal: number = 0): number => sn.solveObj(path, defaultVal)
 export const solveForm = (path: string, defaultVal: Form | null = null): Form | null => sn.solveForm(path, defaultVal)
 
@@ -44,6 +45,7 @@ export const solveForm = (path: string, defaultVal: Form | null = null): Form | 
 */
 export const solveFltSetter = (path: string, value: number, createMissingKeys: boolean = false): boolean => sn.solveFltSetter(path, value, createMissingKeys)
 export const solveIntSetter = (path: string, value: number, createMissingKeys: boolean = false): boolean => sn.solveIntSetter(path, value, createMissingKeys)
+export const solveBoolSetter = (path: string, value: boolean, createMissingKeys: boolean = false): boolean => sn.solveIntSetter(path,  value ? 1 : 0,  createMissingKeys)
 export const solveStrSetter = (path: string, value: string, createMissingKeys: boolean = false): boolean => sn.solveStrSetter(path, value, createMissingKeys)
 export const solveObjSetter = (path: string, value: number, createMissingKeys: boolean = false): boolean => sn.solveObjSetter(path, value, createMissingKeys)
 export const solveFormSetter = (path: string, value: Form | null, createMissingKeys: boolean = false): boolean => sn.solveFormSetter(path, value, createMissingKeys)

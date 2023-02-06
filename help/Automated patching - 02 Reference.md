@@ -6,15 +6,15 @@ Basic file structure:
 
 ```json
 {
-	"file name 1": [{}, {}, {}],
-	"file name 2": [
-		{
-			"properties": "of object 1"
-		},
-		{
-			"properties": "of object 2"
-		}
-	]
+  "file name 1": [{}, {}, {}],
+  "file name 2": [
+    {
+      "properties": "of object 1"
+    },
+    {
+      "properties": "of object 2"
+    }
+  ]
 }
 ```
 
@@ -24,11 +24,11 @@ Each entry is the file name to which apply the patches.
 
 ```json
 {
-	"NiOverride": [{}],
-	"LibFire": [{}, {}, {}],
-	"PapyrusUtil": [{}, {}],
-	"PO3_Events_*": [{}],
-	"PO3_Events_AME": [{}, {}]
+  "NiOverride": [{}],
+  "LibFire": [{}, {}, {}],
+  "PapyrusUtil": [{}, {}],
+  "PO3_Events_*": [{}],
+  "PO3_Events_AME": [{}, {}]
 }
 ```
 - Names are case insensitive.
@@ -37,7 +37,7 @@ Each entry is the file name to which apply the patches.
 
 # Patch types
 
-**A patch must always have a `"type"` property**. If no such property exist, the patch will be simply ignored.
+**A patch must always have a `"type"` property**. If no such property exist, the patch will be ignored.
 
 Different properties are available depending on the patch type.
 
@@ -71,7 +71,7 @@ Inserts a comment in the file header. Just above the _"This file was automatical
 
 ## `"import"`
 
-Inserts content below all the `import { Form } from "skyrimPlatform"` lines.
+Inserts content below all the `import { Form } from "skyrimPlatform"...` lines.
 
 ```json
 {
@@ -97,7 +97,7 @@ Depending on what
 
 ```ts
 export const CountFalse = (ArrayValues: boolean[]): number => sn.CountFalse(ArrayValues)
-	return CountBool(ArrayValues, false)
+  return CountBool(ArrayValues, false)
 endFunction
 ```
 
@@ -105,7 +105,7 @@ endFunction
 
 ```ts
 export const GetScriptVersion = (): number => sn.GetScriptVersion()
-	return 7
+  return 7
 EndFunction
 ```
 
